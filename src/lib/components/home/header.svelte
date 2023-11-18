@@ -5,7 +5,7 @@
 
     onMount(async () => {
 
-        if (!window.jQuery) window.jQuery = jQuery
+        if (!window.jQuery) { window.jQuery = jQuery }
 		window.$.HSCore.components.HSHeader.init(jQuery('#header'));
 
 		// initialization of unfold component
