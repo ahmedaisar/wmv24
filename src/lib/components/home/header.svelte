@@ -7,35 +7,35 @@
 
     if (browser) {
 
-            window.$('.js-mega-menu').HSMegaMenu({
+            jQuery('.js-mega-menu').HSMegaMenu({
                     event: 'hover',
-                    pageContainer: window.$('.container'),
+                    pageContainer: jQuery('.container'),
                     breakpoint: 1199.98,
                     hideTimeOut: 0
                 });
         
-            window.$.HSCore.components.HSHeader.init(jQuery('#header'));
+            jQuery.HSCore.components.HSHeader.init(jQuery('#header'));
 
             // initialization of unfold component
-            window.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
+            jQuery.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
 
             // initialization of show animations
-            window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
+            jQuery.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
             // initialization of datepicker
-            window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+            jQuery.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
             // initialization of select
-            window.$.HSCore.components.HSSelectPicker.init('.js-select');
+            jQuery.HSCore.components.HSSelectPicker.init('.js-select');
 
             // initialization of quantity counter
-            window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
+            jQuery.HSCore.components.HSQantityCounter.init('.js-quantity');
 
             // initialization of slick carousel
-            window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+            jQuery.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
             // initialization of go to
-            window.$.HSCore.components.HSGoTo.init('.js-go-to');
+            jQuery.HSCore.components.HSGoTo.init('.js-go-to');
         }
         
     // onMount(async () => {	 
