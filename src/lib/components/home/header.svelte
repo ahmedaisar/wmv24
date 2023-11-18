@@ -1,9 +1,10 @@
 <script>
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
     import { onMount } from 'svelte';
-    const jq = window.$;
-
+    import js from 'jquery';
+    // @ts-nocheck
     onMount(async () => {
+        window.jq = js;
 
         jq('.js-mega-menu').HSMegaMenu({
 				 event: 'hover',
@@ -12,28 +13,28 @@
 				 hideTimeOut: 0
 			 });
       
-		jq.HSCore.components.HSHeader.init(jq('#header'));
+		jq.$.HSCore.components.HSHeader.init(jq('#header'));
 
 		// initialization of unfold component
-		jq.HSCore.components.HSUnfold.init(jq('[data-unfold-target]'));
+		jq.$.HSCore.components.HSUnfold.init(jq('[data-unfold-target]'));
 
 		// initialization of show animations
-		jq.HSCore.components.HSShowAnimation.init('.js-animation-link');
+		jq.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
 		// initialization of datepicker
-		jq.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+		jq.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
 		// initialization of select
-		jq.HSCore.components.HSSelectPicker.init('.js-select');
+		jq.$.HSCore.components.HSSelectPicker.init('.js-select');
 
 		// initialization of quantity counter
-		jq.HSCore.components.HSQantityCounter.init('.js-quantity');
+		jq.$.HSCore.components.HSQantityCounter.init('.js-quantity');
 
 		// initialization of slick carousel
-		jq.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+		jq.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
 		// initialization of go to
-		jq.HSCore.components.HSGoTo.init('.js-go-to');
+		jq.$.HSCore.components.HSGoTo.init('.js-go-to');
 		 
 	});
 </script>
