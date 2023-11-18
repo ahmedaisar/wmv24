@@ -8,30 +8,30 @@
     // @ts-nocheck
     
     onMount(() => {	     
-        let jq = window.$;
+        
 
-        jq.HSCore.components.HSHeader.init(jq('#header'));
+        window.$.HSCore.components.HSHeader.init(window.$('#header'));
 
         // initialization of unfold component
-        jq.HSCore.components.HSUnfold.init(jq('[data-unfold-target]'));
+        window.$.HSCore.components.HSUnfold.init(window.$('[data-unfold-target]'));
 
         // initialization of show animations
-        jq.HSCore.components.HSShowAnimation.init('.js-animation-link');
+        window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
         // initialization of datepicker
-        jq.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+        window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
         // initialization of select
-        jq.HSCore.components.HSSelectPicker.init('.js-select');
+        window.$.HSCore.components.HSSelectPicker.init('.js-select');
 
         // initialization of quantity counter
-        jq.HSCore.components.HSQantityCounter.init('.js-quantity');
+        window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
 
         // initialization of slick carousel
-        jq.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+        window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
         // initialization of go to
-        jq.HSCore.components.HSGoTo.init('.js-go-to');
+        window.$.HSCore.components.HSGoTo.init('.js-go-to');
 
     });
  
