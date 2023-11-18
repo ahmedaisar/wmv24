@@ -1,35 +1,35 @@
 <script>
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
     import { onMount } from 'svelte';
-    import jQuery from 'jquery'
+    // import jQuery from 'jquery'
 
-    onMount(async () => {
+    // onMount(async () => {
 
-        if (!window.jQuery) { window.jQuery = jQuery }
-		window.$.HSCore.components.HSHeader.init(jQuery('#header'));
+    //     if (!window.jQuery) { window.jQuery = jQuery }
+	// 	window.$.HSCore.components.HSHeader.init(jQuery('#header'));
 
-		// initialization of unfold component
-		window.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
+	// 	// initialization of unfold component
+	// 	window.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
 
-		// initialization of show animations
-		window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
+	// 	// initialization of show animations
+	// 	window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
-		// initialization of datepicker
-		window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+	// 	// initialization of datepicker
+	// 	window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
-		// initialization of select
-		window.$.HSCore.components.HSSelectPicker.init('.js-select');
+	// 	// initialization of select
+	// 	window.$.HSCore.components.HSSelectPicker.init('.js-select');
 
-		// initialization of quantity counter
-		window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
+	// 	// initialization of quantity counter
+	// 	window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
 
-		// initialization of slick carousel
-		window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+	// 	// initialization of slick carousel
+	// 	window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
-		// initialization of go to
-		window.$.HSCore.components.HSGoTo.init('.js-go-to');
+	// 	// initialization of go to
+	// 	window.$.HSCore.components.HSGoTo.init('.js-go-to');
 		 
-	});
+	// });
 </script>
 <style>
     .u-header__navbar-brand-text {
