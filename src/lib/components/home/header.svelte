@@ -1,35 +1,34 @@
 <script>
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
     import { onMount } from 'svelte';
-    // import jQuery from 'jquery'
+    const jq = window.$; 
+    
+    onMount(async () => {
+      
+		jq.$.HSCore.components.HSHeader.init(jq('#header'));
 
-    // onMount(async () => {
+		// initialization of unfold component
+		jq.$.HSCore.components.HSUnfold.init(jq('[data-unfold-target]'));
 
-    //     if (!window.jQuery) { window.jQuery = jQuery }
-	// 	window.$.HSCore.components.HSHeader.init(jQuery('#header'));
+		// initialization of show animations
+		jq.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
-	// 	// initialization of unfold component
-	// 	window.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
+		// initialization of datepicker
+		jq.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
-	// 	// initialization of show animations
-	// 	window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
+		// initialization of select
+		jq.$.HSCore.components.HSSelectPicker.init('.js-select');
 
-	// 	// initialization of datepicker
-	// 	window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+		// initialization of quantity counter
+		jq.$.HSCore.components.HSQantityCounter.init('.js-quantity');
 
-	// 	// initialization of select
-	// 	window.$.HSCore.components.HSSelectPicker.init('.js-select');
+		// initialization of slick carousel
+		jq.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
-	// 	// initialization of quantity counter
-	// 	window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
-
-	// 	// initialization of slick carousel
-	// 	window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-	// 	// initialization of go to
-	// 	window.$.HSCore.components.HSGoTo.init('.js-go-to');
+		// initialization of go to
+		jq.$.HSCore.components.HSGoTo.init('.js-go-to');
 		 
-	// });
+	});
 </script>
 <style>
     .u-header__navbar-brand-text {
