@@ -4,34 +4,6 @@
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/home/footer.svelte';
 	import data from '$lib/data/maldives.json'
-	import { onMount } from 'svelte';
-
-    onMount(async () => {
-
-		window.$.HSCore.components.HSHeader.init(jQuery('#header'));
-
-		// initialization of unfold component
-		window.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
-
-		// initialization of show animations
-		window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
-
-		// initialization of datepicker
-		window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
-
-		// initialization of select
-		window.$.HSCore.components.HSSelectPicker.init('.js-select');
-
-		// initialization of quantity counter
-		window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
-
-		// initialization of slick carousel
-		window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-		// initialization of go to
-		window.$.HSCore.components.HSGoTo.init('.js-go-to');
-		 
-	});
 
 	let hotels = data?.data?.records
 	let resorts = hotels.filter((h) => {
