@@ -1,41 +1,37 @@
 <script>
-    import { browser } from '$app/environment';
+    //import { browser } from '$app/environment';
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
     import { onMount } from 'svelte';
+    //import jQuery from 'jquery';
+ 
     //import js from 'jquery';
     // @ts-nocheck
     
-    onMount(() => {	 
+    onMount(() => {	     
         let jq = window.$;
-        jq('.js-mega-menu').HSMegaMenu({
-                    event: 'hover',
-                    pageContainer: jq('.container'),
-                    breakpoint: 1199.98,
-                    hideTimeOut: 0
-                });
-        
-            jq.HSCore.components.HSHeader.init(jQuery('#header'));
 
-            // initialization of unfold component
-            jq.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
+        jq.HSCore.components.HSHeader.init(jq('#header'));
 
-            // initialization of show animations
-            jq.HSCore.components.HSShowAnimation.init('.js-animation-link');
+        // initialization of unfold component
+        jq.HSCore.components.HSUnfold.init(jq('[data-unfold-target]'));
 
-            // initialization of datepicker
-            jq.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+        // initialization of show animations
+        jq.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
-            // initialization of select
-            jq.HSCore.components.HSSelectPicker.init('.js-select');
+        // initialization of datepicker
+        jq.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
-            // initialization of quantity counter
-            jq.HSCore.components.HSQantityCounter.init('.js-quantity');
+        // initialization of select
+        jq.HSCore.components.HSSelectPicker.init('.js-select');
 
-            // initialization of slick carousel
-            jq.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+        // initialization of quantity counter
+        jq.HSCore.components.HSQantityCounter.init('.js-quantity');
 
-            // initialization of go to
-            jq.HSCore.components.HSGoTo.init('.js-go-to');
+        // initialization of slick carousel
+        jq.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+        // initialization of go to
+        jq.HSCore.components.HSGoTo.init('.js-go-to');
 
     });
  
