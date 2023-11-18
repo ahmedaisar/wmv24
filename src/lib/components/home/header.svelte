@@ -1,46 +1,45 @@
 <script>
     import { browser } from '$app/environment';
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
-    // import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
     //import js from 'jquery';
     // @ts-nocheck
-
-    if (browser) {
-
-            jQuery('.js-mega-menu').HSMegaMenu({
+    
+    onMount(() => {	 
+        let jq = window.$;
+        jq('.js-mega-menu').HSMegaMenu({
                     event: 'hover',
-                    pageContainer: jQuery('.container'),
+                    pageContainer: jq('.container'),
                     breakpoint: 1199.98,
                     hideTimeOut: 0
                 });
         
-            jQuery.HSCore.components.HSHeader.init(jQuery('#header'));
+            jq.HSCore.components.HSHeader.init(jQuery('#header'));
 
             // initialization of unfold component
-            jQuery.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
+            jq.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
 
             // initialization of show animations
-            jQuery.HSCore.components.HSShowAnimation.init('.js-animation-link');
+            jq.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
             // initialization of datepicker
-            jQuery.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+            jq.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
             // initialization of select
-            jQuery.HSCore.components.HSSelectPicker.init('.js-select');
+            jq.HSCore.components.HSSelectPicker.init('.js-select');
 
             // initialization of quantity counter
-            jQuery.HSCore.components.HSQantityCounter.init('.js-quantity');
+            jq.HSCore.components.HSQantityCounter.init('.js-quantity');
 
             // initialization of slick carousel
-            jQuery.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+            jq.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
             // initialization of go to
-            jQuery.HSCore.components.HSGoTo.init('.js-go-to');
-        }
-        
-    // onMount(async () => {	 
+            jq.HSCore.components.HSGoTo.init('.js-go-to');
 
-	// });
+    });
+ 
+
 </script>
 <style>
     .u-header__navbar-brand-text {
