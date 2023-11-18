@@ -1,33 +1,6 @@
 <script>
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
-    import { onMount } from 'svelte';
-
-    onMount(async () => {
-
-		jQuery.$.HSCore.components.HSHeader.init(jQuery('#header'));
-
-		// initialization of unfold component
-		jQuery.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
-
-		// initialization of show animations
-		jQuery.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
-
-		// initialization of datepicker
-		jQuery.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
-
-		// initialization of select
-		jQuery.$.HSCore.components.HSSelectPicker.init('.js-select');
-
-		// initialization of quantity counter
-		jQuery.$.HSCore.components.HSQantityCounter.init('.js-quantity');
-
-		// initialization of slick carousel
-		jQuery.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-		// initialization of go to
-		jQuery.$.HSCore.components.HSGoTo.init('.js-go-to');
-		 
-	});
+    
 </script>
 <style>
     .u-header__navbar-brand-text {
