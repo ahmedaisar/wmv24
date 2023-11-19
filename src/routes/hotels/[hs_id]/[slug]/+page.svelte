@@ -31,11 +31,12 @@
     $: hotel = getHotel[0];
     let hotelPromise = getHotelPromise()
 
-    function getHotelPromise(){
-      return fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21").then((res) => {
-            console.log(res)
-            return JSON.parse(res);            
-        });
+    async function getHotelPromise(){
+        const req = fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21")
+        const res = req.json()
+        const jsn = JSON.parse(res)
+        console.log(jsn)
+        return jsn 
     }
 
     console.log(hotelPromise)
