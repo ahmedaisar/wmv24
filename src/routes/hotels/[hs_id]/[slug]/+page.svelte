@@ -182,7 +182,7 @@
     <!-- End Breadcrumb -->
 
 
-    {#await hoteldata?.data?.records[0]}
+    {#await hoteldata.data.records}
         <Preloader />
     {:then resort}
     <div class="container">
