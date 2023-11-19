@@ -29,10 +29,17 @@
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
+    let { hoteldata } = data
+    let resort
+   
+    let hotelPromise = getHotelPromise()
     
-    let { hoteldata } = data    
-   // let resort = hoteldata.data.records[0]
-    console.log(hoteldata)
+    async function getHotelPromise(){
+           resort = hoteldata.records[0]
+           return resort
+    }
+  
+    console.log(hotelPromise)
     
 </script>
 <style>
@@ -185,7 +192,9 @@
     <!-- End Breadcrumb -->
 
 
-    {#if hoteldata}
+    {#await hotelPromise}
+    <Preloader />    
+    {:then resort}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xl-9">
@@ -360,11 +369,11 @@
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Description
             </h5>
-            <!-- <p>{ resort.descriptions?.general?.slice(0, 120) ? resort.descriptions?.general?.slice(0, 120) : resort.descriptions?.description?.slice(0, 120) } </p>
+             <p>{ resort.descriptions?.general?.slice(0, 120) ? resort.descriptions?.general?.slice(0, 120) : resort.descriptions?.description?.slice(0, 120) } </p>
 
             <div class="collapse" id="collapseLinkExample">
                 <p>{ resort.descriptions?.general ? resort.descriptions?.general : resort.descriptions?.description }</p>
-            </div> -->
+            </div> 
 
             <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
                 <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
@@ -908,8 +917,6 @@
         </div>
         <!-- End Product Cards Ratings With carousel -->
     </div>
-    {:else}
-    <Preloader />
-    {/if}
+    {/await}
 </main>
 <Footer />
