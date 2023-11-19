@@ -35,7 +35,7 @@
     let hotelPromise = getHotelPromise()
     
     async function getHotelPromise(){
-           resort = hoteldata.records[0]
+           resort = hoteldata.data.records[0]
            return resort
     }
   
