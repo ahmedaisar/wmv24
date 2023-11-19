@@ -32,7 +32,7 @@
     
     let { hoteldata } = data    
     let resort = hoteldata.data.records[0]
-    console.log(hoteldata)
+    console.log(resort)
     
 </script>
 <style>
@@ -185,7 +185,7 @@
     <!-- End Breadcrumb -->
 
 
-    {#if hoteldata.data?.records}
+    {#if hoteldata}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xl-9">
