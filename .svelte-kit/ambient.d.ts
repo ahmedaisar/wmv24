@@ -83,6 +83,7 @@ declare module '$env/static/private' {
 	export const npm_lifecycle_event: string;
 	export const npm_lifecycle_script: string;
 	export const npm_node_execpath: string;
+	export const npm_package_dependencies_new_user_agent: string;
 	export const npm_package_description: string;
 	export const npm_package_devDependencies_prettier: string;
 	export const npm_package_devDependencies_prettier_plugin_svelte: string;
@@ -243,6 +244,7 @@ declare module '$env/dynamic/private' {
 		npm_lifecycle_event: string;
 		npm_lifecycle_script: string;
 		npm_node_execpath: string;
+		npm_package_dependencies_new_user_agent: string;
 		npm_package_description: string;
 		npm_package_devDependencies_prettier: string;
 		npm_package_devDependencies_prettier_plugin_svelte: string;
