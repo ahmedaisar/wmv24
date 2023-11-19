@@ -33,9 +33,12 @@
 
     function getHotelPromise(){
       return fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21").then((res) => {
-            return JSON.parse(res.data.records[0]);
+            console.log(res)
+            return JSON.parse(res.records[0]);            
         });
     }
+
+    console.log(hotelPromise)
 
     
 </script>
