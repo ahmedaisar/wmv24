@@ -1,6 +1,7 @@
 <script>
     import Header from '$lib/components/hotel/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
+    import Preloader from '$lib/components/common/preloader.svelte'
     import * as json from '$lib/data/maldives.json'    
     export let data;
 
@@ -27,7 +28,7 @@
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
-    let resort = hoteldata.data.records[0]
+    $: resort = hoteldata.data.records[0]
         
     
 </script>
@@ -180,6 +181,10 @@
     </div>
     <!-- End Breadcrumb -->
 
+
+    {#await resort}
+        <Preloader />
+    {:then resort}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xl-9">
@@ -902,5 +907,6 @@
         </div>
         <!-- End Product Cards Ratings With carousel -->
     </div>
+    {/await}
 </main>
 <Footer />
