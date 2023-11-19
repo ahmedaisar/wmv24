@@ -34,7 +34,7 @@
     async function getHotelPromise(){
         const req = await fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21")
         const res = await req.json()
-        const jsn = JSON.parse(res)
+        const jsn = JSON.parse(res.data.records[0])
         console.log(jsn)
         return jsn 
     }
@@ -370,7 +370,7 @@
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Description
             </h5>
-             <p>{ resort.descriptions?.general?.slice(0, 120) ? resort.descriptions?.general?.slice(0, 120) : resort.descriptions?.description?.slice(0, 120) } </p>
+             <p>{ resort.descriptions?.general?.slice(0, 120) + '...' ? resort.descriptions?.general?.slice(0, 120) + '...' : resort.descriptions?.description?.slice(0, 120) + '...' } </p>
 
             <div class="collapse" id="collapseLinkExample">
                 <p>{ resort.descriptions?.general ? resort.descriptions?.general : resort.descriptions?.description }</p>
