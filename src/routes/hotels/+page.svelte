@@ -1,7 +1,7 @@
 <script>
     export const prerender = true;
     import Header from '$lib/components/hotels/header.svelte';
-	import Footer from '$lib/components/hotels/footer.svelte';
+	import Footer from '$lib/components/common/footer.svelte';
     import { paginate, LightPaginationNav } from 'svelte-paginate'
     import data from '$lib/data/maldives.json'
 

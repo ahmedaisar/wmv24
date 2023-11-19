@@ -1,6 +1,6 @@
 <script>
     import Header from '$lib/components/hotel/header.svelte';
-	import Footer from '$lib/components/hotel/footer.svelte';
+	import Footer from '$lib/components/common/footer.svelte';
     import * as json from '$lib/data/maldives.json'    
     export let data;
 
