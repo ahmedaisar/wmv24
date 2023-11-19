@@ -31,8 +31,8 @@
     $: hotel = getHotel[0];
     
     let { hoteldata } = data    
-    let resort = hoteldata.data.records[0]
-    console.log(resort)
+   // let resort = hoteldata.data.records[0]
+    console.log(hoteldata)
     
 </script>
 <style>
@@ -360,11 +360,11 @@
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Description
             </h5>
-            <p>{ resort.descriptions?.general?.slice(0, 120) ? resort.descriptions?.general?.slice(0, 120) : resort.descriptions?.description?.slice(0, 120) } </p>
+            <!-- <p>{ resort.descriptions?.general?.slice(0, 120) ? resort.descriptions?.general?.slice(0, 120) : resort.descriptions?.description?.slice(0, 120) } </p>
 
             <div class="collapse" id="collapseLinkExample">
                 <p>{ resort.descriptions?.general ? resort.descriptions?.general : resort.descriptions?.description }</p>
-            </div>
+            </div> -->
 
             <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
                 <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
