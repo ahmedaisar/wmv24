@@ -29,16 +29,13 @@
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
-    let resort
-   
     let hotelPromise = getHotelPromise()
     
     async function getHotelPromise(){
         const req = await fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21");
         const res = await req.json();   
-        const jsn = JSON.parse(res);
-        resort = jsn.data.records[0]
-        return resort
+        const jsn = JSON.parse(res.data.records[0]);
+        return jsn;
     }
 
     
