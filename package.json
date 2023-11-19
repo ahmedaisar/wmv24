@@ -11,7 +11,9 @@
 		"lint": "prettier --plugin-search-dir . --check .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
-	"dependencies": {},
+	"dependencies": {
+		"new-user-agent": "^1.0.0"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-static": "^2.0.3",
