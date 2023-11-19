@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/common/footer.svelte';
     import Preloader from '$lib/components/common/preloader.svelte'
     import * as json from '$lib/data/maldives.json'    
-    import onMount from 'svelte'
+    //import onMount from 'svelte'
     export let data;
 
     const getStar = (star) => {
@@ -29,17 +29,9 @@
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
-    let resort
-    let promise
-
-    async function fetchHotelData() {       
-        resort = hoteldata.data.records[0]
-        return resort
-    }
-
-    onMount( async() => {
-        promise = fetchHotelData()
-    })
+    
+    let { hoteldata } = data    
+    console.log(hoteldata)
     
 </script>
 <style>
@@ -192,9 +184,7 @@
     <!-- End Breadcrumb -->
 
 
-    {#await promise}
-        <Preloader />
-    {:then resort }
+    {#if hoteldata.data?.records}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xl-9">
@@ -917,6 +907,8 @@
         </div>
         <!-- End Product Cards Ratings With carousel -->
     </div>
-    {/await}
+    {:else}
+    <Preloader />
+    {/if}
 </main>
 <Footer />
