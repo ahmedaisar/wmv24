@@ -34,7 +34,8 @@
     async function getHotelPromise(){
         const req = await fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21")
         const res = await req.json()
-        const jsn = JSON.stringify(res)
+        const dat = JSON.stringify(res)
+        const jsn = JSON.parse(dat)
         console.log(jsn)
         return jsn 
     }
