@@ -37,7 +37,7 @@
         return resort
     }
 
-    onMount(() => {
+    onMount( async() => {
         promise = fetchHotelData()
     })
     
