@@ -22,7 +22,7 @@
 			return ''
 		}
 	}
-    const { hoteldata } = data
+    let { hoteldata } = data
     let hotels = json?.data?.records
     let getHotel = hotels.filter((h) => {
             return h.hs_id == data.params.hs_id;
@@ -182,7 +182,7 @@
     <!-- End Breadcrumb -->
 
 
-    {#await resort}
+    {#await hoteldata?.data?.records[0]}
         <Preloader />
     {:then resort}
     <div class="container">
