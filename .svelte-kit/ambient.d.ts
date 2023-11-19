@@ -84,7 +84,6 @@ declare module '$env/static/private' {
 	export const npm_lifecycle_script: string;
 	export const npm_node_execpath: string;
 	export const npm_package_description: string;
-	export const npm_package_devDependencies_jquery: string;
 	export const npm_package_devDependencies_prettier: string;
 	export const npm_package_devDependencies_prettier_plugin_svelte: string;
 	export const npm_package_devDependencies_svelte: string;
@@ -93,6 +92,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies_typescript: string;
 	export const npm_package_devDependencies_vite: string;
 	export const npm_package_devDependencies__sveltejs_adapter_auto: string;
+	export const npm_package_devDependencies__sveltejs_adapter_static: string;
 	export const npm_package_devDependencies__sveltejs_kit: string;
 	export const npm_package_name: string;
 	export const npm_package_private: string;
@@ -244,7 +244,6 @@ declare module '$env/dynamic/private' {
 		npm_lifecycle_script: string;
 		npm_node_execpath: string;
 		npm_package_description: string;
-		npm_package_devDependencies_jquery: string;
 		npm_package_devDependencies_prettier: string;
 		npm_package_devDependencies_prettier_plugin_svelte: string;
 		npm_package_devDependencies_svelte: string;
@@ -253,6 +252,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies_typescript: string;
 		npm_package_devDependencies_vite: string;
 		npm_package_devDependencies__sveltejs_adapter_auto: string;
+		npm_package_devDependencies__sveltejs_adapter_static: string;
 		npm_package_devDependencies__sveltejs_kit: string;
 		npm_package_name: string;
 		npm_package_private: string;

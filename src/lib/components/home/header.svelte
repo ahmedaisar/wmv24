@@ -2,36 +2,35 @@
     //import { browser } from '$app/environment';
     import logo from "$lib/assets/mbvlogo.svg?url&raw"
     import { onMount } from 'svelte';
-    //import jQuery from 'jquery';
  
     //import js from 'jquery';
     // @ts-nocheck
     
-    onMount(() => {	     
+    onMount( async () => {	     
         
-
-        window.$.HSCore.components.HSHeader.init(window.$('#header'));
+         
+        window.jQuery.HSCore.components.HSHeader.init(window.jQuery('#header'));
 
         // initialization of unfold component
-        window.$.HSCore.components.HSUnfold.init(window.$('[data-unfold-target]'));
+        window.jQuery.HSCore.components.HSUnfold.init(window.jQuery('[data-unfold-target]'));
 
         // initialization of show animations
-        window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
+        window.jQuery.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
         // initialization of datepicker
-        window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
+        window.jQuery.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
 
         // initialization of select
-        window.$.HSCore.components.HSSelectPicker.init('.js-select');
+        window.jQuery.HSCore.components.HSSelectPicker.init('.js-select');
 
         // initialization of quantity counter
-        window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
+        window.jQuery.HSCore.components.HSQantityCounter.init('.js-quantity');
 
         // initialization of slick carousel
-        window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+        window.jQuery.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
         // initialization of go to
-        window.$.HSCore.components.HSGoTo.init('.js-go-to');
+        window.jQuery.HSCore.components.HSGoTo.init('.js-go-to');
 
     });
  
