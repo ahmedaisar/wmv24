@@ -34,7 +34,7 @@
     async function getHotelPromise(){
         const req = await fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21")
         const res = await req.json()
-        const jsn = JSON.parse(JSON.parse(JSON.stringify(res)))
+        const jsn = JSON.parse(JSON.parse(JSON.stringify(res.data.records[0])))
         console.log(jsn)
         return jsn 
     }
@@ -193,9 +193,7 @@
     <!-- End Breadcrumb -->
 
 
-    {#await hotelPromise}
-    <Preloader />    
-    {:then resort}
+   
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xl-9">
@@ -366,15 +364,18 @@
                 </div>
             </div>
         </div>
+        {#await hotelPromise}
+        <Preloader />    
+        {:then resort}
         <div class="border-bottom position-relative">
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Description
             </h5>
-             <!-- <p>{ resort.descriptions?.general?.slice(0, 120) ? resort.descriptions?.general?.slice(0, 120) : resort.descriptions?.description?.slice(0, 120) } </p>
+             <p>{ resort.descriptions?.general?.slice(0, 120) + '...' ? resort.descriptions?.general?.slice(0, 120) + '...' : resort.descriptions?.description?.slice(0, 120) + '...' } </p>
 
             <div class="collapse" id="collapseLinkExample">
                 <p>{ resort.descriptions?.general ? resort.descriptions?.general : resort.descriptions?.description }</p>
-            </div>  -->
+            </div> 
 
             <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
                 <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
@@ -705,6 +706,7 @@
                 <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
             </a>
         </div>
+        {/await}
         <!-- <div class="border-bottom py-4 position-relative">
             <h5 id="scroll-specifications" class="font-size-21 font-weight-bold text-dark mb-4">
                 Nearest Essentials
@@ -918,6 +920,6 @@
         </div>
         <!-- End Product Cards Ratings With carousel -->
     </div>
-    {/await}
+    
 </main>
 <Footer />
