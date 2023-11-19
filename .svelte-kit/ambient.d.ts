@@ -65,6 +65,8 @@ declare module '$env/static/private' {
 	export const NODE_ENV: string;
 	export const npm_config_argv: string;
 	export const npm_config_bin_links: string;
+	export const npm_config_cafile: string;
+	export const npm_config_enableStrictSsl: string;
 	export const npm_config_engine_strict: string;
 	export const npm_config_ignore_optional: string;
 	export const npm_config_ignore_scripts: string;
@@ -226,6 +228,8 @@ declare module '$env/dynamic/private' {
 		NODE_ENV: string;
 		npm_config_argv: string;
 		npm_config_bin_links: string;
+		npm_config_cafile: string;
+		npm_config_enableStrictSsl: string;
 		npm_config_engine_strict: string;
 		npm_config_ignore_optional: string;
 		npm_config_ignore_scripts: string;

@@ -27,7 +27,7 @@
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
-    console.log(hoteldata)
+    console.log(hoteldata.data)
         
     
 </script>

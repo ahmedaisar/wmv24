@@ -10,6 +10,6 @@ export const load = async ({ fetch, params }) => {
 	
     return {
         params: para,
-        hoteldata: res
+        hoteldata: JSON.stringify(res)
     }
 }
