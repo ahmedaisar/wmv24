@@ -27,7 +27,7 @@
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
-    console.log(hoteldata)
+    let resort = hoteldata.data.records[0]
         
     
 </script>
@@ -354,10 +354,10 @@
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Description
             </h5>
-            <p>The 4-star Park Central Hotel offers comfort and convenience whether you're on business or holiday in New York (NY). Featuring a complete list of amenities, guests will find their stay at the property a comfortable one. Service-minded staff will welcome and guide you at the Park Central Hotel. Air conditioning, heating, desk, alarm clock, iPod docking station can be found in selected guestrooms. The hotel offers various recreational opportunities. Park Central Hotel combines warm hospitality with a lovely ambiance to make your stay in New York (NY) unforgettable.</p>
+            <p>{ resort.descriptions?.general?.slice(0, 25) ? resort.descriptions?.general?.slice(0, 25) : resort.descriptions?.description?.slice(0, 25) } </p>
 
             <div class="collapse" id="collapseLinkExample">
-                <p>Once inside the historic palace located on the Right Bank of the Seine, see unmissable and iconic sights Once inside the historic palace located on the Right Bank of the Seine, see unmissable and iconic sights such as the Mona Lisa and Venus de Milo. Discover masterpieces of the Renaissance and ancient Egyptian relics, along with paintings from the 13th to 20th centuries, prints from the Royal Collection, and much more such as the Mona Lisa and Venus de Milo. Discover masterpieces of the Renaissance and ancient Egyptian relics, along with paintings from the 13th to 20th centuries, prints from the Royal Collection, and much more.</p>
+                <p>{ resort.descriptions?.general ? resort.descriptions?.general : resort.descriptions?.description }</p>
             </div>
 
             <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
