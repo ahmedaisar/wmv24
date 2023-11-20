@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-	export const prerender = true;
+	//export const prerender = true;
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
 	import data from '$lib/data/maldives.json'

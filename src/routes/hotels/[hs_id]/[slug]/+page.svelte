@@ -28,11 +28,11 @@
 		}
 	}
     let hotelPromise
-    let hotels = json?.data?.records
+    const hotels = json?.data?.records
     let getHotel = hotels.filter(h => {
-            return h.hs_id == data.params.hs_id;
+            return h.hs_id == hotelid
         });
-    $: hotel = hotels ?? getHotel;
+    let hotel = getHotel[0]
 
     async function getHotelPromise(){
             const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-01-17&checkout=2024-01-21`)
@@ -43,31 +43,35 @@
     }
     hotelPromise = getHotelPromise() 
     function redirectToBooking(hotelName, arrivalDate, departureDate) {
+            
+            var bookingUrl = 'https://www.booking.com/searchresults.en-us.html?';
+            var checkInDate = '2024-02-21'; // You can replace this with your desired value
+            var checkOutDate = '2024-02-25'; // You can replace this with your desired value
+            var adults = '2';
+            var children = '0';
+            var rand1 = Math.floor(Math.random() * 33); // Random number between 0 and 32
+            var affid = '7974605'; // Set your affiliate ID here
+            var others = 'sb_travel_purpose=leisure&lang=en-us&sb=1&src_elem=sb&src=searchresults&dest_id=124&=dest_type=hotel';
 
-            const affiliateId = '7974605'
-            const adults = '2'
-            const children = '0'
-            const baseBookingUrl = 'https://www.booking.com/searchresults.en-us.html?';
-            const rand1 = Math.floor(Math.random() * 33);
+            bookingUrl += 'hotel_id=' + encodeURIComponent(hotelName);
+            bookingUrl += '&ss=' + encodeURIComponent(hotelName);
+            bookingUrl += '&checkin=' + encodeURIComponent(arrivalDate);
+            bookingUrl += '&checkout=' + encodeURIComponent(departureDate);
+            bookingUrl += '&sid=' + encodeURIComponent(rand1);
 
-            const queryParams = {
-                hotel_id: hotelName,
-                ss: hotelName,
-                checkin: arrivalDate,
-                checkout: departureDate,
-                sid: rand1,
-                group_adults: adults,
-                group_children: children,
-                aid: affiliateId,
-                others: 'sb_travel_purpose=leisure&lang=en-us&sb=1&src_elem=sb&src=searchresults&dest_id=129&dest_type=hotel',
-            };
+            // Append pax details
+            bookingUrl += '&group_adults=' + encodeURIComponent(adults);
+            bookingUrl += '&group_children=' + encodeURIComponent(children);
 
-            const queryString = Object.entries(queryParams)
-                .map(([key, value]) => `${key}=${value}`)
-                .join('&');
+            // Append affid
+            bookingUrl += '&aid=' + encodeURIComponent(affid);
 
-                return `${baseBookingUrl}${queryString}`;
+            // Append others
+            bookingUrl += '&' + encodeURIComponent(others);
+
+            return bookingUrl;
     }
+    console.log(hotel)
   
 </script>
 <style>
@@ -220,8 +224,7 @@
     </div>
     <!-- End Breadcrumb -->
 
-
-   
+ 
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xl-9">
@@ -231,15 +234,15 @@
                             <!-- <li class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0">
                                 <span class="font-weight-normal text-white font-size-14">Newly renovated</span>
                             </li> -->
-                            <li class="border border-maroon bg-maroon rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0 mb-md-0">
+                            <!-- <li class="border border-maroon bg-maroon rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-md-2 mb-2 mb-md-0 mb-lg-2 mb-xl-0 mb-md-0">
                                 <span class="font-weight-normal font-size-14 text-white">Free Wi-Fi</span>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="d-block d-md-flex flex-horizontal-center mb-2 mb-md-0">
                             <h4 class="font-size-23 font-weight-bold mb-1">{hotel.name}</h4>
                             <div class="ml-3 font-size-10 letter-spacing-2">
                                 <span class="d-block green-lighter ml-1">
-                                   {@html getStar(hotel.quality.stars)}
+                                    {@html getStar(hotel.quality.stars)}  
                                 </span>
                             </div>
                         </div>
@@ -280,7 +283,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-xl-9">
+            <div class="col-lg-12">
                 <div class="pb-4 mb-2">
                     <div class="row mx-n1">
                         <div class="col-lg-8 col-xl-9 mb-1 mb-lg-0 px-0 px-lg-1">
@@ -352,7 +355,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-xl-3">
+            <!-- <div class="col-lg-4 col-xl-3">
                 <div class="border border-color-7 rounded px-4 pt-4 pb-3 mb-5">
                     <div class="px-2 pt-2">
                         <a href="https://goo.gl/maps/kCVqYkjHX3XvoC4B9" class="d-inline-block border rounded mb-4 overflow-hidden">
@@ -390,7 +393,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         {#await hotelPromise}
         <Preloader /> 
@@ -398,7 +401,7 @@
         <div class="border-bottom position-relative">
     
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
-                Description
+                Hotel Info
             </h5>
               <p>{ data.descriptions?.general?.slice(0, 120) + '...' ? data.descriptions?.general?.slice(0, 120) + '...' : '' } </p>
             
@@ -489,11 +492,17 @@
                                         <span class="font-weight-bold font-size-22 ml-1"> ${offer.price}</span>
                                         <span class="font-size-14"> / night</span>
                                     </div>
-                                    <a href="#" data-sveltekit-reload on:click={() => setTimeout(() => {
-                                         const loadingDiv = document.getElementById('jsPreloader');
-                                                            loadingDiv.style.display = 'block';
-                                         window.location.href = redirectToBooking(data.name, '2024-02-17', '2024-02-24')
-                                    }, 5000) } class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
+                                    <a href="#" data-sveltekit-reload on:click={(e) => { 
+                                    e.preventDefault
+                                    const loadingDiv = document.getElementById('jsPreloader');
+                                    loadingDiv.style.display = 'block !important';
+                                    const bodyDiv = document.getElementById('content');
+                                    bodyDiv.style.display = 'none !important';                                   
+                                    const link = redirectToBooking(data.name, '2024-02-17', '2024-02-24')
+                                    setTimeout(() => {
+                                         window.location.href = link
+                                    }, 3000) }
+                                    } class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -659,6 +668,7 @@
         </div>
         <!-- End Product Cards Ratings With carousel -->
     </div>
+    
     
 </main>
 <Footer />
