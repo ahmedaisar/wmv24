@@ -303,7 +303,7 @@
 				}
 				}]`}
 			>
-			 {#each resorts.slice(0,12) as resort}
+			 {#each resorts.slice(13,25) as resort}
 				<div class="js-slide mt-2">
 					<div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
 						<div class="position-relative">

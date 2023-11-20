@@ -3,8 +3,11 @@
 	import Footer from '$lib/components/common/footer.svelte';
     import Preloader from '$lib/components/common/preloader.svelte'
     import * as json from '$lib/data/maldives.json'    
-    //import onMount from 'svelte'
+    //import {onMount} from 'svelte'
     export let data;
+
+    const { params } = data
+    const hotelid = params.hs_id
 
     const getStar = (star) => {
 		switch (star) {
@@ -23,24 +26,26 @@
 			return ''
 		}
 	}
-    
+    const getOffers = (offers) => {
+        offers = filter.offers((off) => { off.vendor === 'bkng' })
+    }
+    let hotelPromise
     let hotels = json?.data?.records
     let getHotel = hotels.filter((h) => {
             return h.hs_id == data.params.hs_id;
         });
     $: hotel = getHotel[0];
-    let hotelPromise = getHotelPromise()
 
     async function getHotelPromise(){
-        const req = await fetch("https://nodeapi-506j.onrender.com/scan?hotelid=690385651&checkin=2024-01-17&checkout=2024-01-21")
-        const res = await req.json()
-        const jsn = JSON.parse(JSON.parse(JSON.stringify(res)))
-        console.log(jsn)
-        return jsn 
+            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-01-17&checkout=2024-01-21`)
+            const res = await req.json()
+            let jsn = res.data.records[0]
+            console.log(jsn)
+            return jsn 
+            
     }
-
-   
-
+    hotelPromise = getHotelPromise() 
+ 
     
 </script>
 <style>
@@ -364,20 +369,20 @@
                 </div>
             </div>
         </div>
-        
+        {#await hotelPromise}
+        <Preloader /> 
+        {:then data}
         <div class="border-bottom position-relative">
-            {#await hotelPromise}
-            <Preloader />    
-            {:then resort}
+    
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Description
             </h5>
-             <!-- <p>{ resort.descriptions?.general?.slice(0, 120) + '...' ? resort.descriptions?.general?.slice(0, 120) + '...' : resort.descriptions?.description?.slice(0, 120) + '...' } </p>
+              <p>{ data.descriptions?.general?.slice(0, 120) + '...' ? data.descriptions?.general?.slice(0, 120) + '...' : '' } </p>
             
             <div class="collapse" id="collapseLinkExample">
-                <p>{ resort.descriptions?.general ? resort.descriptions?.general : resort.descriptions?.description }</p>
-            </div>  -->
-            {/await}
+                <p>{ data.descriptions?.general ? data.descriptions?.general : '' }</p>
+            </div>   
+            
             <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
                 <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
                 <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
@@ -387,27 +392,29 @@
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
                 Select Your Room
             </h5>
+            {#each data.offers as offer}
+            {#if offer.vendor == 'bkng'}
             <div class="card border-color-7 mb-5 overflow-hidden">
-                <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
+                <!-- <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
                     <div class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">
                         <span class="font-weight-normal text-white font-size-14">Today's best offer</span>
                     </div>
-                </div>
+                </div> -->
                 <div class="product-item__outer w-100">
                     <div class="row">
                         <div class="col-md-5 col-lg-5 col-xl-3dot5">
                             <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
                                 <div class="product-item__header mt-2 mt-md-0">
                                     <div class="position-relative">
-                                        <img class="img-fluid rounded-sm" src="../../assets/img/200x154/img1.jpg" alt="Image Description">
+                                        <img class="img-fluid rounded-sm" src="{offer.partner_logo}" alt="{offer.partner_name}">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
                             <div class="w-100 position-relative m-4 m-md-0">
-                                <a href="../hotels/hotel-booking.html" class="mb-2 d-inline-block">
-                                    <span class="font-weight-bold font-size-17 text-dark text-dark">Deluxe Twin Room</span>
+                                <a href="#" class="mb-2 d-inline-block">
+                                    <span class="font-weight-bold font-size-17 text-dark text-dark">{offer.room_name}</span>
                                 </a>
                                 <div class="mt-1 pt-2">
                                     <div class="d-flex mb-1">
@@ -462,181 +469,18 @@
                                 <div class="text-center my-xl-1">
                                     <div class="mb-2 pb-1">
                                         <span class="font-size-14">From </span>
-                                        <span class="font-weight-bold font-size-22 ml-1"> £899.00</span>
+                                        <span class="font-weight-bold font-size-22 ml-1"> ${offer.price}</span>
                                         <span class="font-size-14"> / night</span>
                                     </div>
-                                    <a href="../hotels/hotel-booking.html" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
+                                    <a href="#" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card border-color-7 mb-5 overflow-hidden">
-                <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
-                    <div class="border border-maroon bg-maroon rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">
-                        <span class="font-weight-normal text-white font-size-14">Save 13% Today</span>
-                    </div>
-                </div>
-                <div class="product-item__outer w-100">
-                    <div class="row">
-                        <div class="col-md-5 col-lg-5 col-xl-3dot5">
-                            <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
-                                <div class="product-item__header mt-2 mt-md-0">
-                                    <div class="position-relative">
-                                        <img class="img-fluid rounded-sm" src="../../assets/img/200x154/img2.jpg" alt="Image Description">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
-                            <div class="w-100 position-relative m-4 m-md-0">
-                                <a href="../hotels/hotel-booking.html" class="mb-2 d-inline-block">
-                                    <span class="font-weight-bold font-size-17 text-dark text-dark">Deluxe Gold Twin Room</span>
-                                </a>
-                                <div class="mt-1 pt-2">
-                                    <div class="d-flex mb-1">
-                                        <div class="ml-0">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-wifi-signal font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        Free Wi-Fi
-                                                    </div>
-                                                </li>
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-plans font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        15 m²
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="ml-7">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-bed-1 font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        2 single beds
-                                                    </div>
-                                                </li>
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-bathtub font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        Shower and bathtub
-                                                    </div>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="text-underline font-size-14">Room photos and details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
-                            <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">
-                                <div class="text-center my-xl-1">
-                                    <div class="mb-2 pb-1">
-                                        <span class="font-size-14">From </span>
-                                        <span class="font-weight-bold font-size-22 ml-1"> £480.00</span>
-                                        <span class="font-size-14"> / night</span>
-                                    </div>
-                                    <a href="../hotels/hotel-booking.html" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card border-color-7 mb-5 overflow-hidden">
-                <div class="product-item__outer w-100">
-                    <div class="row">
-                        <div class="col-md-5 col-lg-5 col-xl-3dot5">
-                            <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
-                                <div class="product-item__header mt-2 mt-md-0">
-                                    <div class="position-relative">
-                                        <img class="img-fluid rounded-sm" src="../../assets/img/200x154/img3.jpg" alt="Image Description">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
-                            <div class="w-100 position-relative m-4 m-md-0">
-                                <a href="../hotels/hotel-booking.html" class="mb-2 d-inline-block">
-                                    <span class="font-weight-bold font-size-17 text-dark text-dark">Rock Royalty Queen Room</span>
-                                </a>
-                                <div class="mt-1 pt-2">
-                                    <div class="d-flex mb-1">
-                                        <div class="ml-0">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-wifi-signal font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        Free Wi-Fi
-                                                    </div>
-                                                </li>
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-plans font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        15 m²
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="ml-7">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-bed-1 font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        2 single beds
-                                                    </div>
-                                                </li>
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-bathtub font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        Shower and bathtub
-                                                    </div>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="text-underline font-size-14">Room photos and details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
-                            <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">
-                                <div class="text-center my-xl-1">
-                                    <div class="mb-2 pb-1">
-                                        <span class="font-size-14">From </span>
-                                        <span class="font-weight-bold font-size-22 ml-1"> £999.00</span>
-                                        <span class="font-size-14"> / night</span>
-                                    </div>
-                                    <a href="../hotels/hotel-booking.html" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/if}
+            {/each}
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
                 Amenities
             </h5>
@@ -707,7 +551,7 @@
                 <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
             </a>
         </div>
-       
+        {/await}
         <!-- <div class="border-bottom py-4 position-relative">
             <h5 id="scroll-specifications" class="font-size-21 font-weight-bold text-dark mb-4">
                 Nearest Essentials
