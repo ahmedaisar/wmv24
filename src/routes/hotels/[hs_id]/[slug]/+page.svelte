@@ -2,6 +2,7 @@
     import Header from '$lib/components/hotel/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
     import Preloader from '$lib/components/common/preloader.svelte'
+    import PagePreloader from '$lib/components/common/pagepreloader.svelte'
     import * as json from '$lib/data/maldives.json'    
     //import {onMount} from 'svelte'
     export let data;
@@ -26,27 +27,48 @@
 			return ''
 		}
 	}
-    const getOffers = (offers) => {
-        offers = filter.offers((off) => { off.vendor === 'bkng' })
-    }
     let hotelPromise
     let hotels = json?.data?.records
-    let getHotel = hotels.filter((h) => {
+    let getHotel = hotels.filter(h => {
             return h.hs_id == data.params.hs_id;
         });
-    $: hotel = getHotel[0];
+    $: hotel = hotels ?? getHotel;
 
     async function getHotelPromise(){
             const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-01-17&checkout=2024-01-21`)
             const res = await req.json()
             let jsn = res.data.records[0]
-            console.log(jsn)
             return jsn 
             
     }
     hotelPromise = getHotelPromise() 
- 
-    
+    function redirectToBooking(hotelName, arrivalDate, departureDate) {
+
+            const affiliateId = '7974605'
+            const adults = '2'
+            const children = '0'
+            const baseBookingUrl = 'https://www.booking.com/searchresults.en-us.html?';
+            const rand1 = Math.floor(Math.random() * 33);
+
+            const queryParams = {
+                hotel_id: hotelName,
+                ss: hotelName,
+                checkin: arrivalDate,
+                checkout: departureDate,
+                sid: rand1,
+                group_adults: adults,
+                group_children: children,
+                aid: affiliateId,
+                others: 'sb_travel_purpose=leisure&lang=en-us&sb=1&src_elem=sb&src=searchresults&dest_id=129&dest_type=hotel',
+            };
+
+            const queryString = Object.entries(queryParams)
+                .map(([key, value]) => `${key}=${value}`)
+                .join('&');
+
+                return `${baseBookingUrl}${queryString}`;
+    }
+  
 </script>
 <style>
     .fit-image { object-fit: cover !important;}
@@ -54,6 +76,7 @@
 
 <Header />
 
+<PagePreloader />
 <main id="content">
     <div class="bg-primary-darken py-4">
         <div class="container">
@@ -390,10 +413,10 @@
         </div>
         <div class="border-bottom py-4">
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
-                Select Your Room
+                Choose offer
             </h5>
-            {#each data.offers as offer}
-            {#if offer.vendor == 'bkng'}
+            {#each data.all_offers.filter(of => of.vendor == 'bkng') as offer}
+             {#if offer.vendor == 'bkng'} 
             <div class="card border-color-7 mb-5 overflow-hidden">
                 <!-- <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
                     <div class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">
@@ -419,26 +442,21 @@
                                 <div class="mt-1 pt-2">
                                     <div class="d-flex mb-1">
                                         <div class="ml-0">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="media mb-3 text-gray-1">
+                                            <ul class="list-unstyled mb-0" style={`display: flex;flex-wrap:wrap;justify-content:space-around;`}>
+                                                {#each offer.offer_flags as flag}
+                                                <li class="media mb-3 text-gray-1 pr-3">
                                                     <small class="mr-2">
-                                                        <small class="flaticon-wifi-signal font-size-17 text-primary"></small>
+                                                        <small class="flaticon-tick font-size-17 text-primary"></small>
                                                     </small>
                                                     <div class="media-body font-size-1 ml-1">
-                                                        Free Wi-Fi
+                                                        {flag}
                                                     </div>
                                                 </li>
-                                                <li class="media mb-3 text-gray-1">
-                                                    <small class="mr-2">
-                                                        <small class="flaticon-plans font-size-17 text-primary"></small>
-                                                    </small>
-                                                    <div class="media-body font-size-1 ml-1">
-                                                        15 m²
-                                                    </div>
-                                                </li>
+                                                {/each}
+  
                                             </ul>
                                         </div>
-                                        <div class="ml-7">
+                                        <!-- <div class="ml-7">
                                             <ul class="list-unstyled mb-0">
                                                 <li class="media mb-3 text-gray-1">
                                                     <small class="mr-2">
@@ -458,9 +476,8 @@
                                                 </li>
 
                                             </ul>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <a href="#" class="text-underline font-size-14">Room photos and details</a>
                                 </div>
                             </div>
                         </div>
@@ -472,15 +489,22 @@
                                         <span class="font-weight-bold font-size-22 ml-1"> ${offer.price}</span>
                                         <span class="font-size-14"> / night</span>
                                     </div>
-                                    <a href="#" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
+                                    <a href="#" data-sveltekit-reload on:click={() => setTimeout(() => {
+                                         const loadingDiv = document.getElementById('jsPreloader');
+                                                            loadingDiv.style.display = 'block';
+                                         window.location.href = redirectToBooking(data.name, '2024-02-17', '2024-02-24')
+                                    }, 5000) } class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {/if}
+            {:else}
+            <p>No offers avaialable for the dates</p>
+            {/if} 
             {/each}
+           
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
                 Amenities
             </h5>
@@ -552,136 +576,6 @@
             </a>
         </div>
         {/await}
-        <!-- <div class="border-bottom py-4 position-relative">
-            <h5 id="scroll-specifications" class="font-size-21 font-weight-bold text-dark mb-4">
-                Nearest Essentials
-            </h5>
-            <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Airports</div>
-                    <div class="text-gray-1">London City Airport (LCY)</div>
-                    <div class="text-primary mb-2">14.4 km</div>
-                    <div class="text-gray-1">Heathrow Airport (LHR)</div>
-                    <div class="text-primary">21.2 km</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Public transportation</div>
-                    <div class="text-gray-1">Marble Arch Tube Station</div>
-                    <div class="text-primary mb-2">40 m</div>
-                    <div class="text-gray-1">Baker Street Tube Station</div>
-                    <div class="text-primary">9 m</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Hospital or clinic</div>
-                    <div class="text-gray-1">The Wellington Hospital</div>
-                    <div class="text-primary">2.1 km</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Horsepower (hp)</div>
-                    <div class="text-gray-1">200</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Transmission</div>
-                    <div class="text-gray-1">Manual</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Condition</div>
-                    <div class="text-gray-1">New</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Drive</div>
-                    <div class="text-gray-1">Rear</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Warranty</div>
-                    <div class="text-gray-1">Yes</div>
-                </li>
-                <li class="col-md-4 mb-5 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-1">Hospital or clinic</div>
-                    <div class="text-gray-1">The Wellington Hospital</div>
-                    <div class="text-primary">2.1 km</div>
-                </li>
-            </ul>
-            <div class="collapse" id="collapseLinkExample2">
-                <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
-                    <li class="col-md-4 mb-5 list-group-item py-0">
-                        <div class="font-weight-bold text-dark mb-1">Airports</div>
-                        <div class="text-gray-1">London City Airport (LCY)</div>
-                        <div class="text-primary mb-2">14.4 km</div>
-                        <div class="text-gray-1">Heathrow Airport (LHR)</div>
-                        <div class="text-primary">21.2 km</div>
-                    </li>
-                    <li class="col-md-4 mb-5 list-group-item py-0">
-                        <div class="font-weight-bold text-dark mb-1">Public transportation</div>
-                        <div class="text-gray-1">Marble Arch Tube Station</div>
-                        <div class="text-primary mb-2">40 m</div>
-                        <div class="text-gray-1">Baker Street Tube Station</div>
-                        <div class="text-primary">9 m</div>
-                    </li>
-                    <li class="col-md-4 mb-5 list-group-item py-0">
-                        <div class="font-weight-bold text-dark mb-1">Shopping</div>
-                        <div class="text-gray-1">Harrods</div>
-                        <div class="text-primary">1.5 km</div>
-                    </li>
-                </ul>
-            </div>
-
-            <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample2" role="button" aria-expanded="false" aria-controls="collapseLinkExample2">
-                <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
-                <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
-            </a>
-        </div>
-        <div class="border-bottom py-4 position-relative">
-            <h5 id="scroll-specifications" class="font-size-21 font-weight-bold text-dark mb-4">
-                What's Nearby
-            </h5>
-            <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
-                <li class="col-md-4 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-2">Popular landmarks</div>
-                    <div class="text-gray-1 mb-2 pt-1">Buckingham Palace - 1.84 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">St. James's Park - 2.09 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">British Museum - 2.32 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">Westminster Abbey - 2.65 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">Houses of Parliament - 2.78 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">Camden Market - 3.31 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">Tower Bridge - 5.85 km</div>
-                    <div class="text-gray-1 mb-2 pt-1">Tower of London - 5.76 km</div>
-                </li>
-                <li class="col-md-4 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-2">Nearby landmarks</div>
-                    <div class="text-gray-1 mb-2 pt-1">Marble Arch Tube Station - 40 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Still Water Horse Head Statue - 70 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Marble Arch - 80 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Tyburn Tree - 140 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Speakers’ Corner - 160 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Homemade London - 220 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Salt Whisky Bar - 240 m</div>
-                    <div class="text-gray-1 mb-2 pt-1">Clarks - 280 m</div>
-                </li>
-            </ul>
-            <div class="collapse" id="collapseLinkExample3">
-                <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
-                    <li class="col-md-4 mb-2 list-group-item py-0">
-                        <div class="text-gray-1 mb-2 pt-1">Buckingham Palace - 1.84 km</div>
-                        <div class="text-gray-1 mb-2 pt-1">St. James's Park - 2.09 km</div>
-                        <div class="text-gray-1 mb-2 pt-1">British Museum - 2.32 km</div>
-                    </li>
-                    <li class="col-md-4 mb-2 list-group-item py-0">
-                        <div class="text-gray-1 mb-2 pt-1">Marble Arch Tube Station - 40 m</div>
-                        <div class="text-gray-1 mb-2 pt-1">Still Water Horse Head Statue - 70 m</div>
-                        <div class="text-gray-1 mb-2 pt-1">Marble Arch - 80 m</div>
-                    </li>
-                </ul>
-            </div>
-
-            <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample3" role="button" aria-expanded="false" aria-controls="collapseLinkExample3">
-                <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
-                <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
-            </a>
-        </div>
-         -->
-         
-
         <!-- Product Cards Ratings With carousel -->
         <div class="product-card-block product-card-v3">
             <div class="space-1">

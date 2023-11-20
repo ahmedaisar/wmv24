@@ -10,7 +10,7 @@
     let pageSize = 18
     $: hotellist = hotels && paginate({ items: hotels, pageSize, currentPage })
 
-     console.log(hotels[0])
+ 
     
     const getStar = (star) => {
 		switch (star) {

@@ -43,7 +43,7 @@
     }
     @media (max-width: 767.98px) {
         .u-header__navbar-brand-text {
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
     }
 </style>
@@ -166,19 +166,7 @@
                 </div>
                 <!-- End Navigation -->
 
-                <!-- Shopping Cart -->
-                <!-- <div class="pl-2 pl-md-4 ml-auto shopping-cart">
-                    <a id="shoppingCartDropdownInvoker" class="btn-text-secondary poition-relative py-4" href="#" role="button" aria-controls="shoppingCartDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#shoppingCartDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                        <span class="flaticon-shopping-basket font-size-25 text-primary-max-lg"></span>
-                    </a>
-                    <div id="shoppingCartDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right text-center p-7" aria-labelledby="shoppingCartDropdownInvoker" style="min-width: 250px;">
-                        <span class="btn btn-icon btn-soft-primary rounded-circle mb-3">
-                            <span class="flaticon-shopping-basket btn-icon__inner"></span>
-                        </span>
-                        <span class="d-block">Your Cart is Empty</span>
-                    </div>
-                </div> -->
-                <!-- End Shopping Cart -->
+                
             </nav>
             <!-- End Nav -->
         </div>
