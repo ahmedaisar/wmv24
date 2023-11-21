@@ -60,10 +60,10 @@
                     </button>
                     <div id="sidebar" class="collapse navbar-collapse">
                         <div class="mb-6 w-100">
-                            <div class="pb-4 mb-2">
+                            <!-- <div class="pb-4 mb-2">
                                 <div class="sidebar border border-color-1 rounded-xs">
-                                    <div class="p-4 mb-1">
-                                        <!-- Input -->
+                                     <div class="p-4 mb-1">
+                                        
                                         <span class="d-block text-gray-1  font-weight-normal mb-0 text-left">Destination or Hotel Name</span>
                                         <div class="mb-4">
                                             <div class="input-group border-bottom border-width-2 border-color-1">
@@ -71,8 +71,8 @@
                                               <input type="text" class="form-control font-weight-medium font-size-15 shadow-none hero-form border-0 p-0" placeholder="Where are you going?" aria-label="Keyword or title" aria-describedby="keywordInputAddon">
                                             </div>
                                         </div>
-                                        <!-- End Input -->
-                                        <!-- Input -->
+                                       
+                                        
                                         <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">Check In - Out</span>
                                         <div class="mb-4">
                                             <div class="border-bottom border-width-2 border-color-1">
@@ -88,12 +88,12 @@
 Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday">We</span><span class="flatpickr-weekday">Th</span><span class="flatpickr-weekday">Fr</span><span class="flatpickr-weekday">Sa</span><span class="flatpickr-weekday">Su
 </span>
 </div></div><div class="flatpickr-days" tabindex="-1"><div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="June 29, 2020" tabindex="-1">29</span><span class="flatpickr-day prevMonthDay" aria-label="June 30, 2020" tabindex="-1">30</span><span class="flatpickr-day " aria-label="July 1, 2020" tabindex="-1">1</span><span class="flatpickr-day " aria-label="July 2, 2020" tabindex="-1">2</span><span class="flatpickr-day " aria-label="July 3, 2020" tabindex="-1">3</span><span class="flatpickr-day " aria-label="July 4, 2020" tabindex="-1">4</span><span class="flatpickr-day " aria-label="July 5, 2020" tabindex="-1">5</span><span class="flatpickr-day " aria-label="July 6, 2020" tabindex="-1">6</span><span class="flatpickr-day selected startRange" aria-label="July 7, 2020" tabindex="-1">7</span><span class="flatpickr-day inRange" aria-label="July 8, 2020" tabindex="-1">8</span><span class="flatpickr-day inRange" aria-label="July 9, 2020" tabindex="-1">9</span><span class="flatpickr-day inRange" aria-label="July 10, 2020" tabindex="-1">10</span><span class="flatpickr-day inRange" aria-label="July 11, 2020" tabindex="-1">11</span><span class="flatpickr-day inRange" aria-label="July 12, 2020" tabindex="-1">12</span><span class="flatpickr-day inRange" aria-label="July 13, 2020" tabindex="-1">13</span><span class="flatpickr-day inRange" aria-label="July 14, 2020" tabindex="-1">14</span><span class="flatpickr-day inRange" aria-label="July 15, 2020" tabindex="-1">15</span><span class="flatpickr-day inRange" aria-label="July 16, 2020" tabindex="-1">16</span><span class="flatpickr-day inRange" aria-label="July 17, 2020" tabindex="-1">17</span><span class="flatpickr-day inRange" aria-label="July 18, 2020" tabindex="-1">18</span><span class="flatpickr-day inRange" aria-label="July 19, 2020" tabindex="-1">19</span><span class="flatpickr-day inRange" aria-label="July 20, 2020" tabindex="-1">20</span><span class="flatpickr-day inRange" aria-label="July 21, 2020" tabindex="-1">21</span><span class="flatpickr-day inRange" aria-label="July 22, 2020" tabindex="-1">22</span><span class="flatpickr-day inRange" aria-label="July 23, 2020" tabindex="-1">23</span><span class="flatpickr-day inRange" aria-label="July 24, 2020" tabindex="-1">24</span><span class="flatpickr-day inRange" aria-label="July 25, 2020" tabindex="-1">25</span><span class="flatpickr-day inRange" aria-label="July 26, 2020" tabindex="-1">26</span><span class="flatpickr-day inRange" aria-label="July 27, 2020" tabindex="-1">27</span><span class="flatpickr-day inRange" aria-label="July 28, 2020" tabindex="-1">28</span><span class="flatpickr-day inRange" aria-label="July 29, 2020" tabindex="-1">29</span><span class="flatpickr-day inRange" aria-label="July 30, 2020" tabindex="-1">30</span><span class="flatpickr-day inRange" aria-label="July 31, 2020" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 1, 2020" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 2, 2020" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 3, 2020" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 4, 2020" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 5, 2020" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 6, 2020" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 7, 2020" tabindex="-1">7</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 8, 2020" tabindex="-1">8</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 9, 2020" tabindex="-1">9</span></div></div></div></div></div></div>
-                                                <!-- End Datepicker -->
+                                               
                                             </div>
                                         </div>
-                                        <!-- End Input -->
+                                       
 
-                                        <!-- Input -->
+                                        
                                         <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">Rooms and Guests</span>
                                         <div class="mb-4 position-relative">
                                             <div class="border-bottom border-width-2 border-color-1">
@@ -150,15 +150,15 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Input -->
+                                       
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary height-60 w-100 font-weight-bold mb-xl-0 mb-lg-1 transition-3d-hover"><i class="flaticon-magnifying-glass mr-2 font-size-17"></i>Search</button>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
-                             
+                              -->
 
                             <div class="sidenav border border-color-8 rounded-xs">
                                 <!-- Accordiaon -->
@@ -312,35 +312,35 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                         <input type="checkbox" class="custom-control-input" id="1">
                                                         <label class="custom-control-label" for="1">Breakfast Included</label>
                                                     </div>
-                                                    <span>749</span>
+                                                
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="2">
                                                         <label class="custom-control-label" for="2">All-inclusive</label>
                                                     </div>
-                                                    <span>630</span>
+                                              
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="3">
-                                                        <label class="custom-control-label" for="3">Breakfast &amp; dinner included</label>
+                                                        <label class="custom-control-label" for="3">HalfBoard</label>
                                                     </div>
-                                                    <span>58</span>
+                                                 
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="4">
-                                                        <label class="custom-control-label" for="4">Kitchen facilities</label>
+                                                        <label class="custom-control-label" for="4">FullBoard</label>
                                                     </div>
-                                                    <span>29</span>
+                                                  
                                                 </div>
-                                                <!-- End Checkboxes -->
+                                           
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="facilityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                <!-- <div id="facilityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
                                     <div class="border-0">
                                         <div class="card-collapse" id="facilityCategoryHeadingOne">
                                             <h3 class="mb-0">
@@ -388,9 +388,9 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                     </div>
                                                     <span>29</span>
                                                 </div>
-                                                <!-- End Checkboxes -->
+                                           
 
-                                                <!-- View More - Collapse -->
+                                          
                                                 <div class="collapse" id="collapseBrand1">
                                                     <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                         <div class="custom-control custom-checkbox">
@@ -407,18 +407,18 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                         <span>1</span>
                                                     </div>
                                                 </div>
-                                                <!-- End View More - Collapse -->
+                                                
 
-                                                <!-- Link -->
+                                                
                                                 <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand1" role="button" aria-expanded="false" aria-controls="collapseBrand1">
                                                   <span class="link-collapse__default font-size-14">Show all 13</span>
                                                   <span class="link-collapse__active font-size-14">Show less</span>
                                                 </a>
-                                                <!-- End Link -->
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div id="propertyCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
                                     <div class="border-0">
                                         <div class="card-collapse" id="propertyCategoryHeadingOne">
@@ -444,61 +444,28 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                         <input type="checkbox" class="custom-control-input" id="brandhotel">
                                                         <label class="custom-control-label" for="brandhotel">Hotels</label>
                                                     </div>
-                                                    <span>749</span>
+                                                    <!-- <span>749</span> -->
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="brandapartmet">
-                                                        <label class="custom-control-label" for="brandapartmet">Apartments</label>
+                                                        <label class="custom-control-label" for="brandapartmet">Resorts</label>
                                                     </div>
-                                                    <span>630</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandbed">
-                                                        <label class="custom-control-label" for="brandbed">Bed and Breakfasts</label>
-                                                    </div>
-                                                    <span>58</span>
+                                                    <!-- <span>630</span> -->
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="brandresorts">
-                                                        <label class="custom-control-label" for="brandresorts">Resorts</label>
+                                                        <label class="custom-control-label" for="brandresorts">Guest House</label>
                                                     </div>
-                                                    <span>29</span>
-                                                </div>
-                                                <!-- End Checkboxes -->
-
-                                                <!-- View More - Collapse -->
-                                                <div class="collapse" id="collapseBrand2">
-                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                        <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="Gucci">
-                                                        <label class="custom-control-label" for="Gucci">Gucci</label>
-                                                        </div>
-                                                        <span>5</span>
-                                                    </div>
-                                                    <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-3">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="Mango">
-                                                            <label class="custom-control-label" for="Mango">Mango</label>
-                                                        </div>
-                                                        <span>1</span>
-                                                    </div>
-                                                </div>
-                                                <!-- End View More - Collapse -->
-
-                                                <!-- Link -->
-                                                <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand2" role="button" aria-expanded="false" aria-controls="collapseBrand2">
-                                                  <span class="link-collapse__default font-size-14">Show all 39</span>
-                                                  <span class="link-collapse__active font-size-14">Show less</span>
-                                                </a>
-                                                <!-- End Link -->
+                                                    <!-- <span>29</span> -->
+                                                </div>                                                                                                                                                                                                                               
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="cityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                <!-- <div id="cityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
                                     <div class="border-0">
                                         <div class="card-collapse" id="cityCategoryHeadingOne">
                                             <h3 class="mb-0">
@@ -546,9 +513,9 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                     </div>
                                                     <span>29</span>
                                                 </div>
-                                                <!-- End Checkboxes -->
+                                           
 
-                                                <!-- View More - Collapse -->
+                                          
                                                 <div class="collapse" id="collapseBrand3">
                                                     <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                         <div class="custom-control custom-checkbox">
@@ -565,18 +532,18 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                         <span>1</span>
                                                     </div>
                                                 </div>
-                                                <!-- End View More - Collapse -->
+                                                
 
-                                                <!-- Link -->
+                                                
                                                 <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand3" role="button" aria-expanded="false" aria-controls="collapseBrand3">
                                                   <span class="link-collapse__default font-size-14">Show all 25</span>
                                                   <span class="link-collapse__active font-size-14">Show less</span>
                                                 </a>
-                                                <!-- End Link -->
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- End Accordion -->
                             </div>
                         </div>

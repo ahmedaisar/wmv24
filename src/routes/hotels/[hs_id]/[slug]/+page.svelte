@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/common/footer.svelte';
     import Preloader from '$lib/components/common/preloader.svelte'
     import PagePreloader from '$lib/components/common/pagepreloader.svelte'
+    import {goto} from '$app/navigation';
     import * as json from '$lib/data/maldives.json'    
     //import {onMount} from 'svelte'
     export let data;
@@ -35,7 +36,7 @@
     let hotel = getHotel[0]
 
     async function getHotelPromise(){
-            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-01-17&checkout=2024-01-21`)
+            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-02-17&checkout=2024-02-23`)
             const res = await req.json()
             let jsn = res.data.records[0]
             return jsn 
@@ -71,7 +72,7 @@
 
             return bookingUrl;
     }
-    console.log(hotel)
+    console.log(hotelPromise)
   
 </script>
 <style>
@@ -403,23 +404,18 @@
             <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
                 Hotel Info
             </h5>
-              <p>{ data.descriptions?.general?.slice(0, 120) + '...' ? data.descriptions?.general?.slice(0, 120) + '...' : '' } </p>
+            <p>{ data.descriptions?.general ? data.descriptions?.general : data.descriptions?.description } </p>
             
-            <div class="collapse" id="collapseLinkExample">
+            <!-- <div class="collapse" id="collapseLinkExample">
                 <p>{ data.descriptions?.general ? data.descriptions?.general : '' }</p>
-            </div>   
-            
-            <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample" role="button" aria-expanded="false" aria-controls="collapseLinkExample">
-                <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
-                <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
-            </a>
+            </div>    -->
+           
         </div>
         <div class="border-bottom py-4">
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
                 Choose offer
             </h5>
-            {#each data.all_offers.filter(of => of.vendor == 'bkng') as offer}
-             {#if offer.vendor == 'bkng'} 
+            {#each data.all_offers.filter(of => of.vendor == 'bkng') as offer}                    
             <div class="card border-color-7 mb-5 overflow-hidden">
                 <!-- <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
                     <div class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">
@@ -492,16 +488,11 @@
                                         <span class="font-weight-bold font-size-22 ml-1"> ${offer.price}</span>
                                         <span class="font-size-14"> / night</span>
                                     </div>
-                                    <a href="#" data-sveltekit-reload on:click={(e) => { 
-                                    e.preventDefault
-                                    const loadingDiv = document.getElementById('jsPreloader');
-                                    loadingDiv.style.display = 'block !important';
-                                    const bodyDiv = document.getElementById('content');
-                                    bodyDiv.style.display = 'none !important';                                   
+                                    <a href="#" data-sveltekit-reload rel="external" on:click={() => {                                                                                               
                                     const link = redirectToBooking(data.name, '2024-02-17', '2024-02-24')
                                     setTimeout(() => {
-                                         window.location.href = link
-                                    }, 3000) }
+                                        goto(link)
+                                    }, 1000) }
                                     } class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>
                             </div>
@@ -510,8 +501,7 @@
                 </div>
             </div>
             {:else}
-            <p>No offers avaialable for the dates</p>
-            {/if} 
+            <p>No offers avaialable for the dates</p>     
             {/each}
            
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
@@ -539,45 +529,10 @@
             <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
                 <li class="col-md-4 list-group-item py-0">
                     <div class="font-weight-bold text-dark mb-2">Check-in/Check-out</div>
-                    <div class="text-gray-1 mb-2 pt-1">Check-in from: 15:00</div>
-                    <div class="text-gray-1 mb-4 pt-1">Check-out until: 11:00</div>
-                    <div class="font-weight-bold text-dark mb-2">Getting around</div>
-                    <div class="text-gray-1 mb-4 pt-1">Distance from city center: 0 km</div>
-                    <div class="font-weight-bold text-dark mb-2">The property</div>
-                    <div class="text-gray-1 mb-2 pt-1">Number of floors: 8</div>
-                    <div class="text-gray-1 mb-2 pt-1">Number of rooms : 998</div>
-                    <div class="text-gray-1 mb-4 pt-1">Most recent renovation: 2019</div>
-                </li>
-                <li class="col-md-4 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-2">Extras</div>
-                    <div class="text-gray-1 mb-2 pt-1">Breakfast charge (unless included in room price): 20 GBP</div>
-                    <div class="text-gray-1 mb-4 pt-1">Still Water Horse Head Statue - 70 m</div>
-                    <div class="font-weight-bold text-dark mb-2">The property</div>
-                    <div class="text-gray-1 mb-2 pt-1">Number of floors: 8</div>
-                    <div class="text-gray-1 mb-2 pt-1">Number of rooms : 998</div>
-                    <div class="text-gray-1 mb-2 pt-1">Most recent renovation: 2019</div>
-                </li>
-            </ul>
-            <div class="collapse" id="collapseLinkExample4">
-                <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
-                    <li class="col-md-4 list-group-item py-0">
-                        <div class="font-weight-bold text-dark mb-2">Check-in/Check-out</div>
-                        <div class="text-gray-1 mb-2 pt-1">Check-in from: 15:00</div>
-                        <div class="text-gray-1 mb-4 pt-1">Check-out until: 11:00</div>
-                        <div class="font-weight-bold text-dark mb-2">Getting around</div>
-                        <div class="text-gray-1 mb-2 pt-1">Distance from city center: 0 km</div>
-                    </li>
-                    <li class="col-md-4 list-group-item py-0">
-                        <div class="font-weight-bold text-dark mb-2">Extras</div>
-                        <div class="text-gray-1 mb-2 pt-1">Breakfast charge (unless included in room price): 20 GBP</div>
-                        <div class="text-gray-1 mb-4 pt-1">Still Water Horse Head Statue - 70 m</div>
-                        <div class="font-weight-bold text-dark mb-2">The property</div>
-                        <div class="text-gray-1 mb-2 pt-1">Number of floors: 8</div>
-                        <div class="text-gray-1 mb-2 pt-1">Number of rooms : 998</div>
-                        <div class="text-gray-1 mb-4 pt-1">Most recent renovation: 2019</div>
-                    </li>
-                </ul>
-            </div>
+                    <div class="text-gray-1 mb-2 pt-1">Check-in from: 14:00</div>
+                    <div class="text-gray-1 mb-4 pt-1">Check-out until: 12:00</div>            
+                </li>           
+            </ul>            
 
             <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample4" role="button" aria-expanded="false" aria-controls="collapseLinkExample4">
                 <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
