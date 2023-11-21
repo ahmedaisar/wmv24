@@ -1,6 +1,9 @@
 {
 	"/": [],
 	"/blog": [],
+	"/blog/[id]/[slug]": [
+		"src/routes/blog/[id]/[slug]/+page.js"
+	],
 	"/hotels": [
 		"src/routes/hotels/+page.js"
 	],

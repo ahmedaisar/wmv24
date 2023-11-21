@@ -4,9 +4,12 @@
 	import Footer from '$lib/components/common/footer.svelte';
     import Preloader from '$lib/components/common/preloader.svelte'
     import bg from "$lib/assets/bg.jpg"
+    export let data;
+    const { params } = data
+    const blogid = params.id
     let blogPromise
     async function getBlogPromise(){
-            const req = await fetch(`https://maldivesbeachvacation.com/wp-json/wp/v2/posts?_embed`)
+            const req = await fetch(`https://maldivesbeachvacation.com/wp-json/wp/v2/posts/${blogid}?_embed`)
             const res = await req.json()
             return res 
             
@@ -14,8 +17,10 @@
     blogPromise = getBlogPromise() 
     console.log(blogPromise)
 </script>
-
 <Header />
+{#await blogPromise}
+<Preloader /> 
+{:then data}
 <main id="content">
     <!-- Hero Section -->
     <div class="bg-img-hero text-center mb-5 mb-lg-8" style="background-image: url({bg});">
@@ -23,11 +28,11 @@
             <div class="row justify-content-center py-xl-4">
                 <!-- Info -->
                 <div class="py-xl-10 py-5">
-                    <h1 class="font-size-40 font-size-xs-30 text-white font-weight-bold mb-0">Blog</h1>
+                    <h1 class="font-size-40 font-size-xs-30 text-white font-weight-bold mb-0">{@html data.title.rendered}</h1>
                     <nav aria-label="breadcrumb">
-                      <ol class="breadcrumb breadcrumb-no-gutter mb-0">
+                      <ol class="breadcrumb breadcrumb-no-gutter justify-content-center mb-0">
                         <li class="breadcrumb-item font-size-14"><a class="text-white" href="/">Home</a></li>
-                        <li class="breadcrumb-item custom-breadcrumb-item font-size-14 text-white active" aria-current="page">Blog</li>
+                        <li class="breadcrumb-item custom-breadcrumb-item font-size-14 text-white" aria-current="page"><a class="text-white" href="/blog">Blog</a></li>
                       </ol>
                     </nav>
                 </div>
@@ -36,61 +41,62 @@
         </div>
     </div>
     <!-- End Hero Section -->
-    <div class="mb-6 mb-lg-8 pt-lg-1">
-        <div class="container mb-5 mb-lg-9 pb-lg-1">
+    <div class="mb-6 mb-lg-8 pb-lg-1 pt-1">
+        <div class="container mb-5 mb-lg-9">
             <div class="row">
+               
                 <div class="col-lg-8 col-xl-9">
-                    {#await blogPromise}
-                        <Preloader /> 
-                        {:then data}
-                    <div class="mb-5 pb-1">                        
-                        {#each data as blog}
-                        <div class="mb-4">
-                            <a class="d-block" href="/blog/{blog.id}/{blog.slug}">
-                                <img class="img-fluid mb-4 rounded-xs w-100" src={blog._embedded['wp:featuredmedia'][0].source_url} alt="{blog.title.rendered}">
-                            </a>
-                            <h5 class="font-weight-bold font-size-21 text-gray-3">
-                                <a href="/blog/{blog.id}/{blog.slug}">{@html blog.title.rendered}</a>
-                            </h5>
-                            <div class="mb-3">
-                                <a class="mr-3 pr-1" href="/blog/{blog.id}/{blog.slug}">
-                                    <span class="font-weight-normal text-gray-3">{@html new Date(blog.date).toDateString()}</span>
-                                </a>
-                                <!-- <a href="#">
-                                    <span class="font-weight-normal text-primary">Life Style</span>
-                                </a> -->
-                            </div>
-                            <p class="mb-0 text-lh-lg">{@html blog.excerpt.rendered} …
-                            </p>
-                        </div>
-                        {/each}                      
+                    <!-- <div class="js-slick-carousel u-slick mb-4" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-3 ml-xl-5" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-3 mr-xl-5">
+                        <div class="js-slide bg-img-hero-center min-height-450 rounded-xs" style="background-image: url(../../assets/img/955x450/img1.jpg);"></div>
+
+                        <div class="js-slide bg-img-hero-center min-height-450 rounded-xs" style="background-image: url(../../assets/img/955x450/img2.jpg);"></div>
+
+                        <div class="js-slide bg-img-hero-center min-height-450 rounded-xs" style="background-image: url(../../assets/img/955x450/img3.jpg);"></div>
+
+                        <div class="js-slide bg-img-hero-center min-height-450 rounded-xs" style="background-image: url(../../assets/img/955x450/img4.jpg);"></div>
+                    </div> -->
+
+                    <h5 class="font-weight-bold font-size-21 text-gray-3">
+                        <a href="/blog/{data.id}/{data.slug}">{@html data.title.rendered}</a>
+                    </h5>
+                    <div class="mb-3">
+                        <a class="mr-3 pr-1" href="#">
+                            <span class="font-weight-normal text-gray-3">{@html new Date(data.date).toDateString()}</span>
+                        </a>
+                        <!-- <a href="#">
+                            <span class="text-primary font-weight-normal">Life Style</span>
+                        </a> -->
                     </div>
-                    {/await}
-                    <!-- <nav aria-label="Page navigation">
-                        <ul class="list-pagination-1 pagination border border-color-4 rounded-sm mb-5 mb-lg-0 overflow-auto overflow-xl-visible justify-content-md-center align-items-center py-2">
-                            <li class="page-item">
-                                <a class="page-link border-right rounded-0 text-gray-5" href="#" aria-label="Previous">
-                                    <i class="flaticon-left-direction-arrow font-size-10 font-weight-bold"></i>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link font-size-14" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link font-size-14 active" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link font-size-14" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link font-size-14" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link font-size-14" href="#">5</a></li>
-                            <li class="page-item disabled"><a class="page-link font-size-14" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link font-size-14" href="#">66</a></li>
-                            <li class="page-item"><a class="page-link font-size-14" href="#">67</a></li>
-                            <li class="page-item">
-                                <a class="page-link border-left rounded-0 text-gray-5" href="#" aria-label="Next">
-                                    <i class="flaticon-right-thin-chevron font-size-10 font-weight-bold"></i>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav> -->
-                </div>               
+                    <p class="text-lh-lg text-gray-1 mb-5">{@html data.content.rendered}</p>
+
+                    <!-- <p class="text-lh-lg text-gray-1 mb-5 pb-1">You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab. Most controls offer a choice of using the look from the current theme or using a format that you specify directly.</p>
+                    <div class="mb-5 pb-1">
+                        <div class="d-md-flex justify-content-between align-items-center">
+                            <a class="d-block mb-4 mb-md-0 text-color-1" href="blog-single.html">
+                                <div class="d-flex justify-content-center justify-content-md-start">
+                                    <i class="flaticon-left-arrow font-size-15 mr-2 "></i>
+                                    <span class="font-weight-normal font-size-14 ">Previuos Post</span>
+                                </div>
+                                <div class="font-weight-normal  ml-md-4 mb-0 pt-md-1 text-center text-md-left">
+                                    The bedding was hardly able
+                                </div>
+                            </a>
+
+                            <a class="d-block text-color-1" href="blog-single.html">
+                                <div class="d-flex justify-content-center justify-content-md-end">
+                                    <span class="font-weight-normal font-size-14">Next Post</span>
+                                    <i class="flaticon-right-arrow font-size-15 ml-2"></i>
+                                </div>
+                                <div class="font-weight-normal mr-md-4 mb-0 pt-md-1 text-center text-md-left">
+                                    11 Tips to Help You Get New
+                                </div>
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="border border-color-8 mb-4"></div>
+                     
+                </div>
+               
                 <div class="col-lg-4 col-xl-3">
                     <form class="input-group input-group-borderless mb-5">
                     <!-- Input -->
@@ -126,7 +132,7 @@
                                     <li><a class="dropdown-item" href="#">Security cameras</a></li>
                                     <li><a class="dropdown-item" href="#">Digital cameras</a></li>
                                     <li><a class="dropdown-item" href="#">Gadgets</a></li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -148,7 +154,7 @@
                                     <li><a class="dropdown-item" href="#">Security cameras</a></li>
                                     <li><a class="dropdown-item" href="#">Digital cameras</a></li>
                                     <li><a class="dropdown-item" href="#">Gadgets</a></li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -181,7 +187,7 @@
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item " href="#">Vacuums & floor care</a></li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -215,7 +221,7 @@
                                             <li><a class="dropdown-item" href="#">Personal care</a></li>
                                         </ul>
                                     </li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -241,7 +247,7 @@
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item " href="#">Baby and & toys</a></li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -277,7 +283,7 @@
                                             <li><a class="dropdown-item" href="#">Auto oils & fluids</a></li>
                                         </ul>
                                     </li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -299,7 +305,7 @@
                                     <li><a class="dropdown-item " href="#">Security cameras</a></li>
                                     <li><a class="dropdown-item " href="#">Digital cameras</a></li>
                                     <li><a class="dropdown-item " href="#">Gadgets</a></li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -325,7 +331,7 @@
                                     <li><a class="dropdown-item " href="#">Baby personal care</a></li>
                                     <li><a class="dropdown-item " href="#">Clothing & accessories</a></li>
                                     <li><a class="dropdown-item " href="#">Baby and & toys</a></li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -338,16 +344,16 @@
                             <div id="sidebarNav9Collapse" class="collapse" data-parent="#sidebarNav">
                                 <ul id="sidebarNav9" class="list-unstyled">
                                     
-                                    <li><a class="dropdown-item" href="#">Mobiles</a></li>
-                                    <li><a class="dropdown-item" href="#">Tablets</a></li>
-                                    <li><a class="dropdown-item" href="#">Laptops</a></li>
-                                    <li><a class="dropdown-item" href="#">Desktops</a></li>
-                                    <li><a class="dropdown-item" href="#">Gaming consoles</a></li>
-                                    <li><a class="dropdown-item" href="#">Car cameras</a></li>
-                                    <li><a class="dropdown-item" href="#">Security cameras</a></li>
-                                    <li><a class="dropdown-item" href="#">Digital cameras</a></li>
-                                    <li><a class="dropdown-item" href="#">Gadgets</a></li>
-                                 
+                                    <li><a class="dropdown-item " href="#">Mobiles</a></li>
+                                    <li><a class="dropdown-item " href="#">Tablets</a></li>
+                                    <li><a class="dropdown-item " href="#">Laptops</a></li>
+                                    <li><a class="dropdown-item " href="#">Desktops</a></li>
+                                    <li><a class="dropdown-item " href="#">Gaming consoles</a></li>
+                                    <li><a class="dropdown-item " href="#">Car cameras</a></li>
+                                    <li><a class="dropdown-item " href="#">Security cameras</a></li>
+                                    <li><a class="dropdown-item " href="#">Digital cameras</a></li>
+                                    <li><a class="dropdown-item " href="#">Gadgets</a></li>
+                                
                                 </ul>
                             </div>
                         </li>
@@ -382,7 +388,7 @@
                                             <li class="mb-2"><a class="dropdown-item" href="#">Auto oils & fluids</a></li>
                                         </ul>
                                     </li>
-                                 
+                                
                                 </ul>
                             </div>
                         </li>
@@ -446,4 +452,5 @@
         <div class="border border-color-8"></div>
     </div>
 </main>
+{/await}
 <Footer />
