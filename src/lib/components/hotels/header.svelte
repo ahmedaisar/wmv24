@@ -61,11 +61,9 @@
     }
     @media (max-width: 767.98px) {
         .u-header__navbar-brand-text {
-            font-size: 1rem;
-        }
-    }
-
-   
+            font-size: 1rem !important;
+        }       
+    }  
 </style>
 
 <svelte:head>

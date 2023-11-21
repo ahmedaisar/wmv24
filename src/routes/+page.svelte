@@ -4,8 +4,11 @@
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
 	import data from '$lib/data/maldives.json'
+	import {onMount} from "svelte"
 
 	let hotels = data?.data?.records
+	let dropdownlist = hotels.map(h => { return h.name})
+	let dropdown = [...new Set(dropdownlist)];
 	let resorts = hotels.filter((h) => {
 		return h.toa_label === 'resort';
 	});
@@ -15,7 +18,6 @@
 	let guesthouse = hotels.filter((h) => {
 			return h.toa == 'guest_house';
 	});
-
 
 	const getStar = (star) => {
 		switch (star) {
@@ -34,6 +36,16 @@
 			return ''
 		}
 	}
+	let dates
+	
+	onMount(() => {
+		typeof localStorage !== `undefined`
+		setInterval(() => {
+			 dates = localStorage ? localStorage.getItem('dates') : ''
+			 console.log(dates)
+		}, 2000);
+		
+	})
 
 	
 </script>
@@ -63,40 +75,33 @@
 				<!-- Search Jobs Form -->
 				<div class="card border-0 tab-shadow">
 					<div class="card-body">
-						<form class="js-validate">
+						<form class="js-validate" method="get" action="/hotels">
 							<div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
 								<div class="col-sm-12 col-lg-3dot6 col-xl-3dot7 mb-4 mb-lg-0">
 									<span class="d-block text-gray-1 font-weight-normal text-left mb-0"
-										>Destination or Hotel Name</span
+										>Hotel Name</span
 									>
 									<!-- Select -->
 									<select
 										class="js-select selectpicker dropdown-select tab-dropdown col-12 pl-0 flaticon-pin-1 d-flex align-items-center text-primary font-weight-semi-bold"
-										title="Where are you going?"
+										title="Search for hotel"
 										data-style=""
 										data-live-search="true"
-										data-searchbox-classes="input-group-sm"
+										data-searchbox-classes="input-group-sm"										
 									>
+										{#each dropdown as d, i}
 										<option
+											name="hotel"
 											class="border-bottom border-color-1"
-											value="project1"
+											value={d}
 											data-content='
 											<span class="d-flex align-items-center">
-												<span class="font-size-16">Maldives</span>
+												<span class="font-size-16">{d}</span>
 											</span>'
 										>
-											Maldives
+											{d}
 										</option>
-										<!-- <option
-											class="border-bottom border-color-1"
-											value="project2"
-											data-content='
-											<span class="d-flex align-items-center">
-												<span class="font-size-16">Germany</span>
-											</span>'
-										>
-											Germany
-										</option> -->
+										{/each}							
 										 
 									</select>
 									<!-- End Select -->
@@ -115,12 +120,13 @@
 												</span>
 											</div>
 											<input
+												name="dates"
 												class="js-range-datepicker font-size-lg-16 shadow-none font-weight-bold form-control hero-form bg-transparent border-0"
 												type="date"
 												data-rp-wrapper="#datepickerWrapperFromOne"
 												data-rp-type="range"
-												data-rp-date-format="M d / Y"
-												data-rp-default-date={`["Jul 7 / 2020", "Aug 25 / 2020"]`}
+												data-rp-date-format="Y-m-d"
+												data-rp-default-date={`["Dec 1 / 2023", "Dec 5 / 2023"]`}
 											/>
 										</div>
 										<!-- End Datepicker -->
@@ -175,6 +181,7 @@
 														<small class="fas fa-minus btn-icon__inner" />
 													</a>
 													<input
+														name="rooms"
 														class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center"
 														type="text"
 														value="1"
@@ -201,6 +208,7 @@
 														<small class="fas fa-minus btn-icon__inner" />
 													</a>
 													<input
+														name="adults"
 														class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center"
 														type="text"
 														value="1"
@@ -227,6 +235,7 @@
 														<small class="fas fa-minus btn-icon__inner" />
 													</a>
 													<input
+														name="child"
 														class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center"
 														type="text"
 														value="1"

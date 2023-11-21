@@ -59,11 +59,16 @@
 
         $this.on('loaded.bs.select', function (e) {
           var $searchbox = $this.siblings('.dropdown-menu ').find('.bs-searchbox'),
-            searchBoxClasses = $this.data('searchbox-classes');
+            searchBoxClasses = $this.data('searchbox-classes');            
 
           if(!searchBoxClasses) return;
 
           $searchbox.addClass(searchBoxClasses);
+        });
+
+        $this.on('changed.bs.select', function (e, clickedIndex, newValue, oldValue) {
+          var selected = $(e.currentTarget).val();
+          console.log(selected)
         });
 
         //Actions

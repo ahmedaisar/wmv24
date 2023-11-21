@@ -43,9 +43,9 @@
     }
     @media (max-width: 767.98px) {
         .u-header__navbar-brand-text {
-            font-size: 0.8rem;
-        }
-    }
+            font-size: 1rem !important;
+        }       
+    }  
 </style>
 
 
