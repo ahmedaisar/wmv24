@@ -488,12 +488,10 @@
                                         <span class="font-weight-bold font-size-22 ml-1"> ${offer.price}</span>
                                         <span class="font-size-14"> / night</span>
                                     </div>
-                                    <a href="#" data-sveltekit-reload rel="external" on:click={() => {                                                                                               
-                                    const link = redirectToBooking(data.name, '2024-02-17', '2024-02-24')
-                                    setTimeout(() => {
-                                        goto(link)
-                                    }, 1000) }
-                                    } class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
+                                    <a href="javascript:;" data-sveltekit-reload rel="external" on:click={() => {                                                                                               
+                                    const link = redirectToBooking(data.name, '2024-02-17', '2024-02-24'); 
+                                    goto(link)} } 
+                                    class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>
                             </div>
                         </div>
