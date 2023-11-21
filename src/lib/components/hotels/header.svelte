@@ -467,7 +467,7 @@
                         <!-- End Hotel -->
 
                         <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">About</a>
+                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/blog" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Blog</a>
                           
                         </li>
 

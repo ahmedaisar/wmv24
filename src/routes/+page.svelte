@@ -4,6 +4,7 @@
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
 	import data from '$lib/data/maldives.json'
+	import bg from "$lib/assets/bg.jpg"
 	import {onMount} from "svelte"
 
 	let hotels = data?.data?.records
@@ -56,7 +57,7 @@
 	<!-- ========== HERO ========== -->
 	<div
 		class="hero-block hero-v4 bg-img-hero-bottom text-center z-index-2"
-		style="background-image: url(../../assets/img/1920x800/img2.jpg);"
+		style="background-image: url({bg});"
 	>
 		<div class="container space-2 space-top-lg-4 space-top-xl-10">
 			<div class="row justify-content-md-center pb-xl-11">

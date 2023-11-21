@@ -1,5 +1,6 @@
 {
 	"/": [],
+	"/blog": [],
 	"/hotels": [
 		"src/routes/hotels/+page.js"
 	],
