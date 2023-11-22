@@ -1,16 +1,16 @@
 <script>
     import Header from '$lib/components/hotels/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
+    import Preloader from '$lib/components/common/preloader.svelte'
     import { paginate, LightPaginationNav } from 'svelte-paginate'
-    import data from '$lib/data/maldives.json'
-
-	let hotels = data?.data?.records
+    import * as maldives from '$lib/data/maldives.json'
+    //export let data;
+ 
+	let hotels = maldives?.data?.records
     let currentPage = 1
     let pageSize = 18
     $: hotellist = hotels && paginate({ items: hotels, pageSize, currentPage })
 
- 
-    
     const getStar = (star) => {
 		switch (star) {
 			case 1:
@@ -615,6 +615,8 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                     <!-- End Nav Links -->
 
                     <!-- Tab Content -->
+                    
+                
                     <div class="tab-content" id="pills-tabContent">
                         
                         <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
@@ -667,16 +669,17 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                 
                             </div>
                             <!-- <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">Showing 1–15</div> -->
-                            <LightPaginationNav
+                            <!-- <LightPaginationNav
                             totalItems="{hotels.length}"
                             pageSize="{pageSize}"
                             currentPage="{currentPage}"
                             limit="{1}"
                             showStepOptions="{true}"
                             on:setPage="{(e) => currentPage = e.detail.page}"
-                         /> 
+                         />  -->
                         </div>
                     </div>
+                
                     <!-- End Tab Content -->
                 </div>
                 <!-- Slick Tab carousel -->

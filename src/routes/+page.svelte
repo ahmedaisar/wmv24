@@ -1,14 +1,15 @@
 <script>
 	// @ts-nocheck
-	//export const prerender = true;
+ 
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
 	import data from '$lib/data/maldives.json'
 	import bg from "$lib/assets/bg.jpg"
 	import {onMount} from "svelte"
+	export let form;
 
 	let hotels = data?.data?.records
-	let dropdownlist = hotels.map(h => { return h.name})
+	let dropdownlist = hotels.filter(h => { return h})
 	let dropdown = [...new Set(dropdownlist)];
 	let resorts = hotels.filter((h) => {
 		return h.toa_label === 'resort';
@@ -37,16 +38,19 @@
 			return ''
 		}
 	}
-	let dates
+	// const searchHotel = (event) => {
+	// 	const formEl = event.target
+    // 	const data = new FormData(formEl)
+	// 	console.log(form)
+	// }
+	// let dates 
 	
-	onMount(() => {
-		typeof localStorage !== `undefined`
-		setInterval(() => {
-			 dates = localStorage ? localStorage.getItem('dates') : ''
-			 console.log(dates)
-		}, 2000);
-		
-	})
+	// onMount(() => {
+	// 	if(typeof localStorage !== `undefined`){
+	// 		dates = localStorage.getItem('dates')
+	// 	}
+
+	// })
 
 	
 </script>
@@ -67,7 +71,7 @@
 						Find Your Ideal Hotel and Compare Prices
 					</h1>
 					<p class="font-size-20 font-weight-normal text-white">
-						Check out the best deals on over 2,000,000 hotels worldwide
+						Check out the best deals on over 743+ hotels Maldives
 					</p>
 				</div>
 				<!-- End Info -->
@@ -76,9 +80,9 @@
 				<!-- Search Jobs Form -->
 				<div class="card border-0 tab-shadow">
 					<div class="card-body">
-						<form class="js-validate" method="get" action="/hotels">
+						<form class="js-validate" action="/hotels">
 							<div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
-								<div class="col-sm-12 col-lg-3dot6 col-xl-3dot7 mb-4 mb-lg-0">
+								<div class="col-sm-12 col-lg-3dot6 col-xl-2dot8 mb-4 mb-lg-0">
 									<span class="d-block text-gray-1 font-weight-normal text-left mb-0"
 										>Hotel Name</span
 									>
@@ -88,19 +92,20 @@
 										title="Search for hotel"
 										data-style=""
 										data-live-search="true"
+										name="hotel"
 										data-searchbox-classes="input-group-sm"										
 									>
 										{#each dropdown as d, i}
 										<option
 											name="hotel"
 											class="border-bottom border-color-1"
-											value={d}
+											value={d.hs_id}
 											data-content='
 											<span class="d-flex align-items-center">
-												<span class="font-size-16">{d}</span>
+												<span class="font-size-16">{d.name}</span>
 											</span>'
 										>
-											{d}
+											{d.name}
 										</option>
 										{/each}							
 										 
@@ -108,10 +113,10 @@
 									<!-- End Select -->
 								</div>
 
-								<div class="col-sm-12 col-lg-3dot7 col-xl-3dot6 mb-4 mb-lg-0">
+								<div class="col-sm-12 col-lg-2dot5 mb-4 mb-lg-0">
 									<!-- Input -->
 									<span class="d-block text-gray-1 text-left font-weight-normal mb-0"
-										>Check In - Out</span
+										>Arrival</span
 									>
 									<div class="border-bottom border-width-2 border-color-1">
 										<div id="datepickerWrapperFromOne" class="u-datepicker input-group">
@@ -121,13 +126,12 @@
 												</span>
 											</div>
 											<input
-												name="dates"
+												name="checkin"
 												class="js-range-datepicker font-size-lg-16 shadow-none font-weight-bold form-control hero-form bg-transparent border-0"
 												type="date"
-												data-rp-wrapper="#datepickerWrapperFromOne"
-												data-rp-type="range"
+												data-rp-wrapper="#datepickerWrapperFromOne"												
 												data-rp-date-format="Y-m-d"
-												data-rp-default-date={`["Dec 1 / 2023", "Dec 5 / 2023"]`}
+												data-rp-default-date={`["2023-12-01"]`}
 											/>
 										</div>
 										<!-- End Datepicker -->
@@ -135,7 +139,33 @@
 									<!-- End Input -->
 								</div>
 
-								<div class="col-sm-12 col-lg-2dot8 mb-4 mb-lg-0 dropdown-custom">
+								<div class="col-sm-12 col-lg-2dot5 mb-4 mb-lg-0">
+									<!-- Input -->
+									<span class="d-block text-gray-1 text-left font-weight-normal mb-0"
+										>Departure</span
+									>
+									<div class="border-bottom border-width-2 border-color-1">
+										<div id="datepickerWrapperFromOne" class="u-datepicker input-group">
+											<div class="input-group-prepend">
+												<span class="d-flex align-items-center mr-2">
+													<i class="flaticon-calendar text-primary font-weight-semi-bold" />
+												</span>
+											</div>
+											<input
+												name="checkout"
+												class="js-range-datepicker font-size-lg-16 shadow-none font-weight-bold form-control hero-form bg-transparent border-0"
+												type="date"
+												data-rp-wrapper="#datepickerWrapperFromOne"												
+												data-rp-date-format="Y-m-d"
+												data-rp-default-date={`["2023-12-12"]`}
+											/>
+										</div>
+										<!-- End Datepicker -->
+									</div>
+									<!-- End Input -->
+								</div>
+
+								<div class="col-sm-12 col-lg-2dot2 mb-4 mb-lg-0 dropdown-custom">
 									<!-- Input -->
 									<span class="d-block text-gray-1 text-left font-weight-normal mb-0"
 										>Rooms and Guests</span
@@ -161,7 +191,7 @@
 											class="flaticon-plus d-flex align-items-center mr-3 font-size-18 text-primary font-weight-semi-bold"
 										/>
 										<span class="text-black font-size-16 font-weight-semi-bold"
-											>2 Rooms - 3 Guests</span
+											>Enter Pax</span
 										>
 									</a>
 									<div
@@ -250,9 +280,9 @@
 												</div>
 											</div>
 										</div>
-										<div class="w-100 text-right py-1 pr-5">
+										<!-- <div class="w-100 text-right py-1 pr-5">
 											<a class="text-primary font-weight-semi-bold font-size-16" href="#">Done</a>
-										</div>
+										</div> -->
 									</div>
 									<!-- End Input -->
 								</div>
@@ -2783,7 +2813,7 @@
 							<a href="#">Competitive Pricing</a>
 						</h5>
 						<p class="text-gray-1 px-xl-2 px-uw-7">
-							Compare prices over large OTAS such as Booking.com & Agoda.com and more coming soon
+							Compare prices over large OTAS such as Booking.com and more OTAs coming soon
 						</p>
 					</div>
 					<!-- End Icon Block -->
@@ -2804,7 +2834,7 @@
 					<div class="col-md-4">
 						<i class="flaticon-global-1 text-primary font-size-80 mb-3" />
 						<h5 class="font-size-17 text-dark font-weight-bold mb-2">
-							<a href="#">Worldwide Coverage</a>
+							<a href="#">Maldives Coverage</a>
 						</h5>
 						<p class="text-gray-1 px-xl-2 px-uw-7">
 							Over 700+ hotels & resorts in Maldives

@@ -61,33 +61,32 @@
           optIsInline = Boolean($this.data('rp-is-inline')),
           optType = $this.data('rp-type'),
           optDateFormat = $this.data('rp-date-format'),
-          //optDefaultDate = JSON.parse(el.getAttribute('data-rp-default-date')),
+          optDefaultDate = JSON.parse(JSON.stringify(el.getAttribute('data-rp-default-date'))),
           optIsDisableFutureDates = $this.data('rp-is-disable-future-dates');
 
         $this.flatpickr({
           inline: optIsInline, // boolean
           mode: optType ? optType : 'single', // 'single', 'multiple', 'range'
-          dateFormat: optDateFormat ? optDateFormat : 'Y-m-d',
-          defaultDate: new Date(),
-          appendTo: $(optWrapper)[0],
+          dateFormat: optDateFormat ? optDateFormat : 'd M Y',
+          defaultDate: optDefaultDate,
           altInput: true,
           altFormat: "F j, Y",
+          appendTo: $(optWrapper)[0],
           numberOfMonths: 2,
-          enableTime: false,
           maxDate: optIsDisableFutureDates ? 'today' : false,
           locale: {
             firstDayOfWeek: 1,
             weekdays: {
               shorthand: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
             },
-            rangeSeparator: ' to ',
+            rangeSeparator: ' - '
           },
-          onChange: function(selectedDates, dateStr, instance) {                                  
+          onChange: function(selectedDates, dateStr) {                                  
             let dates = dateStr
             var d1 = dates.slice(0, 10)
-            var d2 = dates.slice(14, 24)
+            var d2 = dates.slice(13, 24)
             localStorage.setItem('dates', JSON.stringify([d1, d2]));          
-          }        
+          }   
         });
 
         $this.css({

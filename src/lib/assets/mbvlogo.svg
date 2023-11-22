@@ -10,9 +10,15 @@
 
 <style>
     @media (max-width: 767.98px) {   
-        #logoAndNav > nav > a.navbar-brand.u-header__navbar-brand.u-header__navbar-brand-center.u-header__navbar-brand-collapsed.s-4Tavpo0HNr2h > svg{
-            height: 40px !important;
-            width: 40px !important;
+        #logoAndNav > nav > a > svg {
+            height: 35px !important;
+            width: 35px !important;
+        }
+    }
+    @media (max-width: 480px) {   
+        #logoAndNav > nav > a > svg {
+            height: 35px !important;
+            width: 35px !important;
         }
     }
   

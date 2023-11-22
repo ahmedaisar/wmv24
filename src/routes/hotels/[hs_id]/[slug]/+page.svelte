@@ -28,13 +28,13 @@
 			return ''
 		}
 	}
-    let hotelPromise
+    
     const hotels = json?.data?.records
     let getHotel = hotels.filter(h => {
             return h.hs_id == hotelid
         });
     let hotel = getHotel[0]
-
+    let hotelPromise
     async function getHotelPromise(){
             const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-02-17&checkout=2024-02-23`)
             const res = await req.json()
@@ -72,7 +72,6 @@
 
             return bookingUrl;
     }
-    console.log(hotelPromise)
   
 </script>
 <style>
