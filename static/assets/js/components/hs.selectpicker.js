@@ -68,7 +68,8 @@
 
         $this.on('changed.bs.select', function (e, clickedIndex, newValue, oldValue) {
           var selected = $(e.currentTarget).val();
-          console.log(selected)
+          localStorage.setItem('hs_id', JSON.stringify(selected));   
+          // console.log(localStorage.getItem('hs_id'))
         });
 
         //Actions

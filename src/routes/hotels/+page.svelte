@@ -28,6 +28,16 @@
 			return ''
 		}
 	}
+    // const searchHotel = (event) => {
+	// 	event.preventDefault()
+	// 	let form = new FormData()
+	// 	const checkin = event.target.checkin
+	// 	const checkout = event.target.checkout
+	// 	form.append('checkin', checkin)
+	// 	form.append('checkout', checkout)
+	// 	console.log(form)
+ 
+	// }
 </script>
 <style>
     .u-header__navbar-brand-text {

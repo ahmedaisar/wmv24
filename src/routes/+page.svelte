@@ -6,7 +6,7 @@
 	import data from '$lib/data/maldives.json'
 	import bg from "$lib/assets/bg.jpg"
 	import {onMount} from "svelte"
-	export let form;
+	// export let form;
 
 	let hotels = data?.data?.records
 	let dropdownlist = hotels.filter(h => { return h})
@@ -38,11 +38,7 @@
 			return ''
 		}
 	}
-	// const searchHotel = (event) => {
-	// 	const formEl = event.target
-    // 	const data = new FormData(formEl)
-	// 	console.log(form)
-	// }
+	
 	// let dates 
 	
 	// onMount(() => {
