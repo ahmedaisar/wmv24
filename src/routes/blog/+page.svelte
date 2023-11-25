@@ -6,7 +6,7 @@
     import bg from "$lib/assets/bg.jpg"
     let blogPromise
     async function getBlogPromise(){
-            const req = await fetch(`https://maldivesbeachvacation.com/wp-json/wp/v2/posts?_embed`)
+            const req = await fetch(`https://wp.maldivesbeachvacation.com/wp-json/wp/v2/posts?_embed`)
             const res = await req.json()
             return res 
             

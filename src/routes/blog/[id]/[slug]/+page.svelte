@@ -9,7 +9,7 @@
     const blogid = params.id
     let blogPromise
     async function getBlogPromise(){
-            const req = await fetch(`https://maldivesbeachvacation.com/wp-json/wp/v2/posts/${blogid}?_embed`)
+            const req = await fetch(`https://wp.maldivesbeachvacation.com/wp-json/wp/v2/posts/${blogid}?_embed`)
             const res = await req.json()
             return res 
             
