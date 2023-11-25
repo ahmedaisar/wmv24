@@ -12,7 +12,7 @@
             
     }
     blogPromise = getBlogPromise() 
-    console.log(blogPromise)
+ 
 </script>
 
 <Header />

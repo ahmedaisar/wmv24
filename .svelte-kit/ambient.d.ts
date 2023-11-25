@@ -26,7 +26,6 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const ACLOCAL_PATH: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
 	export const ChocolateyInstall: string;
@@ -37,9 +36,7 @@ declare module '$env/static/private' {
 	export const COMPUTERNAME: string;
 	export const COMSPEC: string;
 	export const CONFIG_SITE: string;
-	export const DISPLAY: string;
 	export const DriverData: string;
-	export const EXEPATH: string;
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -49,14 +46,9 @@ declare module '$env/static/private' {
 	export const INFOPATH: string;
 	export const INIT_CWD: string;
 	export const LANG: string;
-	export const LC_CTYPE: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
 	export const MANPATH: string;
-	export const MINGW_CHOST: string;
-	export const MINGW_PACKAGE_PREFIX: string;
-	export const MINGW_PREFIX: string;
-	export const MSYS: string;
 	export const MSYSTEM: string;
 	export const MSYSTEM_CARCH: string;
 	export const MSYSTEM_CHOST: string;
@@ -121,9 +113,6 @@ declare module '$env/static/private' {
 	export const PATH: string;
 	export const PATHEXT: string;
 	export const PKG_CONFIG_PATH: string;
-	export const PKG_CONFIG_SYSTEM_INCLUDE_PATH: string;
-	export const PKG_CONFIG_SYSTEM_LIBRARY_PATH: string;
-	export const PLINK_PROTOCOL: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -138,7 +127,6 @@ declare module '$env/static/private' {
 	export const SESSIONNAME: string;
 	export const SHELL: string;
 	export const SHLVL: string;
-	export const SSH_ASKPASS: string;
 	export const SYSTEMDRIVE: string;
 	export const SYSTEMROOT: string;
 	export const TEMP: string;
@@ -159,6 +147,7 @@ declare module '$env/static/private' {
 	export const WINDIR: string;
 	export const YARN_WRAP_OUTPUT: string;
 	export const ZES_ENABLE_SYSMAN: string;
+	export const __COMPAT_LAYER: string;
 }
 
 /**
@@ -188,7 +177,6 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		ACLOCAL_PATH: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
 		ChocolateyInstall: string;
@@ -199,9 +187,7 @@ declare module '$env/dynamic/private' {
 		COMPUTERNAME: string;
 		COMSPEC: string;
 		CONFIG_SITE: string;
-		DISPLAY: string;
 		DriverData: string;
-		EXEPATH: string;
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;
@@ -211,14 +197,9 @@ declare module '$env/dynamic/private' {
 		INFOPATH: string;
 		INIT_CWD: string;
 		LANG: string;
-		LC_CTYPE: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
 		MANPATH: string;
-		MINGW_CHOST: string;
-		MINGW_PACKAGE_PREFIX: string;
-		MINGW_PREFIX: string;
-		MSYS: string;
 		MSYSTEM: string;
 		MSYSTEM_CARCH: string;
 		MSYSTEM_CHOST: string;
@@ -283,9 +264,6 @@ declare module '$env/dynamic/private' {
 		PATH: string;
 		PATHEXT: string;
 		PKG_CONFIG_PATH: string;
-		PKG_CONFIG_SYSTEM_INCLUDE_PATH: string;
-		PKG_CONFIG_SYSTEM_LIBRARY_PATH: string;
-		PLINK_PROTOCOL: string;
 		PROCESSOR_ARCHITECTURE: string;
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;
@@ -300,7 +278,6 @@ declare module '$env/dynamic/private' {
 		SESSIONNAME: string;
 		SHELL: string;
 		SHLVL: string;
-		SSH_ASKPASS: string;
 		SYSTEMDRIVE: string;
 		SYSTEMROOT: string;
 		TEMP: string;
@@ -321,6 +298,7 @@ declare module '$env/dynamic/private' {
 		WINDIR: string;
 		YARN_WRAP_OUTPUT: string;
 		ZES_ENABLE_SYSMAN: string;
+		__COMPAT_LAYER: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}

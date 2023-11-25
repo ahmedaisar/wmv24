@@ -46,10 +46,7 @@
             <div class="row">
                
                 <div class="col-lg-8 col-xl-9">
-                    <div class="js-slick-carousel u-slick mb-4" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-3 ml-xl-5" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-3 mr-xl-5">
-                        <div class="js-slide bg-img-hero-center min-height-450 rounded-xs" style="background-image: url({data._embedded['wp:featuredmedia'][0].source_url});"></div> 
- 
-                    </div>
+                    <div class="js-slide bg-img-hero-center min-height-450 rounded-xs mb-4" style="background-image: url('{data._embedded['wp:featuredmedia'][0].source_url}');"></div> 
 
                     <h5 class="font-weight-bold font-size-21 text-gray-3">
                         <a href="/blog/{data.id}/{data.slug}">{@html data.title.rendered}</a>
