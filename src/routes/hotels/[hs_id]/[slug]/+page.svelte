@@ -4,6 +4,8 @@
     import Preloader from '$lib/components/common/preloader.svelte'
     import PagePreloader from '$lib/components/common/pagepreloader.svelte'
     import {goto} from '$app/navigation';
+    import { page } from '$app/stores';
+    import LDTag from '$lib/components/misc/LDTag.svelte'
     import * as json from '$lib/data/maldives.json'    
     //import {onMount} from 'svelte'
     export let data;
@@ -73,11 +75,51 @@
 
             return bookingUrl;
     }
+
+    const websiteSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: hotel.name + '| Maldivesbeachvacation.com',
+        url: page.path,
+        description: hotel.short_description,
+}
   
 </script>
 <style>
     .fit-image { object-fit: cover !important;}
 </style>
+<svelte:head>
+  <title>{hotel.name} | Maldivesbeachvacation.com</title>
+  <meta name="description" content="{hotel.name},{hotel.short_description}">
+
+  <!-- Open Graph (OG) Tags -->
+  <meta property="og:title" content="{hotel.name} | Maldivesbeachvacation.com">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.maldivesbeachvaction.com">
+  <meta property="og:image" content={`https://img1.hotelscan.com/640_440/1/${hotel.images[0].image_id}.jpg`}>
+  <meta property="og:description" content="{hotel.short_description}">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@maldivesbeachvacation">
+  <meta name="twitter:title" content="{hotel.name} | Maldivesbeachvacation.com">
+  <meta name="twitter:description" content="{hotel.short_description}">
+  <meta name="twitter:image" content="{`https://img1.hotelscan.com/640_440/1/${hotel.images[0].image_id}.jpg`}">
+
+  <!-- Schema.org Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": "Maldives Beach Vacation",
+      "url": "https://www.maldivesbeachvaction.com",
+      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo.png"
+    }
+  </script>
+
+</svelte:head>
+
+<LDTag schema={websiteSchema} />
 
 <Header />
 

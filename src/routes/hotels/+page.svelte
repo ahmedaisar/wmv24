@@ -60,6 +60,37 @@
 
    
 </style>
+<svelte:head>
+  <title>Hotels | Maldivesbeachvacation.com</title>
+  <meta name="description" content="Compare over 743+ hotels in Maldives">
+
+  <!-- Open Graph (OG) Tags -->
+  <meta property="og:title" content="Hotels | Maldivesbeachvacation.com">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.maldivesbeachvaction.com/hotels">
+  <meta property="og:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
+  <meta property="og:description" content="Compare over 743+ hotels in Maldives">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@maldivesbeachvacation">
+  <meta name="twitter:title" content="Hotels | Maldivesbeachvacation.com">
+  <meta name="twitter:description" content="Compare over 743+ hotels in Maldives">
+  <meta name="twitter:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
+
+  <!-- Schema.org Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": "Maldives Beach Vacation",
+      "url": "https://www.maldivesbeachvaction.com/hotels",
+      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo.png"
+    }
+  </script>
+
+</svelte:head>
+
 
 <Header />
 
