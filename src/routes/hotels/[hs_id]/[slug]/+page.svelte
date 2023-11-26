@@ -10,6 +10,7 @@
 
     const { params } = data
     const hotelid = params.hs_id
+ 
 
     const getStar = (star) => {
 		switch (star) {
@@ -82,7 +83,7 @@
 
 <PagePreloader />
 <main id="content">
-    <div class="bg-primary-darken py-4">
+    <div class="bg-primary-darken py-4" style="display: none !important;">
         <div class="container">
             <!-- Search Jobs Form -->
             <div class="card border-0 bg-transparent">

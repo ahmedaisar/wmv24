@@ -34,25 +34,15 @@
                             </div> -->
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item mr-2">
-                                    <a class="btn btn-icon btn-social btn-bg-transparent" href="#">
+                                    <a class="btn btn-icon btn-social btn-bg-transparent" href="https://www.facebook.com/maldivesbeachvacation/">
                                         <span class="fab fa-facebook-f btn-icon__inner"></span>
                                     </a>
-                                </li>
+                                </li>        
                                 <li class="list-inline-item mr-2">
-                                    <a class="btn btn-icon btn-social btn-bg-transparent" href="#">
-                                        <span class="fab fa-twitter  btn-icon__inner"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item mr-2">
-                                    <a class="btn btn-icon btn-social btn-bg-transparent" href="#">
+                                    <a class="btn btn-icon btn-social btn-bg-transparent" href="https://www.instagram.com/maldivesbeachvacation/">
                                         <span class="fab fa-instagram btn-icon__inner"></span>
                                     </a>
-                                </li>
-                                <li class="list-inline-item mr-2">
-                                    <a class="btn btn-icon btn-social btn-bg-transparent" href="#">
-                                        <span class="fab fa-linkedin-in btn-icon__inner"></span>
-                                    </a>
-                                </li>
+                                </li>                   
                             </ul>
                         </div>
                     </div>
@@ -62,11 +52,10 @@
                     <h4 class="h6 font-weight-bold mb-2 mb-xl-4">Company</h4>
                     <!-- List Group -->
                     <ul class="list-group list-group-flush list-group-borderless mb-0">
-                        <li><a class="text-decoration-on-hover list-group-item list-group-item-action" href="../others/about.html">About us</a></li>
-                        <li><a class="text-decoration-on-hover list-group-item list-group-item-action" href="../others/contact.html">Careers</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="../others/terms-conditions.html">Terms of Use</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="../others/terms-conditions.html">Privacy Statement</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="../others/terms-conditions.html">Give Us Feedbacks</a></li>
+                        <li><a class="text-decoration-on-hover list-group-item list-group-item-action" href="/hotels">Hotels</a></li>
+                        <li><a class="text-decoration-on-hover list-group-item list-group-item-action" href="/blog">Blog</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/terms-and-conditions">Terms of Use</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/privacy-policy">Privacy Statement</a></li>
                     </ul>
                     <!-- End List Group -->
                 </div>
@@ -75,11 +64,11 @@
                     <h4 class="h6 font-weight-bold mb-2 mb-xl-4">Hotels</h4>
                    <!-- List Group -->
                     <ul class="list-group list-group-flush list-group-borderless mb-0">
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/">Bed & Breakfast</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/">Budget Hotels</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/">Luxury Hotels</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/">Guest Houses</a></li>
-                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/">Honeymooners</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/hotels">Bed & Breakfast</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/hotels">Budget Hotels</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/hotels">Luxury Hotels</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/hotels">Guest Houses</a></li>
+                        <li><a class="list-group-item list-group-item-action text-decoration-on-hover" href="/hotels">Honeymooners</a></li>
                     </ul>
                     <!-- End List Group -->
                 </div>
@@ -149,7 +138,7 @@
                         <a class="list-group-item-action text-decoration-on-hover pr-3" href="/hotels">Hotels</a>
                     </li>                    
                     <li class="list-inline-item">
-                        <a class="list-group-item-action text-decoration-on-hover" href="/">About</a>
+                        <a class="list-group-item-action text-decoration-on-hover" href="/">Blog</a>
                     </li>
                 </ul>
                 <!-- End Social Networks -->

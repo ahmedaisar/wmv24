@@ -4,7 +4,9 @@
     import Preloader from '$lib/components/common/preloader.svelte'
     import { paginate, LightPaginationNav } from 'svelte-paginate'
     import * as maldives from '$lib/data/maldives.json'
-    //export let data;
+    export let data;
+
+    console.log(data)
  
 	let hotels = maldives?.data?.records
     let currentPage = 1
@@ -28,16 +30,18 @@
 			return ''
 		}
 	}
-    // const searchHotel = (event) => {
-	// 	event.preventDefault()
-	// 	let form = new FormData()
-	// 	const checkin = event.target.checkin
-	// 	const checkout = event.target.checkout
-	// 	form.append('checkin', checkin)
-	// 	form.append('checkout', checkout)
-	// 	console.log(form)
- 
-	// }
+
+    // let hotelPromise
+    // async function getHotelPromise(){
+    //         const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${params.hs_id}&checkin=${params.checkin}&checkout=${params.checkout}&adults=${params.adults}&child=${params.child}`)
+    //         const res = await req.json()
+            
+    //         let jsn = res.data.records[0]
+    //         return jsn 
+            
+    // }
+    // hotelPromise = getHotelPromise() 
+
 </script>
 <style>
     .u-header__navbar-brand-text {
@@ -68,110 +72,11 @@
                         <i class="far fa-caret-square-down text-primary font-size-20 card-btn-arrow ml-0"></i>
                         <span class="text-primary ml-2">Sidebar</span>
                     </button>
-                    <div id="sidebar" class="collapse navbar-collapse">
-                        <div class="mb-6 w-100">
-                            <!-- <div class="pb-4 mb-2">
-                                <div class="sidebar border border-color-1 rounded-xs">
-                                     <div class="p-4 mb-1">
-                                        
-                                        <span class="d-block text-gray-1  font-weight-normal mb-0 text-left">Destination or Hotel Name</span>
-                                        <div class="mb-4">
-                                            <div class="input-group border-bottom border-width-2 border-color-1">
-                                                <i class="flaticon-pin-1 d-flex align-items-center mr-2 text-primary font-weight-semi-bold font-size-22"></i>
-                                              <input type="text" class="form-control font-weight-medium font-size-15 shadow-none hero-form border-0 p-0" placeholder="Where are you going?" aria-label="Keyword or title" aria-describedby="keywordInputAddon">
-                                            </div>
-                                        </div>
-                                       
-                                        
-                                        <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">Check In - Out</span>
-                                        <div class="mb-4">
-                                            <div class="border-bottom border-width-2 border-color-1">
-                                                <div id="datepickerWrapperPick" class="u-datepicker input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="d-flex align-items-center mr-2 font-size-21">
-                                                          <i class="flaticon-calendar text-primary font-weight-semi-bold"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input class="js-range-datepicker font-weight-medium font-size-15 ml-1 shadow-none form-control hero-form bg-transparent border-0 flatpickr-input p-0" type="text" placeholder="July 7/2019" aria-label="July 7/2019" data-rp-wrapper="#datepickerWrapperPick" data-rp-type="range" data-rp-date-format="M d / Y" data-rp-default-date="[&quot;Jul 7 / 2020&quot;, &quot;Aug 25 / 2020&quot;]" readonly="readonly" style="width: 217.5px;">
-                                                <div class="flatpickr-calendar rangeMode animate showTimeInput" tabindex="-1"><div class="flatpickr-months"><span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path></svg></span><div class="flatpickr-month"><div class="flatpickr-current-month"><span class="cur-month">July </span><div class="numInputWrapper"><input class="numInput cur-year" type="text" pattern="\d*" tabindex="-1" aria-label="Year"><span class="arrowUp"></span><span class="arrowDown"></span></div></div></div><span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path></svg></span></div><div class="flatpickr-innerContainer"><div class="flatpickr-rContainer"><div class="flatpickr-weekdays"><div class="flatpickr-weekdaycontainer">
-<span class="flatpickr-weekday">
-Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday">We</span><span class="flatpickr-weekday">Th</span><span class="flatpickr-weekday">Fr</span><span class="flatpickr-weekday">Sa</span><span class="flatpickr-weekday">Su
-</span>
-</div></div><div class="flatpickr-days" tabindex="-1"><div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="June 29, 2020" tabindex="-1">29</span><span class="flatpickr-day prevMonthDay" aria-label="June 30, 2020" tabindex="-1">30</span><span class="flatpickr-day " aria-label="July 1, 2020" tabindex="-1">1</span><span class="flatpickr-day " aria-label="July 2, 2020" tabindex="-1">2</span><span class="flatpickr-day " aria-label="July 3, 2020" tabindex="-1">3</span><span class="flatpickr-day " aria-label="July 4, 2020" tabindex="-1">4</span><span class="flatpickr-day " aria-label="July 5, 2020" tabindex="-1">5</span><span class="flatpickr-day " aria-label="July 6, 2020" tabindex="-1">6</span><span class="flatpickr-day selected startRange" aria-label="July 7, 2020" tabindex="-1">7</span><span class="flatpickr-day inRange" aria-label="July 8, 2020" tabindex="-1">8</span><span class="flatpickr-day inRange" aria-label="July 9, 2020" tabindex="-1">9</span><span class="flatpickr-day inRange" aria-label="July 10, 2020" tabindex="-1">10</span><span class="flatpickr-day inRange" aria-label="July 11, 2020" tabindex="-1">11</span><span class="flatpickr-day inRange" aria-label="July 12, 2020" tabindex="-1">12</span><span class="flatpickr-day inRange" aria-label="July 13, 2020" tabindex="-1">13</span><span class="flatpickr-day inRange" aria-label="July 14, 2020" tabindex="-1">14</span><span class="flatpickr-day inRange" aria-label="July 15, 2020" tabindex="-1">15</span><span class="flatpickr-day inRange" aria-label="July 16, 2020" tabindex="-1">16</span><span class="flatpickr-day inRange" aria-label="July 17, 2020" tabindex="-1">17</span><span class="flatpickr-day inRange" aria-label="July 18, 2020" tabindex="-1">18</span><span class="flatpickr-day inRange" aria-label="July 19, 2020" tabindex="-1">19</span><span class="flatpickr-day inRange" aria-label="July 20, 2020" tabindex="-1">20</span><span class="flatpickr-day inRange" aria-label="July 21, 2020" tabindex="-1">21</span><span class="flatpickr-day inRange" aria-label="July 22, 2020" tabindex="-1">22</span><span class="flatpickr-day inRange" aria-label="July 23, 2020" tabindex="-1">23</span><span class="flatpickr-day inRange" aria-label="July 24, 2020" tabindex="-1">24</span><span class="flatpickr-day inRange" aria-label="July 25, 2020" tabindex="-1">25</span><span class="flatpickr-day inRange" aria-label="July 26, 2020" tabindex="-1">26</span><span class="flatpickr-day inRange" aria-label="July 27, 2020" tabindex="-1">27</span><span class="flatpickr-day inRange" aria-label="July 28, 2020" tabindex="-1">28</span><span class="flatpickr-day inRange" aria-label="July 29, 2020" tabindex="-1">29</span><span class="flatpickr-day inRange" aria-label="July 30, 2020" tabindex="-1">30</span><span class="flatpickr-day inRange" aria-label="July 31, 2020" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 1, 2020" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 2, 2020" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 3, 2020" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 4, 2020" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 5, 2020" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 6, 2020" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 7, 2020" tabindex="-1">7</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 8, 2020" tabindex="-1">8</span><span class="flatpickr-day nextMonthDay inRange" aria-label="August 9, 2020" tabindex="-1">9</span></div></div></div></div></div></div>
-                                               
-                                            </div>
-                                        </div>
-                                       
-
-                                        
-                                        <span class="d-block text-gray-1 font-weight-normal mb-0 text-left">Rooms and Guests</span>
-                                        <div class="mb-4 position-relative">
-                                            <div class="border-bottom border-width-2 border-color-1">
-                                                <a id="basicDropdownClickInvoker" class="dropdown-nav-link dropdown-toggle flex-horizontal-center pt-3 pb-2" href="javascript:;" role="button" aria-controls="basicDropdownClick" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#basicDropdownClick" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                                                    <i class="flaticon-add-group d-flex align-items-center mr-3 font-size-20 text-primary font-weight-semi-bold"></i>
-                                                    <span class="text-black font-weight-medium font-size-15 mr-auto">2 Rooms - 3 Guests</span>
-                                                </a>
-                                                <div id="basicDropdownClick" class="dropdown-menu dropdown-unfold col m-0 u-unfold--css-animation u-unfold--hidden fadeOut u-unfold--reverse-y" aria-labelledby="basicDropdownClickInvoker" style="animation-duration: 300ms; left: 0px;">
-                                                    <div class="w-100 py-2 px-3 mb-3">
-                                                        <div class="js-quantity mx-3 row align-items-center justify-content-between">
-                                                            <span class="d-block font-size-16 text-secondary font-weight-medium">Rooms</span>
-                                                            <div class="d-flex">
-                                                                <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
-                                                                    <small class="fas fa-minus btn-icon__inner"></small>
-                                                                </a>
-                                                                <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1">
-                                                                <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
-                                                                    <small class="fas fa-plus btn-icon__inner"></small>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-100 py-2 px-3 mb-3">
-                                                        <div class="js-quantity mx-3 row align-items-center justify-content-between">
-                                                            <span class="d-block font-size-16 text-secondary font-weight-medium">Adults</span>
-                                                            <div class="d-flex">
-                                                                <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
-                                                                    <small class="fas fa-minus btn-icon__inner"></small>
-                                                                </a>
-                                                                <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1">
-                                                                <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
-                                                                    <small class="fas fa-plus btn-icon__inner"></small>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-100 py-2 px-3">
-                                                        <div class="js-quantity mx-3 row align-items-center justify-content-between">
-                                                            <span class="d-block font-size-16 text-secondary font-weight-medium">Child</span>
-                                                            <div class="d-flex">
-                                                                <a class="js-minus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
-                                                                    <small class="fas fa-minus btn-icon__inner"></small>
-                                                                </a>
-                                                                <input class="js-result form-control h-auto border-0 rounded p-0 max-width-6 text-center" type="text" value="1">
-                                                                <a class="js-plus btn btn-icon btn-medium btn-outline-secondary rounded-circle" href="javascript:;">
-                                                                    <small class="fas fa-plus btn-icon__inner"></small>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-100 text-right py-1 pr-5">
-                                                        <a class="text-primary font-weight-semi-bold font-size-16" href="#">Done</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary height-60 w-100 font-weight-bold mb-xl-0 mb-lg-1 transition-3d-hover"><i class="flaticon-magnifying-glass mr-2 font-size-17"></i>Search</button>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>
-                              -->
+                    <!-- <div id="sidebar" class="collapse navbar-collapse">
+                        <div class="mb-6 w-100">                            
 
                             <div class="sidenav border border-color-8 rounded-xs">
-                                <!-- Accordiaon -->
+                             
                                 <div id="RatingAccordion" class="accordion rounded shadow-none border-bottom">
                                    <div class="card-collapse" id="shopRatingHeadingOne">
                                         <h3 class="mb-0">
@@ -191,7 +96,7 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                     </div>
                                     <div id="shopRatingOne" class="collapse show" aria-labelledby="shopRatingHeadingOne" data-parent="#RatingAccordion">
                                         <div class="card-body pt-0 mt-1 px-5">
-                                            <!-- Checkboxes -->
+                                       
                                             <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="brandAdidas">
@@ -316,7 +221,7 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                         </div>
                                         <div id="shopCategoryOne" class="collapse show" aria-labelledby="shopCategoryHeadingOne" data-parent="#shopCategoryAccordion">
                                             <div class="card-body pt-0 mt-1 px-5 pb-4">
-                                               <!-- Checkboxes -->
+                                          
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="1">
@@ -428,7 +333,7 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div> 
                                 <div id="propertyCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
                                     <div class="border-0">
                                         <div class="card-collapse" id="propertyCategoryHeadingOne">
@@ -454,28 +359,28 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                                         <input type="checkbox" class="custom-control-input" id="brandhotel">
                                                         <label class="custom-control-label" for="brandhotel">Hotels</label>
                                                     </div>
-                                                    <!-- <span>749</span> -->
+                                               
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="brandapartmet">
                                                         <label class="custom-control-label" for="brandapartmet">Resorts</label>
                                                     </div>
-                                                    <!-- <span>630</span> -->
+                                                 
                                                 </div>
                                                 <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="brandresorts">
                                                         <label class="custom-control-label" for="brandresorts">Guest House</label>
                                                     </div>
-                                                    <!-- <span>29</span> -->
+                                                 
                                                 </div>                                                                                                                                                                                                                               
                                                 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div id="cityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
+                                 <div id="cityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
                                     <div class="border-0">
                                         <div class="card-collapse" id="cityCategoryHeadingOne">
                                             <h3 class="mb-0">
@@ -553,14 +458,14 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
-                                <!-- End Accordion -->
+                                </div> 
+                               
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <div class="col-lg-8 col-xl-9 order-md-1 order-lg-2 pb-5 pb-lg-0">
+            <div class="col-lg-12 col-xl-12 order-md-1 order-lg-2 pb-5 pb-lg-0">
                 <!-- Shop-control-bar Title -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h3 class="font-size-21 font-weight-bold mb-0 text-lh-1">Maldives: 743+ hotels & resorts found</h3>
@@ -628,7 +533,7 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                     
                 
                     <div class="tab-content" id="pills-tabContent">
-                        
+                                                                     
                         <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                             <div class="row">
                                 {#each hotellist as resort}
@@ -676,18 +581,18 @@ Mo</span><span class="flatpickr-weekday">Tu</span><span class="flatpickr-weekday
                                 </div>
                                 {/each}
                                 
-                                
                             </div>
-                            <!-- <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">Showing 1–15</div> -->
-                            <!-- <LightPaginationNav
+                           <!-- <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">Showing 1–15</div>  -->
+                           <LightPaginationNav
                             totalItems="{hotels.length}"
                             pageSize="{pageSize}"
                             currentPage="{currentPage}"
                             limit="{1}"
                             showStepOptions="{true}"
                             on:setPage="{(e) => currentPage = e.detail.page}"
-                         />  -->
+                         />  
                         </div>
+                       
                     </div>
                 
                     <!-- End Tab Content -->
