@@ -82,7 +82,7 @@
             <div class="d-flex align-items-center">
                 <ul class="list-inline u-header__topbar-nav-divider mb-0">
                     <li class="list-inline-item mr-0"><a href="tel:(000)999-898-999" class="u-header__navbar-link">+960 960 7915687</a></li>
-                    <li class="list-inline-item mr-0"><a href="mailto:info@myhotel.com" class="u-header__navbar-link">sales@maldivesbeachvacation.com</a></li>
+                    <li class="list-inline-item mr-0"><a href="mailto:sales@maldivesbeachvacation.com" class="u-header__navbar-link">sales@maldivesbeachvacation.com</a></li>
                 </ul>
                 <div class="ml-auto d-flex align-items-center">
                     <ul class="list-inline mb-0 mr-2 pr-1">
@@ -435,9 +435,9 @@
             <!-- Nav -->
             <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized hs-menu-horizontal">
                 <!-- Logo -->
-                <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-dark-xl" href="/" aria-label="MyTour">
-                    {@html logo}
-                    <span class="u-header__navbar-brand-text">MaldivesBeachVacation</span>
+                <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-dark-xl" href="/" aria-label="MaldivesBeachVacation">
+                    <img src="/assets/img/mbv-logo-new.png" height="160px">
+                    <span class="u-header__navbar-brand-text"> </span>
                 </a>
                 <!-- End Logo -->
 

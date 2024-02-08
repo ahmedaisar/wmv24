@@ -60,21 +60,20 @@
 <svelte:head>
   <meta name="description" content="Compare over 743+ hotels in Maldives">
 
-  <!-- Open Graph (OG) Tags -->
   <meta property="og:title" content="Maldivesbeachvacation.com | Compare over 743+ hotels in Maldives">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.maldivesbeachvaction.com/hotels">
   <meta property="og:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
   <meta property="og:description" content="Compare over 743+ hotels in Maldives">
 
-  <!-- Twitter Card Tags -->
+ 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@maldivesbeachvacation">
   <meta name="twitter:title" content="Maldivesbeachvacation.com | Compare over 743+ hotels in Maldives">
   <meta name="twitter:description" content="Compare over 743+ hotels in Maldives">
   <meta name="twitter:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
 
-  <!-- Schema.org Markup -->
+
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -90,7 +89,7 @@
 <Header />
 
 <main id="content">
-	<!-- ========== HERO ========== -->
+
 	<div
 		class="hero-block hero-v4 bg-img-hero-bottom text-center z-index-2"
 		style="background-image: url({bg});"

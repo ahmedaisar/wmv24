@@ -47,7 +47,9 @@
                         {#each data as blog}
                         <div class="mb-4">
                             <a class="d-block" href="/blog/{blog.id}/{blog.slug}">
+                                {#if blog._embedded['wp:featuredmedia']}
                                 <img class="img-fluid mb-4 rounded-xs w-100" src={blog._embedded['wp:featuredmedia'][0].source_url} alt="{blog.title.rendered}">
+                                {/if}
                             </a>
                             <h5 class="font-weight-bold font-size-21 text-gray-3">
                                 <a href="/blog/{blog.id}/{blog.slug}">{@html blog.title.rendered}</a>
