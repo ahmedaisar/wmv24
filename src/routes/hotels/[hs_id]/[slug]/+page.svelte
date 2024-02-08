@@ -39,7 +39,7 @@
     let hotel = getHotel[0]
     let hotelPromise
     async function getHotelPromise(){
-            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-02-17&checkout=2024-02-23`)
+            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-03-17&checkout=2024-03-23`)
             const res = await req.json()
             let jsn = res.data.records[0]
             return jsn 
@@ -113,7 +113,7 @@
       "@type": "Organization",
       "name": "Maldives Beach Vacation",
       "url": "https://www.maldivesbeachvaction.com",
-      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo.png"
+      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo-new.png"
     }
   </script>
 
@@ -574,10 +574,7 @@
                 </li>           
             </ul>            
 
-            <a class="link-collapse link-collapse-custom gradient-overlay-half mb-5 d-inline-block border-bottom border-primary" data-toggle="collapse" href="#collapseLinkExample4" role="button" aria-expanded="false" aria-controls="collapseLinkExample4">
-                <span class="link-collapse__default font-size-14">View More <i class="flaticon-down-chevron font-size-10 ml-1"></i></span>
-                <span class="link-collapse__active font-size-14">View Less <i class="flaticon-arrow font-size-10 ml-1"></i></span>
-            </a>
+            
         </div>
         {/await}
         <!-- Product Cards Ratings With carousel -->
