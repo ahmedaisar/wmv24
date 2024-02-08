@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/common/footer.svelte';
 	import data from '$lib/data/maldives.json'
 	import bg from "$lib/assets/bg.jpg"
+	import {goto} from '$app/navigation';
 	import {onMount} from "svelte"
 	// export let form;
 
@@ -45,14 +46,22 @@
 		}
 	}
 	
-	// let dates 
-	
-	// onMount(() => {
-	// 	if(typeof localStorage !== `undefined`){
-	// 		dates = localStorage.getItem('dates')
-	// 	}
+	let selectedOption = '';
+	 
+	const handleSearch = () => {
+		console.log(selectedOption)
+		
+		let selectedHotel = hotels.filter((sh) => {
+			return sh.hs_id == selectedOption
+		})
+		 
+		if (selectedOption) {
+		
+		goto(`/hotels/${selectedOption}/${selectedHotel[0].slug}`);
 
-	// })
+		}
+		
+	};
 
 	
 </script>
@@ -80,7 +89,7 @@
       "@type": "Organization",
       "name": "Maldives Beach Vacation",
       "url": "https://www.maldivesbeachvaction.com/hotels",
-      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo.png"
+      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo-new.png"
     }
   </script>
 
@@ -111,7 +120,7 @@
 				<!-- Search Jobs Form -->
 				<div class="card border-0 tab-shadow">
 					<div class="card-body">
-						<form class="js-validate" action="/hotels">
+						<form class="js-validate" on:submit|preventDefault={handleSearch}>
 							<div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
 								<div class="col-sm-12 col-lg-3dot6 col-xl-2dot8 mb-4 mb-lg-0">
 									<span class="d-block text-gray-1 font-weight-normal text-left mb-0"
@@ -124,13 +133,14 @@
 										data-style=""
 										data-live-search="true"
 										name="hotel"
-										data-searchbox-classes="input-group-sm"										
+										data-searchbox-classes="input-group-sm"
+										bind:value={selectedOption}										
 									>
 										{#each dropdown as d, i}
 										<option
 											name="hotel"
 											class="border-bottom border-color-1"
-											value={d.hs_id}
+											value={d.hs_id}										
 											data-content='
 											<span class="d-flex align-items-center">
 												<span class="font-size-16">{d.name}</span>
@@ -320,7 +330,7 @@
 
 								<div class="col-sm-12 col-lg-1dot8 align-self-lg-end text-md-right">
 									<button
-										type="submit"
+										type="submit"					
 										class="btn btn-primary btn-md border-radius-3 mb-xl-0 mb-lg-1 transition-3d-hover"
 										><i class="flaticon-magnifying-glass font-size-20 mr-2" />Search</button
 									>

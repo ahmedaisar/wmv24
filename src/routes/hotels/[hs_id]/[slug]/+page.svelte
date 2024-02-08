@@ -87,7 +87,10 @@
 </script>
 <style>
     .fit-image { object-fit: cover !important;}
+    
 </style>
+
+ 
 <svelte:head>
   <title>{hotel.name} | Maldivesbeachvacation.com</title>
   <meta name="description" content="{hotel.name},{hotel.short_description}">
@@ -562,20 +565,7 @@
                 <li class="col-md-4 list-group-item"><i class="flaticon-slippers mr-3 text-primary font-size-24"></i>Slippers</li>
             </ul>
         </div>
-        <div class="border-bottom py-4 position-relative">
-            <h5 id="scroll-specifications" class="font-size-21 font-weight-bold text-dark mb-4">
-                House Rules
-            </h5>
-            <ul class="list-group list-group-borderless list-group-horizontal list-group-flush no-gutters row">
-                <li class="col-md-4 list-group-item py-0">
-                    <div class="font-weight-bold text-dark mb-2">Check-in/Check-out</div>
-                    <div class="text-gray-1 mb-2 pt-1">Check-in from: 14:00</div>
-                    <div class="text-gray-1 mb-4 pt-1">Check-out until: 12:00</div>            
-                </li>           
-            </ul>            
-
-            
-        </div>
+         
         {/await}
         <!-- Product Cards Ratings With carousel -->
         <div class="product-card-block product-card-v3">

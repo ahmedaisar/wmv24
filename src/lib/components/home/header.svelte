@@ -61,7 +61,7 @@
         <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
             <div class="d-flex align-items-center">
                 <ul class="list-inline u-header__topbar-nav-divider mb-0">
-                    <li class="list-inline-item mr-0"><a href="tel:(000)999-898-999" class="u-header__navbar-link">+960 960 7915687</a></li>
+                    <li class="list-inline-item mr-0"><a href="tel:+9607915687" class="u-header__navbar-link">+960 960 7915687</a></li>
                     <li class="list-inline-item mr-0"><a href="mailto:sales@maldivesbeachvacation.com" class="u-header__navbar-link">sales@maldivesbeachvacation.com</a></li>
                 </ul>
                 <div class="ml-auto d-flex align-items-center">

@@ -55,8 +55,18 @@
     @media (max-width: 767.98px) {
         .u-header__navbar-brand-text {
             font-size: 1rem !important;
-        }       
-    }  
+        }
+        .u-header__navbar-brand, .u-header__navbar-brand > img {
+            height: 100px !important;
+        }
+        #logoAndNav > nav > a > img {
+            height: 100px !important;
+        }
+
+    } 
+  
+    
+ 
 </style>
 
 <svelte:head>
@@ -74,7 +84,7 @@
         <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-8">
             <div class="d-flex align-items-center">
                 <ul class="list-inline u-header__topbar-nav-divider mb-0">
-                    <li class="list-inline-item mr-0"><a href="tel:(000)999-898-999" class="u-header__navbar-link">+960 960 7915687</a></li>
+                    <li class="list-inline-item mr-0"><a href="tel:+9607915687" class="u-header__navbar-link">+960 960 7915687</a></li>
                     <li class="list-inline-item mr-0"><a href="mailto:sales@maldivesbeachvacation.com" class="u-header__navbar-link">sales@maldivesbeachvacation.com</a></li>
                 </ul>
                 <div class="ml-auto d-flex align-items-center">
@@ -428,26 +438,12 @@
             <!-- Nav -->
            
             <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized hs-menu-horizontal">
-                <!-- Logo -->
-                <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-neww.png" height="160px">
-                    <span class="u-header__navbar-brand-text"></span>
-                </a>
-                <!-- End Logo -->
-
-                <!-- Handheld Logo -->
-                <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-collapsed" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-new.png" height="160px" id="moblogo">
-                    <span class="u-header__navbar-brand-text"></span>
-                </a>
-                <!-- End Handheld Logo -->
-
-                <!-- Scroll Logo -->
-                <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-on-scroll" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-new.png" height="180px">
-                    <span class="u-header__navbar-brand-text"></span>
-                </a>
-                <!-- End Scroll Logo -->
+               <!-- Logo -->
+               <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-dark-xl" href="/" aria-label="MaldivesBeachVacation">
+                <img src="/assets/img/mbv-logo-new.png" height="160px">
+                <span class="u-header__navbar-brand-text"> </span>
+            </a>
+            <!-- End Logo -->
 
                 <!-- Responsive Toggle Button -->
                 <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--primary order-2 ml-3" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
