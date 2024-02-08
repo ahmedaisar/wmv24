@@ -1,5 +1,5 @@
 <script>
-    import logo from "$lib/assets/mbvlogo.svg?url&raw"
+    import logo from "$lib/assets/mbvlogo24.svg?url&raw"
 </script>
 
 <footer class="footer mt-4">
@@ -126,7 +126,7 @@
         <div class="container">
             <div class="d-lg-flex d-md-block justify-content-between align-items-center">
                 <!-- Copyright -->
-                <p class="mb-3 mb-lg-0 text-gray-1">© 2023 MaldivesBeachVacation.com | All rights reserved</p>
+                <p class="mb-3 mb-lg-0 text-gray-1">© 2024 MaldivesBeachVacation.com | All rights reserved</p>
                 <!-- End Copyright -->
 
                 <!-- Social Networks -->
