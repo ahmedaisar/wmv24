@@ -12,6 +12,8 @@
 
     const { params } = data
     const hotelid = params.hs_id
+    
+   
  
 
     const getStar = (star) => {
@@ -39,7 +41,7 @@
     let hotel = getHotel[0]
     let hotelPromise
     async function getHotelPromise(){
-            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-03-17&checkout=2024-03-23`)
+            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-05-17&checkout=2024-05-20`)
             const res = await req.json()
             let jsn = res.data.records[0]
             return jsn 
@@ -49,8 +51,8 @@
     function redirectToBooking(hotelName, arrivalDate, departureDate) {
             
             var bookingUrl = 'https://www.booking.com/searchresults.en-us.html?';
-            var checkInDate = '2024-02-21'; // You can replace this with your desired value
-            var checkOutDate = '2024-02-25'; // You can replace this with your desired value
+            var checkInDate = '2024-05-17'; // You can replace this with your desired value
+            var checkOutDate = '2024-05-20'; // You can replace this with your desired value
             var adults = '2';
             var children = '0';
             var rand1 = Math.floor(Math.random() * 33); // Random number between 0 and 32
@@ -170,7 +172,7 @@
                                              data-rp-wrapper="#datepickerWrapperFromOne"
                                              data-rp-type="range"
                                              data-rp-date-format="M d / Y"
-                                             data-rp-default-date='["Jul 7 / 2020", "Aug 25 / 2020"]'>
+                                             value="">
                                     </div>
                                      <!-- End Datepicker -->
                                 </div>
@@ -534,7 +536,7 @@
                                         <span class="font-size-14"> / night</span>
                                     </div>
                                     <a href="javascript:;" data-sveltekit-reload rel="external" on:click={() => {                                                                                               
-                                    const link = redirectToBooking(data.name, '2024-02-17', '2024-02-24'); 
+                                    const link = redirectToBooking(data.name, '2024-05-17', '2024-05-20'); 
                                     goto(link)} } 
                                     class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>

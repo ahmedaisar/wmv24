@@ -40,6 +40,8 @@ declare module '$env/static/private' {
 	export const DISPLAY: string;
 	export const DriverData: string;
 	export const EXEPATH: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -55,7 +57,6 @@ declare module '$env/static/private' {
 	export const MINGW_CHOST: string;
 	export const MINGW_PACKAGE_PREFIX: string;
 	export const MINGW_PREFIX: string;
-	export const MSYS: string;
 	export const MSYSTEM: string;
 	export const MSYSTEM_CARCH: string;
 	export const MSYSTEM_CHOST: string;
@@ -110,7 +111,6 @@ declare module '$env/static/private' {
 	export const NUMBER_OF_PROCESSORS: string;
 	export const NVM_HOME: string;
 	export const NVM_SYMLINK: string;
-	export const OLDPWD: string;
 	export const OneDrive: string;
 	export const OneDriveCommercial: string;
 	export const ORIGINAL_PATH: string;
@@ -121,8 +121,6 @@ declare module '$env/static/private' {
 	export const PATH: string;
 	export const PATHEXT: string;
 	export const PKG_CONFIG_PATH: string;
-	export const PKG_CONFIG_SYSTEM_INCLUDE_PATH: string;
-	export const PKG_CONFIG_SYSTEM_LIBRARY_PATH: string;
 	export const PLINK_PROTOCOL: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
@@ -202,6 +200,8 @@ declare module '$env/dynamic/private' {
 		DISPLAY: string;
 		DriverData: string;
 		EXEPATH: string;
+		FPS_BROWSER_APP_PROFILE_STRING: string;
+		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;
@@ -217,7 +217,6 @@ declare module '$env/dynamic/private' {
 		MINGW_CHOST: string;
 		MINGW_PACKAGE_PREFIX: string;
 		MINGW_PREFIX: string;
-		MSYS: string;
 		MSYSTEM: string;
 		MSYSTEM_CARCH: string;
 		MSYSTEM_CHOST: string;
@@ -272,7 +271,6 @@ declare module '$env/dynamic/private' {
 		NUMBER_OF_PROCESSORS: string;
 		NVM_HOME: string;
 		NVM_SYMLINK: string;
-		OLDPWD: string;
 		OneDrive: string;
 		OneDriveCommercial: string;
 		ORIGINAL_PATH: string;
@@ -283,8 +281,6 @@ declare module '$env/dynamic/private' {
 		PATH: string;
 		PATHEXT: string;
 		PKG_CONFIG_PATH: string;
-		PKG_CONFIG_SYSTEM_INCLUDE_PATH: string;
-		PKG_CONFIG_SYSTEM_LIBRARY_PATH: string;
 		PLINK_PROTOCOL: string;
 		PROCESSOR_ARCHITECTURE: string;
 		PROCESSOR_IDENTIFIER: string;
