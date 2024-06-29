@@ -48,16 +48,22 @@
 	
 	let selectedOption = '';
 	 
-	const handleSearch = () => {
-		console.log(selectedOption)
+	const handleSearch = (e) => {
+		e.preventDefault();
+		const formData = new FormData(event.target); // Get form data
+		const formParams = Object.fromEntries(formData.entries());
+		const checkIn = formParams.checkin;
+		const checkOut = formParams.checkout;
 		
 		let selectedHotel = hotels.filter((sh) => {
 			return sh.hs_id == selectedOption
 		})
 		 
+		console.log(formParams.checkin)
+
 		if (selectedOption) {
 		
-		goto(`/hotels/${selectedOption}/${selectedHotel[0].slug}`);
+		goto(`/hotels/${selectedOption}/${selectedHotel[0].slug}?checkin=${checkIn}&checkout=${checkOut}&hotelid=${selectedOption}`);
 
 		}
 		
@@ -172,7 +178,7 @@
 												type="date"
 												data-rp-wrapper="#datepickerWrapperFromOne"												
 												data-rp-date-format="Y-m-d"
-												data-rp-default-date={`["2023-12-01"]`}
+												data-rp-default-date={`["2024-06-01"]`}
 											/>
 										</div>
 										<!-- End Datepicker -->
@@ -198,7 +204,7 @@
 												type="date"
 												data-rp-wrapper="#datepickerWrapperFromOne"												
 												data-rp-date-format="Y-m-d"
-												data-rp-default-date={`["2023-12-12"]`}
+												data-rp-default-date={`["2024-06-12"]`}
 											/>
 										</div>
 										<!-- End Datepicker -->

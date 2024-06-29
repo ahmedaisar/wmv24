@@ -12,9 +12,6 @@
 
     const { params } = data
     const hotelid = params.hs_id
-    
-   
- 
 
     const getStar = (star) => {
 		switch (star) {
@@ -41,7 +38,7 @@
     let hotel = getHotel[0]
     let hotelPromise
     async function getHotelPromise(){
-            const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${hotelid}&checkin=2024-05-17&checkout=2024-05-20`)
+            const req = await fetch(`https://uni-api-server.vercel.app/api/hotel?hotelid=${hotelid}&checkin=2024-10-17&checkout=2024-10-20`)
             const res = await req.json()
             let jsn = res.data.records[0]
             return jsn 
