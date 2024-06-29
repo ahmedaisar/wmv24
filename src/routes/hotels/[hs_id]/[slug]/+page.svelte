@@ -5,14 +5,17 @@
     import PagePreloader from '$lib/components/common/pagepreloader.svelte'
     import {goto} from '$app/navigation';
     import { page } from '$app/stores';
+    
     import LDTag from '$lib/components/misc/LDTag.svelte'
     import * as json from '$lib/data/maldives.json'    
     //import {onMount} from 'svelte'
     export let data;
 
     const { params } = data
+ 
     const hotelid = params.hs_id
-
+    const checkin = $page.url.searchParams.get('checkin')
+    const checkout = $page.url.searchParams.get('checkout')
     const getStar = (star) => {
 		switch (star) {
 			case 1:
@@ -48,8 +51,8 @@
     function redirectToBooking(hotelName, arrivalDate, departureDate) {
             
             var bookingUrl = 'https://www.booking.com/searchresults.en-us.html?';
-            var checkInDate = '2024-05-17'; // You can replace this with your desired value
-            var checkOutDate = '2024-05-20'; // You can replace this with your desired value
+            var checkInDate = checkin; // You can replace this with your desired value
+            var checkOutDate = checkout; // You can replace this with your desired value
             var adults = '2';
             var children = '0';
             var rand1 = Math.floor(Math.random() * 33); // Random number between 0 and 32
@@ -58,8 +61,8 @@
 
             bookingUrl += 'hotel_id=' + encodeURIComponent(hotelName);
             bookingUrl += '&ss=' + encodeURIComponent(hotelName);
-            bookingUrl += '&checkin=' + encodeURIComponent(arrivalDate);
-            bookingUrl += '&checkout=' + encodeURIComponent(departureDate);
+            bookingUrl += '&checkin=' + encodeURIComponent(checkInDate);
+            bookingUrl += '&checkout=' + encodeURIComponent(checkOutDate);
             bookingUrl += '&sid=' + encodeURIComponent(rand1);
 
             // Append pax details
@@ -94,21 +97,20 @@
   <title>{hotel.name} | Maldivesbeachvacation.com</title>
   <meta name="description" content="{hotel.name},{hotel.short_description}">
 
-  <!-- Open Graph (OG) Tags -->
+
   <meta property="og:title" content="{hotel.name} | Maldivesbeachvacation.com">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.maldivesbeachvaction.com">
   <meta property="og:image" content={`https://img1.hotelscan.com/640_440/1/${hotel.images[0].image_id}.jpg`}>
   <meta property="og:description" content="{hotel.short_description}">
 
-  <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@maldivesbeachvacation">
   <meta name="twitter:title" content="{hotel.name} | Maldivesbeachvacation.com">
   <meta name="twitter:description" content="{hotel.short_description}">
   <meta name="twitter:image" content="{`https://img1.hotelscan.com/640_440/1/${hotel.images[0].image_id}.jpg`}">
 
-  <!-- Schema.org Markup -->
+ 
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -459,6 +461,77 @@
             <h5 id="scroll-amenities" class="font-size-21 font-weight-bold text-dark mb-4">
                 Choose offer
             </h5>
+            <div class="card border-color-7 mb-5 overflow-hidden">
+                <!-- <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
+                    <div class="border border-brown bg-brown rounded-xs d-flex align-items-center text-lh-1 py-1 px-3 mr-2 mt-2">
+                        <span class="font-weight-normal text-white font-size-14">Get Exclusive Offer</span>
+                    </div>
+                </div> -->
+                <div class="product-item__outer w-100">
+                    <div class="row">
+                        <div class="col-md-5 col-lg-5 col-xl-3dot5">
+                            <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
+                                <div class="product-item__header mt-2 mt-md-0">
+                                    <div class="position-relative">
+                                        <img class="img-fluid rounded-sm" src="http://localhost:5173/assets/img/mbv-logo-new.png" alt="mbv">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-md-7 col-lg-7 col-xl-5 flex-horizontal-center pl-xl-0">
+                            <div class="w-100 position-relative m-4 m-md-0">
+                                <a href="#" class="mb-2 d-inline-block">
+                                    <span class="font-weight-bold font-size-17 text-dark text-dark">Private Villa</span>
+                                </a>
+                                <div class="mt-1 pt-2">
+                                    <div class="d-flex mb-1">
+                                        <div class="ml-0">
+                                            <ul class="list-unstyled mb-0" style={`display: flex;flex-wrap:wrap;justify-content:space-around;`}>
+                                               
+                                                <li class="media mb-3 text-gray-1 pr-3">
+                                                    <small class="mr-2">
+                                                        <small class="flaticon-tick font-size-17 text-primary"></small>
+                                                    </small>
+                                                    <div class="media-body font-size-1 ml-1">
+                                                      Free Transfers
+                                                    </div>
+                                                    <small class="mr-2">
+                                                        <small class="flaticon-tick font-size-17 text-primary"></small>
+                                                    </small>
+                                                    <div class="media-body font-size-1 ml-1">
+                                                      Tailor-made Holiday
+                                                    </div>
+                                                    <small class="mr-2">
+                                                        <small class="flaticon-tick font-size-17 text-primary"></small>
+                                                    </small>
+                                                    <div class="media-body font-size-1 ml-1">
+                                                      Exclusive Rates
+                                                    </div>
+                                                </li>
+                                              
+  
+                                            </ul>
+                                        </div>
+                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-xl-3dot5 align-self-center py-4 py-xl-0 border-top border-xl-top-0">
+                            <div class="flex-content-center border-xl-left py-xl-5 ml-4 ml-xl-0 justify-content-start justify-content-xl-center">
+                                <div class="text-center my-xl-1">
+                                    <div class="mb-2 pb-1">
+                                        <span class="font-size-14">From </span>
+                                        <span class="font-weight-bold font-size-22 ml-1"> $$$ </span>
+                                        <span class="font-size-14"> / night</span>
+                                    </div>
+                                    <a data-sveltekit-reload rel="external" href="mailto:sales@maldivesbeachvacation.com" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">UNLOCK PRICE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {#each data.all_offers.filter(of => of.vendor == 'bkng') as offer}                    
             <div class="card border-color-7 mb-5 overflow-hidden">
                 <!-- <div class="position-absolute top-0 right-0 mr-md-1 mt-md-1">
@@ -533,7 +606,7 @@
                                         <span class="font-size-14"> / night</span>
                                     </div>
                                     <a href="javascript:;" data-sveltekit-reload rel="external" on:click={() => {                                                                                               
-                                    const link = redirectToBooking(data.name, '2024-05-17', '2024-05-20'); 
+                                    const link = redirectToBooking(data.name, checkin, checkout); 
                                     goto(link)} } 
                                     class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Book Now</a>
                                 </div>

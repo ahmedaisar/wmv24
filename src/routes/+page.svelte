@@ -7,6 +7,7 @@
 	import bg from "$lib/assets/bg.jpg"
 	import {goto} from '$app/navigation';
 	import {onMount} from "svelte"
+	
 	// export let form;
 
 	let hotels = data?.data?.records
@@ -58,8 +59,6 @@
 		let selectedHotel = hotels.filter((sh) => {
 			return sh.hs_id == selectedOption
 		})
-		 
-		console.log(formParams.checkin)
 
 		if (selectedOption) {
 		

@@ -6,8 +6,6 @@
     import * as maldives from '$lib/data/maldives.json'
     export let data;
 
-    console.log(data)
- 
 	let hotels = maldives?.data?.records
     let currentPage = 1
     let pageSize = 18

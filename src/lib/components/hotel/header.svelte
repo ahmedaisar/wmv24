@@ -90,25 +90,25 @@
                 <div class="ml-auto d-flex align-items-center">
                     <ul class="list-inline mb-0 mr-2 pr-1">
                         <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.facebook.com/" target="_blank">
+                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.facebook.com/maldivesbeachvacation/" target="_blank">
                                 <span class="fab fa-facebook-f btn-icon__inner"></span>
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://twitter.com/" target="_blank">
+                        <!-- <li class="list-inline-item">
+                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://twitter.com/" target="_blank">
                                 <span class="fab fa-twitter btn-icon__inner"></span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.instagram.com/" target="_blank">
+                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.instagram.com/maldivesbeachvacation/" target="_blank">
                                 <span class="fab fa-instagram btn-icon__inner"></span>
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.linkedin.com/" target="_blank">
+                        <!-- <li class="list-inline-item">
+                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.linkedin.com/" target="_blank">
                                 <span class="fab fa-linkedin-in btn-icon__inner"></span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- <div class="position-relative px-3 u-header__login-form dropdown-connector-xl u-header__topbar-divider--dark">
                         <a id="signUpDropdownInvoker" href="javascript:;" class="d-flex align-items-center text-dark" aria-controls="signUpDropdown" aria-haspopup="true" aria-expanded="true" data-unfold-event="click" data-unfold-target="#signUpDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
@@ -458,7 +458,7 @@
                     <ul class="navbar-nav u-header__navbar-nav">
                         <!-- Home -->
                         <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="homeMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="homeSubMenu">Home</a>
+                            <a id="homeMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/" aria-haspopup="true" aria-expanded="false" aria-labelledby="homeSubMenu">Home</a>
                          
                         </li>
                         <!-- End Home -->
