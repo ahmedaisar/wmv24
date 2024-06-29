@@ -51,8 +51,8 @@
     function redirectToBooking(hotelName, arrivalDate, departureDate) {
             
             var bookingUrl = 'https://www.booking.com/searchresults.en-us.html?';
-            var checkInDate = checkin; // You can replace this with your desired value
-            var checkOutDate = checkout; // You can replace this with your desired value
+            var checkInDate = arrivalDate; // You can replace this with your desired value
+            var checkOutDate = departureDate; // You can replace this with your desired value
             var adults = '2';
             var children = '0';
             var rand1 = Math.floor(Math.random() * 33); // Random number between 0 and 32
