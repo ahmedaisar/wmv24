@@ -473,7 +473,7 @@
                             <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
                                 <div class="product-item__header mt-2 mt-md-0">
                                     <div class="position-relative">
-                                        <img class="img-fluid rounded-sm" src="http://localhost:5173/assets/img/mbv-logo-new.png" alt="mbv">
+                                        <img class="img-fluid rounded-sm" src="https://www.maldivesbeachvacation.com/assets/img/mbv-logo-new.png" alt="mbv">
                                     </div>
                                 </div>
                             </div>
