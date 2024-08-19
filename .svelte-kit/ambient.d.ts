@@ -66,7 +66,6 @@ declare module '$env/static/private' {
 	export const NODE_ENV: string;
 	export const npm_command: string;
 	export const npm_config_cache: string;
-	export const npm_config_cafile: string;
 	export const npm_config_engine_strict: string;
 	export const npm_config_globalconfig: string;
 	export const npm_config_global_prefix: string;
@@ -76,7 +75,6 @@ declare module '$env/static/private' {
 	export const npm_config_noproxy: string;
 	export const npm_config_npm_version: string;
 	export const npm_config_prefix: string;
-	export const npm_config_registry: string;
 	export const npm_config_strict_ssl: string;
 	export const npm_config_userconfig: string;
 	export const npm_config_user_agent: string;
@@ -103,6 +101,7 @@ declare module '$env/static/private' {
 	export const PKG_CONFIG_SYSTEM_INCLUDE_PATH: string;
 	export const PKG_CONFIG_SYSTEM_LIBRARY_PATH: string;
 	export const PLINK_PROTOCOL: string;
+	export const PNPM_HOME: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -114,6 +113,7 @@ declare module '$env/static/private' {
 	export const PSModulePath: string;
 	export const PUBLIC: string;
 	export const PWD: string;
+	export const REFRESH_ENV_VARS: string;
 	export const SESSIONNAME: string;
 	export const SHELL: string;
 	export const SHLVL: string;
@@ -207,7 +207,6 @@ declare module '$env/dynamic/private' {
 		NODE_ENV: string;
 		npm_command: string;
 		npm_config_cache: string;
-		npm_config_cafile: string;
 		npm_config_engine_strict: string;
 		npm_config_globalconfig: string;
 		npm_config_global_prefix: string;
@@ -217,7 +216,6 @@ declare module '$env/dynamic/private' {
 		npm_config_noproxy: string;
 		npm_config_npm_version: string;
 		npm_config_prefix: string;
-		npm_config_registry: string;
 		npm_config_strict_ssl: string;
 		npm_config_userconfig: string;
 		npm_config_user_agent: string;
@@ -244,6 +242,7 @@ declare module '$env/dynamic/private' {
 		PKG_CONFIG_SYSTEM_INCLUDE_PATH: string;
 		PKG_CONFIG_SYSTEM_LIBRARY_PATH: string;
 		PLINK_PROTOCOL: string;
+		PNPM_HOME: string;
 		PROCESSOR_ARCHITECTURE: string;
 		PROCESSOR_IDENTIFIER: string;
 		PROCESSOR_LEVEL: string;
@@ -255,6 +254,7 @@ declare module '$env/dynamic/private' {
 		PSModulePath: string;
 		PUBLIC: string;
 		PWD: string;
+		REFRESH_ENV_VARS: string;
 		SESSIONNAME: string;
 		SHELL: string;
 		SHLVL: string;

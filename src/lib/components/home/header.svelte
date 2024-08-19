@@ -9,171 +9,699 @@
     onMount( async () => {	     
         
          
-        window.jQuery.HSCore.components.HSHeader.init(window.jQuery('#header'));
-
-        // initialization of unfold component
-        window.jQuery.HSCore.components.HSUnfold.init(window.jQuery('[data-unfold-target]'));
-
-        // initialization of show animations
-        window.jQuery.HSCore.components.HSShowAnimation.init('.js-animation-link');
-
-        // initialization of datepicker
-        window.jQuery.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
-
-        // initialization of select
-        window.jQuery.HSCore.components.HSSelectPicker.init('.js-select');
-
-        // initialization of quantity counter
-        window.jQuery.HSCore.components.HSQantityCounter.init('.js-quantity');
-
-        // initialization of slick carousel
-        window.jQuery.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-        // initialization of go to
-        window.jQuery.HSCore.components.HSGoTo.init('.js-go-to');
 
     });
  
 
 </script>
-<style>
-    .u-header__navbar-brand-text {
-        font-size: 1.3rem;
-        margin-top: 0.3rem;
-    }
-    @media (max-width: 767.98px) {
-        .u-header__navbar-brand-text {
-            font-size: 1rem !important;
-        }
-        .u-header__navbar-brand, .u-header__navbar-brand > img {
-            height: 100px !important;
-        }
-
-    }  
  
-</style>
+<header data-add-bg="bg-white" class="header js-header" data-x="header" data-x-toggle="is-menu-opened">
+    <div data-anim="fade" class="header__container header__container-1500 mx-auto px-30 sm:px-20 is-in-view">
+      <div class="row justify-between items-center">
+
+        <div class="col-auto">
+          <div class="d-flex items-center">
+            <a href="/" class="header-logo mr-50" data-x="header-logo" data-x-toggle="is-logo-dark">
+              <!-- <img src="img/general/logo-dark.svg" alt="logo icon">
+              <img src="img/general/logo-dark.svg" alt="logo icon"> -->
+              <img src="img/wmvlogo-no-text.svg" alt="logo icon">
+              <img src="img/wmvlogo-no-text.svg" alt="logo icon">
+            </a>
 
 
+            <div class="header-menu " data-x="mobile-menu" data-x-toggle="is-menu-active">
+              <div class="mobile-overlay"></div>
 
-<header id="header" class="u-header u-header--abs-top-xl u-header--white-nav-links-xl u-header--bg-transparent-xl u-header--show-hide-xl" data-header-fix-moment="500" data-header-fix-effect="slide">
-    <div class="u-header__section u-header__shadow-on-show-hide py-4 py-xl-0">
-        <!-- Topbar -->
-        <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
-            <div class="d-flex align-items-center">
-                <ul class="list-inline u-header__topbar-nav-divider mb-0">
-                    <li class="list-inline-item mr-0"><a href="tel:+9607915687" class="u-header__navbar-link">+960 960 7915687</a></li>
-                    <li class="list-inline-item mr-0"><a href="mailto:sales@maldivesbeachvacation.com" class="u-header__navbar-link">sales@maldivesbeachvacation.com</a></li>
-                </ul>
-                <div class="ml-auto d-flex align-items-center">
-                    <ul class="list-inline mb-0 mr-2 pr-1">
-                        <li class="list-inline-item">
-                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.facebook.com/maldivesbeachvacation/" target="_blank">
-                                <span class="fab fa-facebook-f btn-icon__inner"></span>
-                            </a>
+              <div class="header-menu__content">
+                <div class="mobile-bg js-mobile-bg"></div>
+
+                <div class="menu js-navList">
+                  <ul class="menu__nav text-dark-1 -is-active">
+
+                    <li class="menu-item-has-children">
+                      <a data-barba="">
+                        <span class="mr-10">Home</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+
+                      <ul class="subnav">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Home</a>
                         </li>
-                        <!-- <li class="list-inline-item">
-                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://twitter.com/" target="_blank">
-                                <span class="fab fa-twitter btn-icon__inner"></span>
-                            </a>
-                        </li> -->
-                        <li class="list-inline-item">
-                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.instagram.com/maldivesbeachvacation/" target="_blank">
-                                <span class="fab fa-instagram btn-icon__inner"></span>
-                            </a>
-                        </li>
-                        <!-- <li class="list-inline-item">
-                            <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.linkedin.com/" target="_blank">
-                                <span class="fab fa-linkedin-in btn-icon__inner"></span>
-                            </a>
-                        </li> -->
-                    </ul>
-                    <!-- <div class="position-relative px-3 u-header__topbar-divider">
-                        <a href="#" class="d-flex align-items-center text-white">
-                            <i class="flaticon-user mr-2 ml-1"></i>
-                            <span class="d-inline-block font-size-14 mr-1">Sign in or Register</span>
-                        </a>
-                    </div> -->
-                    <!-- <div class="position-relative pl-3 language-switcher dropdown-connector-xl u-header__topbar-divider">
-                        <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center ml-1 py-3" href="#" role="button" aria-controls="languageDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#languageDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                            <span class="d-inline-block">EUR</span>
-                        </a>
-                        <div id="languageDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right mt-0" aria-labelledby="languageDropdownInvoker">
-                            <a class="dropdown-item" href="#">USD</a>
-                            <a class="dropdown-item active" href="#">EUR</a>
-                            <a class="dropdown-item" href="#">TUR</a>
+
+                        <li><a href="index.html">Home 1</a></li>
+
+                        <li><a href="home-2.html">Home 2</a></li>
+
+                        <li><a href="home-3.html">Home 3</a></li>
+
+                        <li><a href="home-4.html">Home 4</a></li>
+
+                        <li><a href="home-5.html">Home 5</a></li>
+
+                        <li><a href="home-6.html">Home 6</a></li>
+
+                        <li><a href="home-7.html">Home 7</a></li>
+
+                        <li><a href="home-8.html">Home 8</a></li>
+
+                        <li><a href="home-9.html">Home 9</a></li>
+
+                        <li><a href="home-10.html">Home 10</a></li>
+
+                      </ul>
+
+                    </li>
+                    
+                    <li>
+                      <a href="/hotels">
+                        Hotels
+                      </a>
+                    </li>
+
+
+                    <li class="menu-item-has-children -has-mega-menu">
+                      <a data-barba="">
+                        <span class="mr-10">Holidays</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+                      <div class="mega">
+                        <div class="tabs -underline-2 js-tabs">
+                          <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 pb-30 js-tabs-controls">
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Luxury Escapes</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-2">All Inclusive</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-3">Honeymooners</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-4">Wellness</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-5">Kids n Family</button>
+                            </div>
+
+                      
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-6">Adults Only</button>
+                            </div>
+
+                          </div>
+
+                          <div class="tabs__content js-tabs-content">
+                            <div class="tabs__pane -tab-item-1 is-tab-el-active">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Hotel List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="hotel-list-1.html">Hotel List v1</a></div>
+
+                                      <div><a href="hotel-list-2.html">Hotel List v2</a></div>
+
+                                      <div><a href="hotel-half-map.html">Hotel List v3</a></div>
+
+                                      <div><a href="hotel-grid-1.html">Hotel List v4</a></div>
+
+                                      <div><a href="hotel-grid-2.html">Hotel List v5</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Hotel Single</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="hotel-single-1.html">Hotel Single v1</a></div>
+
+                                      <div><a href="hotel-single-2.html">Hotel Single v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Hotel Booking</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="booking-pages.html">Booking Page</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4 js-lazy loaded" data-ll-status="loaded">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-2">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Tour List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="tour-list-1.html">Tour List v1</a></div>
+
+                                      <div><a href="tour-grid-1.html">Tour List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Tour Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="tour-map.html">Tour Map</a></div>
+
+                                      <div><a href="tour-single.html">Tour Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-3">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Activity List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="activity-list-1.html">Activity List v1</a></div>
+
+                                      <div><a href="activity-grid-1.html">Activity List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Activity Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="activity-map.html">Activity Map</a></div>
+
+                                      <div><a href="activity-single.html">Activity Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-4">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Rental List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="rental-list-1.html">Rental List v1</a></div>
+
+                                      <div><a href="rental-grid-1.html">Rental List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Rental Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="rental-map.html">Rental Map</a></div>
+
+                                      <div><a href="rental-single.html">Rental Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-5">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Car List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="car-list-1.html">Car List v1</a></div>
+
+                                      <div><a href="car-grid-1.html">Car List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Car Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="car-map.html">Car Map</a></div>
+
+                                      <div><a href="car-single.html">Car Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-6">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Cruise List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="cruise-list-1.html">Cruise List v1</a></div>
+
+                                      <div><a href="cruise-grid-1.html">Cruise List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Cruise Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="cruise-map.html">Cruise Map</a></div>
+
+                                      <div><a href="cruise-single.html">Cruise Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-7">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Flight List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="flights-list.html">Flight list v1</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-        <!-- End Topbar -->
-        <div id="logoAndNav" class="container-fluid py-1">
-            <!-- Nav -->
-            <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space">
-                <!-- Logo -->
-                <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-white" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-neww.png" height="160px">
-                    <span class="u-header__navbar-brand-text"></span>
-                </a>
-                <!-- End Logo -->
+                      </div>
 
-                <!-- Handheld Logo -->
-                <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-collapsed" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-new.png" height="160px" id="moblogo">
-                    <span class="u-header__navbar-brand-text"></span>
-                </a>
-                <!-- End Handheld Logo -->
-
-                <!-- Scroll Logo -->
-                <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-on-scroll" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-new.png" height="180px">
-                    <span class="u-header__navbar-brand-text"></span>
-                </a>
-                <!-- End Scroll Logo -->
-
-                <!-- Responsive Toggle Button -->
-                <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--primary order-2 ml-3" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
-                    <span id="hamburgerTrigger" class="u-hamburger__box">
-                        <span class="u-hamburger__inner"></span>
-                    </span>
-                </button>
-                <!-- End Responsive Toggle Button -->
-
-                <!-- Navigation -->
-                <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
-                    <ul class="navbar-nav u-header__navbar-nav">
-                        <!-- Home -->
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="homeMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="homeSubMenu">Home</a>
-                         
-                        </li>
-                        <!-- End Home -->
-
-                        <!-- Hotel -->
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" data-sveltekit-reload class="nav-link u-header__nav-link u-header__nav-link-border" href="/hotels" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Hotels</a>
-                          
-                        </li>
-                        <!-- End Hotel -->
-
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/blog" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Blog</a>
-                          
+                      <ul class="subnav mega-mobile">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Category</a>
                         </li>
 
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Contact</a>
-                          
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Hotel</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Hotel</a>
+                            </li>
+
+
+                            <li><a href="hotel-list-1.html">Hotel List v1</a></li>
+
+                            <li><a href="hotel-list-2.html">Hotel List v2</a></li>
+
+                            <li><a href="hotel-single-1.html">Hotel Single v1</a></li>
+
+                            <li><a href="hotel-single-2.html">Hotel Single v2</a></li>
+
+                            <li><a href="booking-pages.html">Booking Page</a></li>
+
+                          </ul>
                         </li>
- 
-                        
-                    </ul>
-                </div>
-                <!-- End Navigation -->
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Tour</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Tour</a>
+                            </li>
+
+                            <li><a href="tour-list-1.html">Tour List v1</a></li>
+
+                            <li><a href="tour-grid-1.html">Tour List v2</a></li>
+
+                            <li><a href="tour-map.html">Tour Map</a></li>
+
+                            <li><a href="tour-single.html">Tour Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Activity</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Activity</a>
+                            </li>
+
+                            <li><a href="activity-list-1.html">Activity List v1</a></li>
+
+                            <li><a href="activity-grid-1.html">Activity List v2</a></li>
+
+                            <li><a href="activity-map.html">Activity Map</a></li>
+
+                            <li><a href="activity-single.html">Activity Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Rental</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Rental</a>
+                            </li>
+
+                            <li><a href="rental-list-1.html">Rental List v1</a></li>
+
+                            <li><a href="rental-grid-1.html">Rental List v2</a></li>
+
+                            <li><a href="rental-map.html">Rental Map</a></li>
+
+                            <li><a href="rental-single.html">Rental Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Car</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Car</a>
+                            </li>
+
+                            <li><a href="car-list-1.html">Car List v1</a></li>
+
+                            <li><a href="car-grid-1.html">Car List v2</a></li>
+
+                            <li><a href="car-map.html">Car Map</a></li>
+
+                            <li><a href="car-single.html">Car Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Cruise</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Cruise</a>
+                            </li>
+
+                            <li><a href="cruise-list-1.html">Cruise List v1</a></li>
+
+                            <li><a href="cruise-grid-1.html">Cruise List v2</a></li>
+
+                            <li><a href="cruise-map.html">Cruise Map</a></li>
+
+                            <li><a href="cruise-single.html">Cruise Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Flights</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Flights</a>
+                            </li>
+
+                            <li><a href="flights-list.html">Flights List v1</a></li>
+
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
 
                 
-            </nav>
-            <!-- End Nav -->
+
+                    <li class="menu-item-has-children">
+                      <a data-barba="">
+                        <span class="mr-10">Blog</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+
+                      <ul class="subnav">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Blog</a>
+                        </li>
+
+                        <li><a href="blog-list-1.html">Blog list v1</a></li>
+
+                        <li><a href="blog-list-2.html">Blog list v2</a></li>
+
+                        <li><a href="blog-single.html">Blog single</a></li>
+
+                      </ul>
+
+                    </li>
+
+
+                    <li class="menu-item-has-children">
+                      <a data-barba="">
+                        <span class="mr-10">Pages</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+
+                      <ul class="subnav">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Pages</a>
+                        </li>
+
+                        <li><a href="404.html">404</a></li>
+
+                        <li><a href="about.html">About</a></li>
+
+                        <li><a href="become-expert.html">Become expert</a></li>
+
+                        <li><a href="help-center.html">Help center</a></li>
+
+                        <li><a href="login.html">Login</a></li>
+
+                        <li><a href="signup.html">Register</a></li>
+
+                        <li><a href="terms.html">Terms</a></li>
+
+                        <li><a href="invoice.html">Invoice</a></li>
+
+                        <li><a href="ui-elements.html">UI elements</a></li>
+
+                      </ul>
+
+                    </li>
+
+
+                    <li class="menu-item-has-children">
+                      <a data-barba="">
+                        <span class="mr-10">Dashboard</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+
+                      <ul class="subnav">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Dashboard</a>
+                        </li>
+
+                        <li><a href="db-dashboard.html">Dashboard</a></li>
+
+                        <li><a href="db-booking.html">Booking</a></li>
+
+                        <li><a href="db-settings.html">Settings</a></li>
+
+                        <li><a href="db-wishlist.html">Wishlist</a></li>
+
+                        <li><a href="db-vendor-dashboard.html">Vendor dashboard</a></li>
+
+                        <li><a href="db-vendor-add-hotel.html">Vendor add hotel</a></li>
+
+                        <li><a href="db-vendor-booking.html">Vendor booking</a></li>
+
+                        <li><a href="db-vendor-hotels.html">Vendor hotels</a></li>
+
+                        <li><a href="db-vendor-recovery.html">Vendor recovery</a></li>
+
+                      </ul>
+
+                    </li>
+
+
+                    <li>
+                      <a href="contact.html">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="mobile-footer px-20 py-20 border-top-light js-mobile-footer">
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+
+        <div class="col-auto">
+          <div class="d-flex items-center">
+
+            <div class="row x-gap-20 items-center xxl:d-none">
+              <div class="col-auto">
+                <button class="d-flex items-center text-14 text-dark-1" data-x-click="currency">
+                  <span class="js-currencyMenu-mainTitle">USD</span>
+                  <i class="icon-chevron-sm-down text-7 ml-10"></i>
+                </button>
+              </div>
+
+              <div class="col-auto">
+                <div class="w-1 h-20 bg-black-20"></div>
+              </div>
+
+              <div class="col-auto">
+                <button class="d-flex items-center text-14 text-dark-1" data-x-click="lang">
+                  <img src="img/general/lang.png" alt="image" class="rounded-full mr-10">
+                  <span class="js-language-mainTitle">United Kingdom</span>
+                  <i class="icon-chevron-sm-down text-7 ml-15"></i>
+                </button>
+              </div>
+            </div>
+
+
+            <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
+              <a href="login.html" class="button px-30 fw-400 text-14 -blue-1 bg-dark-4 h-50 text-white">Become An Expert</a>
+              <a href="signup.html" class="button px-30 fw-400 text-14 border-dark-4 -blue-1 h-50 text-dark-4 ml-20">Sign In / Register</a>
+            </div>
+
+            <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
+              <div><a href="login.html" class="d-flex items-center icon-user text-inherit text-22"></a></div>
+              <div><button class="d-flex items-center icon-menu text-inherit text-20" data-x-click="html, header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-</header>
+  </header>
