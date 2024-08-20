@@ -4,6 +4,7 @@
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
 	import data from '$lib/data/maldives.json'
+  import atolls from '$lib/data/atolls.json'
 	import bg from "$lib/assets/bg.jpg"
 	import {goto} from '$app/navigation';
 	import {onMount} from "svelte"
@@ -27,6 +28,7 @@
 	// 		return h.hs_id == '1001283836';
 	// });	
 
+    
 
 
 	const getStar = (star) => {
@@ -68,61 +70,156 @@
 		
 	};
 
-	
+ 
+  function countHotelsByAtoll(hotels) {
+    const hotelCount = hotels.reduce((acc, hotel) => {
+        const atoll = hotel.Atoll;
+        acc[atoll] = (acc[atoll] || 0) + 1;
+        return acc;
+      }, {});
+
+      // Convert the result into an array of objects with the desired format
+      return Object.entries(hotelCount)
+      .map(([atoll, count]) => {
+        return {
+          "Atoll": atoll,
+          "Hotels": count
+        };
+      })
+      function countHotelsByAtoll(hotels) {
+        const hotelCount = hotels.reduce((acc, hotel) => {
+          const atoll = hotel.Atoll;
+          acc[atoll] = (acc[atoll] || 0) + 1;
+          return acc;
+        }, {});
+
+        // Convert the result into an array of objects
+        return Object.entries(hotelCount)
+          .map(([atoll, count]) => ({
+            "Atoll": atoll,
+            "Hotels": count
+              }))
+          .sort((a, b) => b["Hotels"] - a["Hotels"]); // Sort by Total hotels (descending)
+      }}
+
+	const atlist = countHotelsByAtoll(atolls);
+    
+  function mapResortsByHolidayType(resorts) {
+      const holidayTypes = {
+        'All Inclusive': [],
+        'Honeymoon': [],
+        'Luxury': [],
+        'Wellness': [],
+        'Family & kids': [],
+        'Adults Only': [],
+        'Senior Friendly': [],
+        'Halal travel': []
+      };
+
+      resorts.forEach(resort => {
+        // All Inclusive
+        if (resort.name.toLowerCase().includes('all inclusive')) {
+          holidayTypes['All Inclusive'].push(resort);
+        }
+
+        // Honeymoon
+        if (resort.themes && resort.themes.includes('romantic')) {
+          holidayTypes['Honeymoon'].push(resort);
+        }
+
+        // Luxury
+        if (resort.quality && resort.quality.stars === 5) {
+          holidayTypes['Luxury'].push(resort);
+        }
+
+        // Wellness
+        if (resort.themes && (resort.themes.includes('spa_relax') || resort.short_description.toLowerCase().includes('wellness'))) {
+          holidayTypes['Wellness'].push(resort);
+        }
+
+        // Family & kids
+        if (resort.themes && resort.themes.includes('family')) {
+          holidayTypes['Family & kids'].push(resort);
+        }
+
+        // Adults Only
+        if (resort.name && resort.name.includes('lobigili')) {
+          holidayTypes['Adults Only'].push(resort);
+        }
+
+        // Senior Friendly
+        // No clear indicator in the data, so we'll leave this empty
+
+        // Halal travel
+        // No clear indicator in the data, so we'll leave this empty
+      });
+
+      return holidayTypes;
+}
+ 
+const holidays = mapResortsByHolidayType(hotels);
+console.log(holidays)
+
+let blogPromise
+async function getBlogPromise(){
+        const req = await fetch(`https://www.traveltrademaldives.com/wp-json/wp/v2/posts?categories=2&_fields=link,title,_links,_embedded&_embed`)
+        const res = await req.json()
+        return res 
+        
+}
+blogPromise = getBlogPromise() 
+ 
+
 </script>
 
-<!-- <svelte:head>
-  <meta name="description" content="Compare over 743+ hotels in Maldives">
+<svelte:head>
+  <meta name="description" content="Compare over 743+ popular resorts and hotels in Maldives">
 
-  <meta property="og:title" content="Maldivesbeachvacation.com | Compare over 743+ hotels in Maldives">
+  <meta property="og:title" content="Wheresmaldives.com | Compare over 743+ popular resorts and hotels in Maldives">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.maldivesbeachvaction.com/hotels">
-  <meta property="og:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
-  <meta property="og:description" content="Compare over 743+ hotels in Maldives">
+  <meta property="og:url" content="https://www.wheresmaldives.com/">
+  <meta property="og:image" content="https://www.wheresmaldives.com/img/wmvlogo-no-text.png">
+  <meta property="og:description" content="Compare over 743+ popular resorts and hotels in Maldives">
 
  
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@maldivesbeachvacation">
-  <meta name="twitter:title" content="Maldivesbeachvacation.com | Compare over 743+ hotels in Maldives">
-  <meta name="twitter:description" content="Compare over 743+ hotels in Maldives">
-  <meta name="twitter:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
+  <meta name="twitter:site" content="@wheresmaldives">
+  <meta name="twitter:title" content="Wheresmaldives.com | Compare over 743+ popular resorts and hotels in Maldives">
+  <meta name="twitter:description" content="Compare over 743+ popular resorts and hotels in Maldives">
+  <meta name="twitter:image" content="https://www.wheresmaldives.com/img/wmvlogo-no-text.png">
 
 
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "Organization",
-      "name": "Maldives Beach Vacation",
-      "url": "https://www.maldivesbeachvaction.com/hotels",
-      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo-new.png"
+      "name": "Wheres Maldives",
+      "url": "https://www.wheresmaldives.com/",
+      "logo": "https://www.wheresmaldives.com/img/wmvlogo-no-text.png"
     }
   </script>
 
-</svelte:head> -->
+</svelte:head>
 
 <Header />
 <main>
-
-
-    
-
-
     <section data-anim-wrap="" class="masthead -type-7 animated">
       <div class="masthead-slider js-masthead-slider-7 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
         <div class="swiper-wrapper" id="swiper-wrapper-65030cdf9afdef62" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-1720px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1720px;">
+
             <div class="row justify-center text-center">
               <div class="col-auto">
                 <div class="masthead__content">
                   <div class="masthead__bg">
-                    <img src="img/masthead/7/bg.png" alt="image">
+                    <img src="img/hotels/mv/7.jpg" alt="image">
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing places at exclusive deals
+                    Discover amzaing resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
-                    Unique Houses Are Waiting<br class="lg:d-none"> For You
+                    Maldives Awaits<br class="lg:d-none"> For You
                   </h1>
                 </div>
               </div>
@@ -134,15 +231,15 @@
               <div class="col-auto">
                 <div class="masthead__content">
                   <div class="masthead__bg">
-                    <img src="img/masthead/7/bg.png" alt="image">
+                    <img src="img/hotels/mv/15.jpg" alt="image">
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing places at exclusive deals
+                    Discover amzaing resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
-                    Unique Houses Are Waiting<br class="lg:d-none"> For You
+                    Maldives Awaits<br class="lg:d-none"> For You
                   </h1>
                 </div>
               </div>
@@ -154,47 +251,29 @@
               <div class="col-auto">
                 <div class="masthead__content">
                   <div class="masthead__bg">
-                    <img src="img/masthead/7/bg.png" alt="image">
+                    <img src="img/hotels/mv/3.jpg" alt="image">
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing places at exclusive deals
+                    Discover amzaing resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
-                    Unique Houses Are Waiting<br class="lg:d-none"> For You
+                    Maldives Awaits<br class="lg:d-none"> For You
                   </h1>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1720px;">
-            <div class="row justify-center text-center">
-              <div class="col-auto">
-                <div class="masthead__content">
-                  <div class="masthead__bg">
-                    <img src="img/masthead/7/bg.png" alt="image">
-                  </div>
-
-                  <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing places at exclusive deals
-                  </div>
-
-                  <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
-                    Unique Houses Are Waiting<br class="lg:d-none"> For You
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
+           
 
         <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1720px;">
             <div class="row justify-center text-center">
               <div class="col-auto">
                 <div class="masthead__content">
                   <div class="masthead__bg">
-                    <img src="img/masthead/7/bg.png" alt="image">
+                    <img src="img/hotels/mv/11.jpg" alt="image">
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
@@ -3047,89 +3126,104 @@
       </div>
     </section>
 
-    <section class="layout-pt-xl layout-pb-md">
-      <div class="container">
-        <div class="row y-gap-20 justify-center text-center">
+    <section class="layout-pt-lg layout-pb-md">
+      <div data-anim-wrap="" class="container animated">
+        <div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
           <div class="col-auto">
             <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Explore by Types of Stays</h2>
+              <h2 class="sectionTitle__title">Top Destinations</h2>
               <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
             </div>
           </div>
         </div>
 
-        <div class="row y-gap-30 pt-40">
+        <div class="row y-gap-40 justify-between pt-40 sm:pt-20">
 
-          <div class="w-1/5 lg:w-1/3 sm:w-1/2">
+          <div data-anim-child="slide-up delay-3" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
 
-            <a href="#" class="citiesCard -type-2 ">
-              <div class="citiesCard__image rounded-4 ratio ratio-23:18">
-                <img class="img-ratio rounded-4 js-lazy error" data-src="img/stays/1/1.png" src="img/stays/1/1.png" alt="image" data-ll-status="error">
+            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
+              <div class="citiesCard__image ratio ratio-1:1">
+                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
               </div>
 
-              <div class="citiesCard__content mt-10">
-                <h4 class="text-18 lh-13 fw-500 text-dark-1">Apartments</h4>
-                <div class="text-14 text-light-1">4,090 properties</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div class="w-1/5 lg:w-1/3 sm:w-1/2">
-
-            <a href="#" class="citiesCard -type-2 ">
-              <div class="citiesCard__image rounded-4 ratio ratio-23:18">
-                <img class="img-ratio rounded-4 js-lazy error" data-src="img/stays/1/2.png" src="img/stays/1/2.png" alt="image" data-ll-status="error">
-              </div>
-
-              <div class="citiesCard__content mt-10">
-                <h4 class="text-18 lh-13 fw-500 text-dark-1">Resorts</h4>
-                <div class="text-14 text-light-1">4,090 properties</div>
+              <div class="citiesCard__content px-30 py-30">
+                <h4 class="text-26 fw-600 text-white">{atlist[1].Atoll} Atoll</h4>
+                <div class="text-15 text-white">{atlist[1].Hotels}</div>
               </div>
             </a>
 
           </div>
 
-          <div class="w-1/5 lg:w-1/3 sm:w-1/2">
+          <div data-anim-child="slide-up delay-4" class="col-xl-6 col-md-4 col-sm-6 is-in-view">
 
-            <a href="#" class="citiesCard -type-2 ">
-              <div class="citiesCard__image rounded-4 ratio ratio-23:18">
-                <img class="img-ratio rounded-4 js-lazy error" data-src="img/stays/1/3.png" src="img/stays/1/3.png" alt="image" data-ll-status="error">
+            <a href="#" class="citiesCard -type-3 d-block rounded-4 h-full">
+              <div class="citiesCard__image ">
+                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
               </div>
 
-              <div class="citiesCard__content mt-10">
-                <h4 class="text-18 lh-13 fw-500 text-dark-1">Villas</h4>
-                <div class="text-14 text-light-1">4,090 properties</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div class="w-1/5 lg:w-1/3 sm:w-1/2">
-
-            <a href="#" class="citiesCard -type-2 ">
-              <div class="citiesCard__image rounded-4 ratio ratio-23:18">
-                <img class="img-ratio rounded-4 js-lazy error" data-src="img/stays/1/4.png" src="img/stays/1/4.png" alt="image" data-ll-status="error">
-              </div>
-
-              <div class="citiesCard__content mt-10">
-                <h4 class="text-18 lh-13 fw-500 text-dark-1">Cabins</h4>
-                <div class="text-14 text-light-1">4,090 properties</div>
+              <div class="citiesCard__content px-30 py-30">
+                <h4 class="text-26 fw-600 text-white">{atlist[0].Atoll} Atoll</h4>
+                <div class="text-15 text-white">{atlist[0].Hotels} resorts</div>
               </div>
             </a>
 
           </div>
 
-          <div class="w-1/5 lg:w-1/3 sm:w-1/2">
+          <div data-anim-child="slide-up delay-5" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
 
-            <a href="#" class="citiesCard -type-2 ">
-              <div class="citiesCard__image rounded-4 ratio ratio-23:18">
-                <img class="img-ratio rounded-4 js-lazy error" data-src="img/stays/1/5.png" src="img/stays/1/5.png" alt="image" data-ll-status="error">
+            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
+              <div class="citiesCard__image ratio ratio-1:1">
+                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
               </div>
 
-              <div class="citiesCard__content mt-10">
-                <h4 class="text-18 lh-13 fw-500 text-dark-1">Tiny houses</h4>
-                <div class="text-14 text-light-1">4,090 properties</div>
+              <div class="citiesCard__content px-30 py-30">
+                <h4 class="text-26 fw-600 text-white">{atlist[2].Atoll} Atoll</h4>
+                <div class="text-15 text-white">{atlist[2].Hotels} resorts</div>
+              </div>
+            </a>
+
+          </div>
+
+          <div data-anim-child="slide-up delay-6" class="col-xl-6 col-md-4 col-sm-6 is-in-view">
+
+            <a href="#" class="citiesCard -type-3 d-block rounded-4 h-full">
+              <div class="citiesCard__image ">
+                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
+              </div>
+
+              <div class="citiesCard__content px-30 py-30">
+                <h4 class="text-26 fw-600 text-white">{atlist[3].Atoll} Atoll</h4>
+                <div class="text-15 text-white">{atlist[3].Hotels} resorts</div>
+              </div>
+            </a>
+
+          </div>
+
+          <div data-anim-child="slide-up delay-7" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
+
+            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
+              <div class="citiesCard__image ratio ratio-1:1">
+                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
+              </div>
+
+              <div class="citiesCard__content px-30 py-30">
+                <h4 class="text-26 fw-600 text-white">{atlist[4].Atoll} Atoll</h4>
+                <div class="text-15 text-white">{atlist[4].Hotels} resorts</div>
+              </div>
+            </a>
+
+          </div>
+
+          <div data-anim-child="slide-up delay-8" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
+
+            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
+              <div class="citiesCard__image ratio ratio-1:1">
+                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
+              </div>
+
+              <div class="citiesCard__content px-30 py-30">
+                <h4 class="text-26 fw-600 text-white">{atlist[5].Atoll} Atoll</h4>
+                <div class="text-15 text-white">{atlist[5].Hotels} resorts</div>
               </div>
             </a>
 
@@ -3138,289 +3232,1411 @@
         </div>
       </div>
     </section>
+ 
+    <section class="layout-pt-md layout-pb-lg">
+      <div data-anim-wrap="" class="container animated">
+        <div class="tabs -pills-2 js-tabs">
+          <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-between items-end is-in-view">
+            <div class="col-auto">
+              <div class="sectionTitle -md">
+                <h2 class="sectionTitle__title">Weekly Most Booked</h2>
+                <p class=" sectionTitle__text mt-5 sm:mt-0">Explore tailor-made packages.</p>
+              </div>
+            </div>
+
+            <div class="col-auto">
+              <div class="tabs__controls row x-gap-10 justify-center js-tabs-controls">
+
+                <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">All Inclusive</button>
+                </div>
+
+                <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-2">Luxury Escapes</button>
+                </div>
+
+                <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-3">Wellness Retreats</button>
+                </div>
+
+                <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-4">Family & Kids</button>
+                </div>
+
+                <!-- <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-5">Halal Travel</button>
+                </div>
+
+                <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-6">Adults-Only</button>
+                </div>
+
+                <div class="col-auto">
+                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-7">Senior-Friendly</button>
+                </div> -->
+
+              </div>
+            </div>
+          </div>
+
+          <div class="tabs__content pt-40 js-tabs-content">
+
+            <div class="tabs__pane -tab-item-1 is-tab-el-active">
+              <div class="row y-gap-30">
+
+                {#each holidays['All Inclusive'].slice(4,8) as hotel (hotel.hs_id)}
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="#" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
+                                                         
+                              {#each hotel.images.slice(0,4) as img}
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
+                              </div>
+                              {/each}                        
+                            
+                            </div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>{hotel.name}</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">{hotel.location.address}</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">{hotel.quality && hotel.quality.review_rating}</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">{hotel.quality && hotel.quality.review_count} reviews</div>
+                      </div>
+
+                      <!-- <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </a>
+
+                </div>
+                {/each}
+
+              </div>
+            </div>
+
+            <div class="tabs__pane -tab-item-2">
+              <div class="row y-gap-30">
+                {#each holidays['Luxury'].slice(4,8) as hotel (hotel.hs_id)}
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="#" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
+                                                         
+                              {#each hotel.images.slice(0,4) as img}
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
+                              </div>
+                              {/each}                        
+                            
+                            </div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>{hotel.name}</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">{hotel.location.address}</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">{hotel.quality && hotel.quality.review_rating}</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">{hotel.quality && hotel.quality.review_count} reviews</div>
+                      </div>
+
+                      <!-- <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </a>
+
+                </div>
+                {/each}
+
+              </div>
+            </div>
+
+            <div class="tabs__pane -tab-item-3">
+              <div class="row y-gap-30">
+
+                {#each holidays['Wellness'].slice(4,8) as hotel (hotel.hs_id)}
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="#" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
+                                                         
+                              {#each hotel.images.slice(0,4) as img}
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
+                              </div>
+                              {/each}                        
+                            
+                            </div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>{hotel.name}</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">{hotel.location.address}</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">{hotel.quality && hotel.quality.review_rating}</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">{hotel.quality && hotel.quality.review_count} reviews</div>
+                      </div>
+
+                      <!-- <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </a>
+
+                </div>
+                {/each}
+
+              </div>
+            </div>
+
+            <div class="tabs__pane -tab-item-4 ">
+              <div class="row y-gap-30">
+
+                {#each holidays['Family & kids'].slice(0,4) as hotel (hotel.hs_id)}
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="#" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
+                                                         
+                              {#each hotel.images.slice(0,4) as img}
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
+                              </div>
+                              {/each}                        
+                            
+                            </div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>{hotel.name}</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">{hotel.location.address}</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">{hotel.quality && hotel.quality.review_rating}</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">{hotel.quality && hotel.quality.review_count} reviews</div>
+                      </div>
+
+                      <!-- <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </a>
+
+                </div>
+                {/each}
+
+              </div>
+            </div>
+
+            <!-- <div class="tabs__pane -tab-item-5">
+              <div class="row y-gap-30">
+
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-5" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-6" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-7" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="tabs__pane -tab-item-6">
+              <div class="row y-gap-30">
+
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-5" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-6" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-7" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="tabs__pane -tab-item-7">
+              <div class="row y-gap-30">
+
+                <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-5" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-6" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+                <div data-anim-child="slide-left delay-7" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+
+                  <a href="hotel-single-1.html" class="hotelsCard -type-1 ">
+                    <div class="hotelsCard__image">
+
+                      <div class="cardImage ratio ratio-1:1">
+                        <div class="cardImage__content">
+
+
+                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/1.png" alt="image">
+                              </div>
+
+                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/3.png" alt="image">
+                              </div>
+
+                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="img/hotels/2.png" alt="image">
+                              </div></div>
+
+                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                            <div class="cardImage-slider__nav -prev">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-left text-10"></i>
+                              </button>
+                            </div>
+
+                            <div class="cardImage-slider__nav -next">
+                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-346e9414f7333092">
+                                <i class="icon-chevron-right text-10"></i>
+                              </button>
+                            </div>
+                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                        </div>
+
+                        <div class="cardImage__wishlist">
+                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                            <i class="icon-heart text-12"></i>
+                          </button>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="hotelsCard__content mt-10">
+                      <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                        <span>Staycity Aparthotels Deptford Bridge Station</span>
+                      </h4>
+
+                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
+
+                      <div class="d-flex items-center mt-20">
+                        <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
+                        <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
+                        <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
+                      </div>
+
+                      <div class="mt-5">
+                        <div class="fw-500">
+                          Starting from <span class="text-blue-1">US$72</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                </div>
+
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+    </section>   
+ 
+ 
 
     <section class="layout-pt-md layout-pb-md">
       <div data-anim-wrap="" class="container animated">
         <div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
           <div class="col-auto">
             <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Homes Guests Love</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames ac ante ipsum</p>
+              <h2 class="sectionTitle__title">Get inspiration for your next trip</h2>
+              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames</p>
             </div>
           </div>
         </div>
 
-        <div class="row y-gap-30 pt-40 sm:pt-20">
+        <div class="blog-grid-1 pt-40">
 
-          <div data-anim-child="slide-up delay-2" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+          <div data-anim-child="slide-up delay-2" class="is-in-view">
 
-            <a href="rental-single.html" class="rentalCard -type-1 rounded-4 ">
-              <div class="rentalCard__image">
-
-                <div class="cardImage ratio ratio-1:1">
-                  <div class="cardImage__content">
-
-                    <img class="rounded-4 col-12" src="img/rentals/1.png" alt="image">
-
-
-                  </div>
-
-                  <div class="cardImage__wishlist">
-                    <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                      <i class="icon-heart text-12"></i>
-                    </button>
-                  </div>
-
-
-                </div>
-
+            <a href="" class="blogCard -type-3 ">
+              <div class="blogCard__image rounded-4">
+                <img class="rounded-4 js-lazy loaded" src="https://creativelayers.net/themes/gotrip-html/img/blog/2/1.png" alt="image" data-ll-status="loaded">
               </div>
 
-              <div class="rentalCard__content mt-10">
-                <div class="text-14 text-light-1 lh-14 mb-5">Westminster Borough, London</div>
-
-                <h4 class="rentalCard__title text-dark-1 text-18 lh-16 fw-500">
-                  <span>Luxury New Apartment With Private Garden</span>
-                </h4>
-
-                <p class="text-light-1 lh-14 text-14 mt-5"></p>
-
-                <div class="d-flex items-center mt-5">
-                  <div class="text-14 text-light-1">2 guests</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bedroom</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bed</div>
-                </div>
-
-                <div class="d-flex items-center mt-20">
-                  <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
-                  <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
-                  <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                </div>
-
-                <div class="mt-5">
-                  <div class="text-light-1">
-                    <span class="fw-500 text-dark-1">US$72</span> / per night
-                  </div>
-                </div>
+              <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
+                <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">10 European ski destinations you should visit this winter</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2022</div>
               </div>
             </a>
 
           </div>
 
-          <div data-anim-child="slide-up delay-3" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+          <div data-anim-child="slide-up delay-3" class="is-in-view">
 
-            <a href="rental-single.html" class="rentalCard -type-1 rounded-4 ">
-              <div class="rentalCard__image">
-
-                <div class="cardImage ratio ratio-1:1">
-                  <div class="cardImage__content">
-
-
-                    <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-                      <div class="swiper-wrapper" id="swiper-wrapper-1f9afa77235df08b" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
-                          <img class="col-12" src="img/rentals/1.png" alt="image">
-                        </div>
-
-                        <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
-                          <img class="col-12" src="img/rentals/2.png" alt="image">
-                        </div>
-
-                        <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 300px;">
-                          <img class="col-12" src="img/rentals/3.png" alt="image">
-                        </div>
-
-                        <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 300px;">
-                          <img class="col-12" src="img/rentals/1.png" alt="image">
-                        </div>
-
-                      <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
-                          <img class="col-12" src="img/rentals/2.png" alt="image">
-                        </div></div>
-
-                      <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
-
-                      <div class="cardImage-slider__nav -prev">
-                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-1f9afa77235df08b">
-                          <i class="icon-chevron-left text-10"></i>
-                        </button>
-                      </div>
-
-                      <div class="cardImage-slider__nav -next">
-                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-1f9afa77235df08b">
-                          <i class="icon-chevron-right text-10"></i>
-                        </button>
-                      </div>
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-
-                  </div>
-
-                  <div class="cardImage__wishlist">
-                    <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                      <i class="icon-heart text-12"></i>
-                    </button>
-                  </div>
-
-
-                </div>
-
+            <a href="" class="blogCard -type-3 ">
+              <div class="blogCard__image rounded-4">
+                <img class="rounded-4 js-lazy loaded" src="https://creativelayers.net/themes/gotrip-html/img/blog/2/1.png" alt="image" data-ll-status="loaded">
               </div>
 
-              <div class="rentalCard__content mt-10">
-                <div class="text-14 text-light-1 lh-14 mb-5">Ciutat Vella, Barcelona</div>
-
-                <h4 class="rentalCard__title text-dark-1 text-18 lh-16 fw-500">
-                  <span>Premium One Bedroom Luxury Living in the Heart of Mayfair</span>
-                </h4>
-
-                <p class="text-light-1 lh-14 text-14 mt-5"></p>
-
-                <div class="d-flex items-center mt-5">
-                  <div class="text-14 text-light-1">2 guests</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bedroom</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bed</div>
-                </div>
-
-                <div class="d-flex items-center mt-20">
-                  <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
-                  <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
-                  <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                </div>
-
-                <div class="mt-5">
-                  <div class="text-light-1">
-                    <span class="fw-500 text-dark-1">US$72</span> / per night
-                  </div>
-                </div>
+              <div class="blogCard__content px-20 pb-20">
+                <h4 class="text-18 fw-500 lh-16 text-white">Where can I go? 5 amazing countries that are open right now</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2022</div>
               </div>
             </a>
 
           </div>
 
-          <div data-anim-child="slide-up delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
+          <div data-anim-child="slide-up delay-4" class="is-in-view">
 
-            <a href="rental-single.html" class="rentalCard -type-1 rounded-4 ">
-              <div class="rentalCard__image">
-
-                <div class="cardImage ratio ratio-1:1">
-                  <div class="cardImage__content">
-
-                    <img class="rounded-4 col-12" src="img/rentals/3.png" alt="image">
-
-
-                  </div>
-
-                  <div class="cardImage__wishlist">
-                    <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                      <i class="icon-heart text-12"></i>
-                    </button>
-                  </div>
-
-
-                  <div class="cardImage__leftBadge">
-                    <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-blue-1 text-white">
-                      Best Seller
-                    </div>
-                  </div>
-
-                </div>
-
+            <a href="" class="blogCard -type-3 ">
+              <div class="blogCard__image rounded-4">
+                <img class="rounded-4 js-lazy loaded" src="https://creativelayers.net/themes/gotrip-html/img/blog/2/1.png" alt="image" data-ll-status="loaded">
               </div>
 
-              <div class="rentalCard__content mt-10">
-                <div class="text-14 text-light-1 lh-14 mb-5">Manhattan, New York</div>
-
-                <h4 class="rentalCard__title text-dark-1 text-18 lh-16 fw-500">
-                  <span>Style, Charm &amp; Comfort in Camberwell</span>
-                </h4>
-
-                <p class="text-light-1 lh-14 text-14 mt-5"></p>
-
-                <div class="d-flex items-center mt-5">
-                  <div class="text-14 text-light-1">2 guests</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bedroom</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bed</div>
-                </div>
-
-                <div class="d-flex items-center mt-20">
-                  <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
-                  <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
-                  <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                </div>
-
-                <div class="mt-5">
-                  <div class="text-light-1">
-                    <span class="fw-500 text-dark-1">US$72</span> / per night
-                  </div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-5" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
-
-            <a href="rental-single.html" class="rentalCard -type-1 rounded-4 ">
-              <div class="rentalCard__image">
-
-                <div class="cardImage ratio ratio-1:1">
-                  <div class="cardImage__content">
-
-                    <img class="rounded-4 col-12" src="img/rentals/4.png" alt="image">
-
-
-                  </div>
-
-                  <div class="cardImage__wishlist">
-                    <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                      <i class="icon-heart text-12"></i>
-                    </button>
-                  </div>
-
-
-                  <div class="cardImage__leftBadge">
-                    <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-yellow-1 text-dark-1">
-                      Top Rated
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="rentalCard__content mt-10">
-                <div class="text-14 text-light-1 lh-14 mb-5">Vaticano Prati, Rome</div>
-
-                <h4 class="rentalCard__title text-dark-1 text-18 lh-16 fw-500">
-                  <span>Marylebone - Oxford Street 1 bed apt with WiFi</span>
-                </h4>
-
-                <p class="text-light-1 lh-14 text-14 mt-5"></p>
-
-                <div class="d-flex items-center mt-5">
-                  <div class="text-14 text-light-1">2 guests</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bedroom</div>
-                  <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                  <div class="text-14 text-light-1">1 bed</div>
-                </div>
-
-                <div class="d-flex items-center mt-20">
-                  <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">4.8</div>
-                  <div class="text-14 text-dark-1 fw-500 ml-10">Exceptional</div>
-                  <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                </div>
-
-                <div class="mt-5">
-                  <div class="text-light-1">
-                    <span class="fw-500 text-dark-1">US$72</span> / per night
-                  </div>
-                </div>
+              <div class="blogCard__content px-20 pb-20">
+                <h4 class="text-18 fw-500 lh-16 text-white">Booking travel during Corona: good advice in an uncertain time</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2022</div>
               </div>
             </a>
 
@@ -3430,169 +4646,39 @@
       </div>
     </section>
 
-    <section class="layout-pt-md layout-pb-md">
+
+    
+    <section class="section-bg pt-40 pb-40">
+      <div class="section-bg__item -left-100 -right-100 border-bottom-light"></div>
+
       <div class="container">
-        <div  class="row y-gap-20 justify-between items-end">
-          <div class="col-auto">
-            <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Connect With Other Travellers</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
-            </div>
+        <div class="row y-gap-30 justify-center text-center">
+
+          <div class="col-xl-3 col-6">
+            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">4,958</div>
+            <div class="text-14 lh-14 text-light-1 mt-5">Destinations</div>
           </div>
 
-          <div class="col-auto">
-
-            <div class="d-flex x-gap-15 items-center justify-center pt-40 sm:pt-20">
-              <div class="col-auto">
-                <button class="d-flex items-center text-24 arrow-left-hover js-places-prev">
-                  <i class="icon icon-arrow-left"></i>
-                </button>
-              </div>
-
-              <div class="col-auto">
-                <div class="pagination -dots text-border js-places-pag"></div>
-              </div>
-
-              <div class="col-auto">
-                <button class="d-flex items-center text-24 arrow-right-hover js-places-next">
-                  <i class="icon icon-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-
+          <div class="col-xl-3 col-6">
+            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">2,869</div>
+            <div class="text-14 lh-14 text-light-1 mt-5">Total Properties</div>
           </div>
-        </div>
 
-        <div class="pt-40 overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-5 lg-3 md-2 sm-2 base-1" data-nav-prev="js-places-prev" data-pagination="js-places-pag" data-nav-next="js-places-next">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">United Kingdom</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">Italy</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">France</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">Turkey</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">Spain</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">United Kingdom</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">Italy</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
-            <div class="swiper-slide">
-
-              <a href="#" class="citiesCard -type-2 ">
-                <div class="citiesCard__image rounded-4 ratio ratio-3:4">
-                  <img class="img-ratio rounded-4 js-lazy" data-src="img/destinations/1/1.webp" src="#" alt="image">
-                </div>
-
-                <div class="citiesCard__content mt-10">
-                  <h4 class="text-18 lh-13 fw-500 text-dark-1">France</h4>
-                  <div class="text-14 text-light-1">147,681 travellers</div>
-                </div>
-              </a>
-
-            </div>
-
+          <div class="col-xl-3 col-6">
+            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">2M</div>
+            <div class="text-14 lh-14 text-light-1 mt-5">Happy customers</div>
           </div>
+
+          <div class="col-xl-3 col-6">
+            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">574,974</div>
+            <div class="text-14 lh-14 text-light-1 mt-5">Our Volunteers</div>
+          </div>
+
         </div>
       </div>
     </section>
 
-
-    <section class="layout-pt-lg layout-pb-lg bg-dark-3">
+    <!-- <section class="layout-pt-md layout-pb-md bg-dark-3">
       <div class="container">
         <div class="row y-gap-60">
           <div class="col-xl-5 col-lg-6">
@@ -3771,453 +4857,10 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="section-bg pt-40 pb-40">
-      <div class="section-bg__item -left-100 -right-100 border-bottom-light"></div>
-
-      <div class="container">
-        <div class="row y-gap-30 justify-center text-center">
-
-          <div class="col-xl-3 col-6">
-            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">4,958</div>
-            <div class="text-14 lh-14 text-light-1 mt-5">Destinations</div>
-          </div>
-
-          <div class="col-xl-3 col-6">
-            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">2,869</div>
-            <div class="text-14 lh-14 text-light-1 mt-5">Total Properties</div>
-          </div>
-
-          <div class="col-xl-3 col-6">
-            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">2M</div>
-            <div class="text-14 lh-14 text-light-1 mt-5">Happy customers</div>
-          </div>
-
-          <div class="col-xl-3 col-6">
-            <div class="text-40 lg:text-30 lh-13 text-blue-1 fw-600">574,974</div>
-            <div class="text-14 lh-14 text-light-1 mt-5">Our Volunteers</div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="layout-pt-md layout-pb-md">
-      <div data-anim-wrap="" class="container animated">
-        <div data-anim-child="slide-up" class="row y-gap-20 justify-between items-end is-in-view">
-          <div class="col-auto">
-            <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Deals &amp; Discounts</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames ac ante ipsum</p>
-            </div>
-          </div>
-
-          <div class="col-auto">
-
-            <div class="d-flex x-gap-15 items-center ">
-              <div class="col-auto">
-                <button class="d-flex items-center text-24 arrow-left-hover js-deals-prev swiper-button-disabled swiper-button-lock" disabled="" tabindex="-1" aria-label="Previous slide" aria-controls="swiper-wrapper-9d72107ad883c8d10" aria-disabled="true">
-                  <i class="icon icon-arrow-left"></i>
-                </button>
-              </div>
-
-              <div class="col-auto">
-                <div class="pagination -dots text-border js-deals-pag swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div></div>
-              </div>
-
-              <div class="col-auto">
-                <button class="d-flex items-center text-24 arrow-right-hover js-deals-next swiper-button-disabled swiper-button-lock" disabled="" tabindex="-1" aria-label="Next slide" aria-controls="swiper-wrapper-9d72107ad883c8d10" aria-disabled="true">
-                  <i class="icon icon-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row y-gap-30 pt-40">
-          <div data-anim-child="slide-up delay-2" class="col-xl-5 is-in-view">
-
-            <div class="ctaCard -type-1 rounded-4 ">
-              <div class="ctaCard__image ratio ratio-63:55">
-                <img class="img-ratio js-lazy loaded" src="img/backgrounds/6.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="ctaCard__content py-50 px-50 lg:py-30 lg:px-30">
-
-                <div class="text-15 fw-500 text-white mb-10">Enjoy Summer Deals</div>
-
-
-                <h4 class="text-30 lg:text-24 text-white">Book Early to Save</h4>
-
-                <div class="d-inline-block mt-30">
-                  <a href="#" class="button px-48 py-15 -blue-1 -min-180 bg-white text-dark-1">Book Now</a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div data-anim-child="slide-left delay-3" class="col-xl-7 is-in-view">
-            <div class="relative overflow-hidden js-section-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-watch-progress swiper-backface-hidden" data-gap="30" data-scrollbar="" data-slider-cols="xl-3 lg-3 md-2 sm-2 base-1" data-nav-prev="js-deals-prev" data-pagination="js-deals-pag" data-nav-next="js-deals-next">
-              <div class="swiper-wrapper" id="swiper-wrapper-9d72107ad883c8d10" aria-live="polite" style="height: 443px;">
-
-                <div class="swiper-slide swiper-slide-visible swiper-slide-active" role="group" aria-label="1 / 3" style="width: 226.667px; margin-right: 30px;">
-
-                  <a href="tour-single.html" class="tourCard -type-1 rounded-4 ">
-                    <div class="tourCard__image">
-
-                      <div class="cardImage ratio ratio-1:1">
-                        <div class="cardImage__content">
-
-                          <img class="rounded-4 col-12" src="img/tours/1.png" alt="image">
-
-
-                        </div>
-
-                        <div class="cardImage__wishlist">
-                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                            <i class="icon-heart text-12"></i>
-                          </button>
-                        </div>
-
-
-                        <div class="cardImage__leftBadge">
-                          <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
-                            LIKELY TO SELL OUT*
-                          </div>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    <div class="tourCard__content mt-10">
-                      <div class="d-flex items-center lh-14 mb-5">
-                        <div class="text-14 text-light-1">16+ hours</div>
-                        <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                        <div class="text-14 text-light-1">Full-day Tours</div>
-                      </div>
-
-                      <h4 class="tourCard__title text-dark-1 text-18 lh-16 fw-500">
-                        <span>Stonehenge, Windsor Castle and Bath with Pub Lunch in Lacock</span>
-                      </h4>
-
-                      <p class="text-light-1 lh-14 text-14 mt-5">Westminster Borough, London</p>
-
-                      <div class="row justify-between items-center pt-15">
-                        <div class="col-auto">
-                          <div class="d-flex items-center">
-                            <div class="d-flex items-center x-gap-5">
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                            </div>
-
-                            <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                          </div>
-                        </div>
-
-                        <div class="col-auto">
-                          <div class="text-14 text-light-1">
-                            From
-                            <span class="text-16 fw-500 text-dark-1">US$72</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                </div>
-
-                <div class="swiper-slide swiper-slide-visible swiper-slide-next" role="group" aria-label="2 / 3" style="width: 226.667px; margin-right: 30px;">
-
-                  <a href="tour-single.html" class="tourCard -type-1 rounded-4 ">
-                    <div class="tourCard__image">
-
-                      <div class="cardImage ratio ratio-1:1">
-                        <div class="cardImage__content">
-
-
-                          <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-                            <div class="swiper-wrapper" id="swiper-wrapper-4e6bb8dcd8606e35" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-227px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 227px;">
-                                <img class="col-12" src="img/tours/3.png" alt="image">
-                              </div>
-
-                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 227px;">
-                                <img class="col-12" src="img/tours/2.png" alt="image">
-                              </div>
-
-                              <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 227px;">
-                                <img class="col-12" src="img/tours/1.png" alt="image">
-                              </div>
-
-                              <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 227px;">
-                                <img class="col-12" src="img/tours/3.png" alt="image">
-                              </div>
-
-                            <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 227px;">
-                                <img class="col-12" src="img/tours/2.png" alt="image">
-                              </div></div>
-
-                            <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
-
-                            <div class="cardImage-slider__nav -prev">
-                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-4e6bb8dcd8606e35">
-                                <i class="icon-chevron-left text-10"></i>
-                              </button>
-                            </div>
-
-                            <div class="cardImage-slider__nav -next">
-                              <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-4e6bb8dcd8606e35">
-                                <i class="icon-chevron-right text-10"></i>
-                              </button>
-                            </div>
-                          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-
-                        </div>
-
-                        <div class="cardImage__wishlist">
-                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                            <i class="icon-heart text-12"></i>
-                          </button>
-                        </div>
-
-
-                      </div>
-
-                    </div>
-
-                    <div class="tourCard__content mt-10">
-                      <div class="d-flex items-center lh-14 mb-5">
-                        <div class="text-14 text-light-1">9+ hours</div>
-                        <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                        <div class="text-14 text-light-1">Attractions &amp; Museums</div>
-                      </div>
-
-                      <h4 class="tourCard__title text-dark-1 text-18 lh-16 fw-500">
-                        <span>Westminster Walking Tour &amp; Westminster Abbey Entry</span>
-                      </h4>
-
-                      <p class="text-light-1 lh-14 text-14 mt-5">Ciutat Vella, Barcelona</p>
-
-                      <div class="row justify-between items-center pt-15">
-                        <div class="col-auto">
-                          <div class="d-flex items-center">
-                            <div class="d-flex items-center x-gap-5">
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                            </div>
-
-                            <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                          </div>
-                        </div>
-
-                        <div class="col-auto">
-                          <div class="text-14 text-light-1">
-                            From
-                            <span class="text-16 fw-500 text-dark-1">US$72</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                </div>
-
-                <div class="swiper-slide swiper-slide-visible" role="group" aria-label="3 / 3" style="width: 226.667px; margin-right: 30px;">
-
-                  <a href="tour-single.html" class="tourCard -type-1 rounded-4 ">
-                    <div class="tourCard__image">
-
-                      <div class="cardImage ratio ratio-1:1">
-                        <div class="cardImage__content">
-
-                          <img class="rounded-4 col-12" src="img/tours/3.png" alt="image">
-
-
-                        </div>
-
-                        <div class="cardImage__wishlist">
-                          <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                            <i class="icon-heart text-12"></i>
-                          </button>
-                        </div>
-
-
-                        <div class="cardImage__leftBadge">
-                          <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-blue-1 text-white">
-                            Best Seller
-                          </div>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    <div class="tourCard__content mt-10">
-                      <div class="d-flex items-center lh-14 mb-5">
-                        <div class="text-14 text-light-1">40–55 minutes</div>
-                        <div class="size-3 bg-light-1 rounded-full ml-10 mr-10"></div>
-                        <div class="text-14 text-light-1">Private and Luxury</div>
-                      </div>
-
-                      <h4 class="tourCard__title text-dark-1 text-18 lh-16 fw-500">
-                        <span>High-Speed Thames River RIB Cruise in London</span>
-                      </h4>
-
-                      <p class="text-light-1 lh-14 text-14 mt-5">Manhattan, New York</p>
-
-                      <div class="row justify-between items-center pt-15">
-                        <div class="col-auto">
-                          <div class="d-flex items-center">
-                            <div class="d-flex items-center x-gap-5">
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                              <div class="icon-star text-yellow-1 text-10"></div>
-
-                            </div>
-
-                            <div class="text-14 text-light-1 ml-10">3,014 reviews</div>
-                          </div>
-                        </div>
-
-                        <div class="col-auto">
-                          <div class="text-14 text-light-1">
-                            From
-                            <span class="text-16 fw-500 text-dark-1">US$72</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                </div>
-
-              </div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- <section class="layout-pt-md layout-pb-md">
-      <div class="container">
-        <div class="row justify-center text-center">
-          <div class="col-auto">
-            <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Why Choose Us</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row y-gap-40 justify-between pt-50">
-
-          <div class="col-lg-3 col-sm-6">
-
-            <div class="featureIcon -type-1 ">
-              <div class="d-flex justify-center">
-                <img src="img/featureIcons/1/1.svg" alt="image" class="js-lazy loaded" data-ll-status="loaded">
-              </div>
-
-              <div class="text-center mt-30">
-                <h4 class="text-18 fw-500">Best Price Guarantee</h4>
-                <p class="text-15 mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-sm-6">
-
-            <div class="featureIcon -type-1 ">
-              <div class="d-flex justify-center">
-                <img src="img/featureIcons/1/2.svg" alt="image" class="js-lazy loaded" data-ll-status="loaded">
-              </div>
-
-              <div class="text-center mt-30">
-                <h4 class="text-18 fw-500">Easy &amp; Quick Booking</h4>
-                <p class="text-15 mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-sm-6">
-
-            <div class="featureIcon -type-1 ">
-              <div class="d-flex justify-center">
-                <img src="img/featureIcons/1/3.svg" alt="image" class="js-lazy loaded" data-ll-status="loaded">
-              </div>
-
-              <div class="text-center mt-30">
-                <h4 class="text-18 fw-500">Customer Care 24/7</h4>
-                <p class="text-15 mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
     </section> -->
+ 
 
-
-    <!-- <section data-anim="slide-up delay-1" class="layout-pt-md layout-pb-md is-in-view">
-      <div class="container">
-        <div class="row ml-0 mr-0 items-center justify-between">
-          <div class="col-xl-5 px-0">
-            <img class="col-12 h-400" src="img/newsletter/1.png" alt="image">
-          </div>
-
-          <div class="col px-0">
-            <div class="d-flex justify-center flex-column h-400 px-80 py-40 md:px-30 bg-green-1">
-              <div class="icon-newsletter text-60 sm:text-40 text-dark-1"></div>
-              <h2 class="text-30 sm:text-24 lh-15 mt-20">Your Travel Journey Starts Here</h2>
-              <p class="text-dark-1 mt-5">Sign up and we'll send the best deals to you</p>
-
-              <div class="single-field -w-410 d-flex x-gap-10 flex-wrap y-gap-20 pt-30">
-                <div class="col-auto">
-                  <input class="col-12 bg-white h-60" type="text" placeholder="Your Email">
-                </div>
-
-                <div class="col-auto">
-                  <button class="button -md h-60 -blue-1 bg-yellow-1 text-dark-1">Subscribe</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <section data-anim-wrap="" class="section-bg bg-dark-3 layout-pt-lg layout-pb-lg animated">
+    <section data-anim-wrap="" class="section-bg bg-dark-3 layout-pt-md layout-pb-md animated">
       <div data-anim-child="fade delay-1" class="section-bg__item -mx-20 bg-dark-3 is-in-view"></div>
 
       <div class="container">
@@ -4241,10 +4884,9 @@
       </div>
     </section>
 
-  
+
 
 <Footer />
-
 
   </main>
 

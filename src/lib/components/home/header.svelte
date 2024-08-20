@@ -24,8 +24,8 @@
             <a href="/" class="header-logo mr-50" data-x="header-logo" data-x-toggle="is-logo-dark">
               <!-- <img src="img/general/logo-dark.svg" alt="logo icon">
               <img src="img/general/logo-dark.svg" alt="logo icon"> -->
-              <img src="img/wmvlogo-no-text.svg" alt="logo icon">
-              <img src="img/wmvlogo-no-text.svg" alt="logo icon">
+              <img src="img/wmvlogo-no-text.svg" alt="Wheresmaldives.com">
+              <img src="img/wmvlogo-no-text.svg" alt="Wheresmaldives.com">
             </a>
 
 
@@ -38,50 +38,47 @@
                 <div class="menu js-navList">
                   <ul class="menu__nav text-dark-1 -is-active">
 
+                    <li>
+                      <a href="/">
+                        Home
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="/maldives-hotels-2024-2025">
+                        Hotels
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="/maldives-holiday-packages-2024-2025">
+                        Packages & Deals
+                      </a>
+                    </li>
+
                     <li class="menu-item-has-children">
-                      <a data-barba="">
-                        <span class="mr-10">Home</span>
+                      <a data-barba="" href="">
+                        <span class="mr-10">Maldives</span>
                         <i class="icon icon-chevron-sm-down"></i>
                       </a>
 
 
                       <ul class="subnav">
                         <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Home</a>
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Maldives</a>
                         </li>
 
-                        <li><a href="index.html">Home 1</a></li>
+                        <li><a href="index.html">Getting here</a></li>
+                        <li><a href="index.html">Before Arrival</a></li>
+                        <li><a href="index.html">Travel Guide 2024</a></li>
 
-                        <li><a href="home-2.html">Home 2</a></li>
-
-                        <li><a href="home-3.html">Home 3</a></li>
-
-                        <li><a href="home-4.html">Home 4</a></li>
-
-                        <li><a href="home-5.html">Home 5</a></li>
-
-                        <li><a href="home-6.html">Home 6</a></li>
-
-                        <li><a href="home-7.html">Home 7</a></li>
-
-                        <li><a href="home-8.html">Home 8</a></li>
-
-                        <li><a href="home-9.html">Home 9</a></li>
-
-                        <li><a href="home-10.html">Home 10</a></li>
+                       
 
                       </ul>
 
                     </li>
-                    
-                    <li>
-                      <a href="/hotels">
-                        Hotels
-                      </a>
-                    </li>
 
-
-                    <li class="menu-item-has-children -has-mega-menu">
+                    <!-- <li class="menu-item-has-children -has-mega-menu">
                       <a data-barba="">
                         <span class="mr-10">Holidays</span>
                         <i class="icon icon-chevron-sm-down"></i>
@@ -119,7 +116,7 @@
                           </div>
 
                           <div class="tabs__content js-tabs-content">
-                            <div class="tabs__pane -tab-item-1 is-tab-el-active">
+                            <div class="tabs__pane -tab-item-1">
                               <div class="mega__content">
                                 <div class="mega__grid">
 
@@ -212,7 +209,7 @@
                               </div>
                             </div>
 
-                            <div class="tabs__pane -tab-item-3">
+                            <div class="tabs__pane -tab-item-3 is-tab-el-active">
                               <div class="mega__content">
                                 <div class="mega__grid">
 
@@ -553,106 +550,31 @@
                           </ul>
                         </li>
                       </ul>
-                    </li>
-
-                
-
-                    <li class="menu-item-has-children">
-                      <a data-barba="">
-                        <span class="mr-10">Blog</span>
-                        <i class="icon icon-chevron-sm-down"></i>
+                    </li> -->
+                    <li>
+                      <a href="/maldives-blog">
+                        Blog
                       </a>
-
-
-                      <ul class="subnav">
-                        <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Blog</a>
-                        </li>
-
-                        <li><a href="blog-list-1.html">Blog list v1</a></li>
-
-                        <li><a href="blog-list-2.html">Blog list v2</a></li>
-
-                        <li><a href="blog-single.html">Blog single</a></li>
-
-                      </ul>
-
                     </li>
-
-
-                    <li class="menu-item-has-children">
-                      <a data-barba="">
-                        <span class="mr-10">Pages</span>
-                        <i class="icon icon-chevron-sm-down"></i>
-                      </a>
-
-
-                      <ul class="subnav">
-                        <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Pages</a>
-                        </li>
-
-                        <li><a href="404.html">404</a></li>
-
-                        <li><a href="about.html">About</a></li>
-
-                        <li><a href="become-expert.html">Become expert</a></li>
-
-                        <li><a href="help-center.html">Help center</a></li>
-
-                        <li><a href="login.html">Login</a></li>
-
-                        <li><a href="signup.html">Register</a></li>
-
-                        <li><a href="terms.html">Terms</a></li>
-
-                        <li><a href="invoice.html">Invoice</a></li>
-
-                        <li><a href="ui-elements.html">UI elements</a></li>
-
-                      </ul>
-
-                    </li>
-
-
-                    <li class="menu-item-has-children">
-                      <a data-barba="">
-                        <span class="mr-10">Dashboard</span>
-                        <i class="icon icon-chevron-sm-down"></i>
-                      </a>
-
-
-                      <ul class="subnav">
-                        <li class="subnav__backBtn js-nav-list-back">
-                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Dashboard</a>
-                        </li>
-
-                        <li><a href="db-dashboard.html">Dashboard</a></li>
-
-                        <li><a href="db-booking.html">Booking</a></li>
-
-                        <li><a href="db-settings.html">Settings</a></li>
-
-                        <li><a href="db-wishlist.html">Wishlist</a></li>
-
-                        <li><a href="db-vendor-dashboard.html">Vendor dashboard</a></li>
-
-                        <li><a href="db-vendor-add-hotel.html">Vendor add hotel</a></li>
-
-                        <li><a href="db-vendor-booking.html">Vendor booking</a></li>
-
-                        <li><a href="db-vendor-hotels.html">Vendor hotels</a></li>
-
-                        <li><a href="db-vendor-recovery.html">Vendor recovery</a></li>
-
-                      </ul>
-
-                    </li>
-
 
                     <li>
-                      <a href="contact.html">Contact</a>
+                      <a href="/about-wmv">
+                        About
+                      </a>
                     </li>
+                
+
+                    
+                    <li>
+                      <a href="/contact">
+                        Contact
+                      </a>
+                    </li>
+
+                   
+
+
+               
                   </ul>
                 </div>
 
@@ -683,7 +605,7 @@
               <div class="col-auto">
                 <button class="d-flex items-center text-14 text-dark-1" data-x-click="lang">
                   <img src="img/general/lang.png" alt="image" class="rounded-full mr-10">
-                  <span class="js-language-mainTitle">United Kingdom</span>
+                  <span class="js-language-mainTitle">United States</span>
                   <i class="icon-chevron-sm-down text-7 ml-15"></i>
                 </button>
               </div>
@@ -691,12 +613,12 @@
 
 
             <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
-              <a href="login.html" class="button px-30 fw-400 text-14 -blue-1 bg-dark-4 h-50 text-white">Become An Expert</a>
-              <a href="signup.html" class="button px-30 fw-400 text-14 border-dark-4 -blue-1 h-50 text-dark-4 ml-20">Sign In / Register</a>
+              <a href="tel:+960 7513690" class="button px-30 fw-400 text-14 -blue-1 bg-dark-4 h-50 text-white">CALL +960 7513690</a>
+              
             </div>
 
             <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
-              <div><a href="login.html" class="d-flex items-center icon-user text-inherit text-22"></a></div>
+              <div><a href="#" class="d-flex items-center icon-user text-inherit text-22"></a></div>
               <div><button class="d-flex items-center icon-menu text-inherit text-20" data-x-click="html, header, header-logo, header-mobile-icons, mobile-menu"></button></div>
             </div>
           </div>
