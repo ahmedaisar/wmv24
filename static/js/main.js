@@ -1790,6 +1790,10 @@ const Header = (function() {
     new ScrollMagic.Scene({ offset: '6px', })
       .setClassToggle(header, 'is-sticky')
       .addTo(App.SMcontroller);
+
+      new ScrollMagic.Scene({ offset: '6px', })
+      .setClassToggle(header, 'text-black')
+      .addTo(App.SMcontroller);
   }
 
   return {

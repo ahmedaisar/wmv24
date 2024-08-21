@@ -14,7 +14,7 @@
  
 
 </script>
-<header data-add-bg="bg-dark-1" class="header mt-40 -type-9 js-header" data-x="header" data-x-toggle="is-menu-opened">
+<header data-add-bg="bg-white" class="text-white header -type-9 js-header" data-x="header" data-x-toggle="is-menu-opened">
   <div data-anim="fade" class="header__container container is-in-view">
     <div class="row justify-between items-center">
 
@@ -31,14 +31,14 @@
       <div class="col-auto">
         <div class="d-flex items-center">
 
-          <div class="header-menu " data-x="mobile-menu" data-x-toggle="is-menu-active">
+          <div class="header-menu" data-x="mobile-menu" data-x-toggle="is-menu-active">
             <div class="mobile-overlay"></div>
 
             <div class="header-menu__content">
               <div class="mobile-bg js-mobile-bg"></div>
 
               <div class="menu js-navList">
-                <ul class="menu__nav text-dark-1 -is-active">
+                <ul class="menu__nav -is-active">
 
                   <li>
                     <a href="/">

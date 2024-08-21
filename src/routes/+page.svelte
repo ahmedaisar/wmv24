@@ -3425,113 +3425,7 @@ const holidays = mapResortsByHolidayType(hotels);
       </div>
     </section> -->
 
-    <!-- <section class="layout-pt-lg layout-pb-md">
-      <div data-anim-wrap="" class="container animated">
-        <div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
-          <div class="col-auto">
-            <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Top Destinations</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row y-gap-40 justify-between pt-40 sm:pt-20">
-
-          <div data-anim-child="slide-up delay-3" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
-
-            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
-              <div class="citiesCard__image ratio ratio-1:1">
-                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="citiesCard__content px-30 py-30">
-                <h4 class="text-26 fw-600 text-white">{atlist[1].Atoll} Atoll</h4>
-                <div class="text-15 text-white">{atlist[1].Hotels}</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-4" class="col-xl-6 col-md-4 col-sm-6 is-in-view">
-
-            <a href="#" class="citiesCard -type-3 d-block rounded-4 h-full">
-              <div class="citiesCard__image ">
-                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="citiesCard__content px-30 py-30">
-                <h4 class="text-26 fw-600 text-white">{atlist[0].Atoll} Atoll</h4>
-                <div class="text-15 text-white">{atlist[0].Hotels} resorts</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-5" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
-
-            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
-              <div class="citiesCard__image ratio ratio-1:1">
-                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="citiesCard__content px-30 py-30">
-                <h4 class="text-26 fw-600 text-white">{atlist[2].Atoll} Atoll</h4>
-                <div class="text-15 text-white">{atlist[2].Hotels} resorts</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-6" class="col-xl-6 col-md-4 col-sm-6 is-in-view">
-
-            <a href="#" class="citiesCard -type-3 d-block rounded-4 h-full">
-              <div class="citiesCard__image ">
-                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="citiesCard__content px-30 py-30">
-                <h4 class="text-26 fw-600 text-white">{atlist[3].Atoll} Atoll</h4>
-                <div class="text-15 text-white">{atlist[3].Hotels} resorts</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-7" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
-
-            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
-              <div class="citiesCard__image ratio ratio-1:1">
-                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="citiesCard__content px-30 py-30">
-                <h4 class="text-26 fw-600 text-white">{atlist[4].Atoll} Atoll</h4>
-                <div class="text-15 text-white">{atlist[4].Hotels} resorts</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-8" class="col-xl-3 col-md-4 col-sm-6 is-in-view">
-
-            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">
-              <div class="citiesCard__image ratio ratio-1:1">
-                <img class="img-ratio js-lazy loaded" src="img/destinations/1/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="citiesCard__content px-30 py-30">
-                <h4 class="text-26 fw-600 text-white">{atlist[5].Atoll} Atoll</h4>
-                <div class="text-15 text-white">{atlist[5].Hotels} resorts</div>
-              </div>
-            </a>
-
-          </div>
-
-        </div>
-      </div>
-    </section> -->
-
+    
     <section class="layout-pt-md layout-pb-md">
       <div data-anim-wrap="" class="container animated">
         <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-between items-end is-in-view">
@@ -3584,50 +3478,38 @@ const holidays = mapResortsByHolidayType(hotels);
         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
       </div>
     </section>
+
+    
     <section class="layout-pt-md layout-pb-lg">
       <div data-anim-wrap="" class="container animated">
-        <div class="tabs -pills-2 js-tabs">
-          <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-between items-end is-in-view">
+        <div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Popular Hotels</h2>
+              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames ac ante ipsum</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-anim-child="slide-up delay-2" class="tabs -pills-2 pt-40 js-tabs is-in-view">
+          <div class="tabs__controls row x-gap-15 justify-center js-tabs-controls">
+
             <div class="col-auto">
-              <div class="sectionTitle -md">
-                <h2 class="sectionTitle__title">Weekly Most Booked</h2>
-                <p class=" sectionTitle__text mt-5 sm:mt-0">Explore tailor-made packages.</p>
-              </div>
+              <button class="tabs__button text-13 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">All Inclusive</button>
             </div>
 
             <div class="col-auto">
-              <div class="tabs__controls row x-gap-10 justify-center js-tabs-controls">
-
-                <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">All Inclusive</button>
-                </div>
-
-                <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-2">Luxury Escapes</button>
-                </div>
-
-                <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-3">Wellness Retreats</button>
-                </div>
-
-                <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-4">Family & Kids</button>
-                </div>
-
-                <!-- <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-5">Halal Travel</button>
-                </div>
-
-                <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-6">Adults-Only</button>
-                </div>
-
-                <div class="col-auto">
-                  <button class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button" data-tab-target=".-tab-item-7">Senior-Friendly</button>
-                </div> -->
-
-              </div>
+              <button class="tabs__button text-13 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-2">Luxury</button>
             </div>
+
+            <div class="col-auto">
+              <button class="tabs__button text-13 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-3">Wellness</button>
+            </div>
+
+            <div class="col-auto">
+              <button class="tabs__button text-13 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button " data-tab-target=".-tab-item-4">Family</button>
+            </div>
+
           </div>
 
           <div class="tabs__content pt-40 js-tabs-content">
@@ -3648,7 +3530,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(0,4) as img}
+                              {#each hotel.images.slice(4,8) as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -3726,7 +3608,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(0,4) as img}
+                              {#each hotel.images.slice(4,8) as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -3805,7 +3687,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(0,4) as img}
+                              {#each hotel.images.slice(4,8) as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -3884,7 +3766,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(0,4) as img}
+                              {#each hotel.images.slice(4,8) as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -4931,46 +4813,7 @@ const holidays = mapResortsByHolidayType(hotels);
           </div>
         </div>
       </div>
-    </section>   
- 
- 
-
-    <section class="layout-pt-md layout-pb-md">
-      <div data-anim-wrap="" class="container animated">
-        <div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
-          <div class="col-auto">
-            <div class="sectionTitle -md">
-              <h2 class="sectionTitle__title">Get inspiration for your next trip</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">Latest News & Blog</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="blog-grid-1 pt-40">
-
-          {#each data.posts.slice(0,3) as post }
-          <div data-anim-child="slide-up delay-2" class="is-in-view">
-
-            <a href="" class="blogCard -type-3 ">
-              <div class="blogCard__image rounded-4">
-                {#if post._embedded['wp:featuredmedia']}
-                <img class="rounded-4 js-lazy loaded" src={post._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url} alt="image" data-ll-status="loaded">
-                {/if}
-              </div>
-
-              <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
-                <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">{post.title.rendered}</h4>
-                <div class="text-15 lh-14 text-white mt-10">{post.date}</div>
-              </div>
-            </a>
-
-          </div>
-          {/each}
-
-        </div>
-      </div>
     </section>
-
 
     
     <section class="section-bg pt-40 pb-40">
