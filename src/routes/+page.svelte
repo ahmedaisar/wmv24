@@ -192,7 +192,317 @@ const holidays = mapResortsByHolidayType(hotels);
 
 <Header />
 <main>
-    <section data-anim-wrap="" class="masthead -type-7 animated">
+  <section class="masthead -type-9">
+    <div class="masthead-slider js-masthead-slider-9 swiper-initialized swiper-horizontal swiper-ios swiper-backface-hidden">
+      <div class="swiper-wrapper" id="swiper-wrapper-eb6fa8ddc55437d3" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-5709px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1903px;">
+          <div class="masthead__bg bg-dark-3">
+            <img src="img/hotels/mv/7.jpg" alt="image">
+          </div>
+
+          <div class="container">
+            <div class="row justify-center">
+              <div class="col-xl-9">
+                <div class="text-center">
+                  <div class="text-white fw-500 uppercase mb-10">Best of the best</div>
+                  <h1 class="text-80 lg:text-60 sm:text-40 text-white">Explore our<br class="md:d-none"> collections</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1903px;">
+          <div class="masthead__bg bg-dark-3">
+            <img src="img/hotels/mv/7.jpg" alt="image">
+          </div>
+
+          <div class="container">
+            <div class="row justify-center">
+              <div class="col-xl-9">
+                <div class="text-center">
+                  <div class="text-white fw-500 uppercase mb-10">Best of the best</div>
+                  <h1 class="text-80 lg:text-60 sm:text-40 text-white">Explore our<br class="md:d-none"> collections</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 1903px;">
+          <div class="masthead__bg bg-dark-3">
+            <img src="img/hotels/mv/15.jpg" alt="image">
+          </div>
+
+          <div class="container">
+            <div class="row justify-center">
+              <div class="col-xl-9">
+                <div class="text-center">
+                  <div class="text-white fw-500 uppercase mb-10">TOUR EXPERIENCE</div>
+                  <h1 class="text-80 lg:text-60 sm:text-40 text-white">Find The Best Cruise<br class="md:d-none"> For You</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1903px;">
+          <div class="masthead__bg bg-dark-3">
+            <img src="img/hotels/mv/3.jpg" alt="image">
+          </div>
+
+          <div class="container">
+            <div class="row justify-center">
+              <div class="col-xl-9">
+                <div class="text-center">
+                  <div class="text-white fw-500 uppercase mb-10">Best of the best</div>
+                  <h1 class="text-80 lg:text-60 sm:text-40 text-white">Explore our<br class="md:d-none"> collections</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="swiper-slide swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1903px;">
+          <div class="masthead__bg bg-dark-3">
+            <img src="img/hotels/mv/16.jpg" alt="image">
+          </div>
+
+          <div class="container">
+            <div class="row justify-center">
+              <div class="col-xl-9">
+                <div class="text-center">
+                  <div class="text-white fw-500 uppercase mb-10">Best of the best</div>
+                  <h1 class="text-80 lg:text-60 sm:text-40 text-white">Explore our<br class="md:d-none"> collections</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+
+      <div class="masthead-slider__nav -prev">
+        <button class="button py-10 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-eb6fa8ddc55437d3">
+          <span class="h-1 w-48 bg-white"></span>
+        </button>
+      </div>
+
+      <div class="masthead-slider__nav -next">
+        <button class="button py-10 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-eb6fa8ddc55437d3">
+          <span class="h-1 w-48 bg-white"></span>
+        </button>
+      </div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+    <a href="#secondSection" class="masthead__scroll">
+      <div class="d-flex items-center">
+        <div class="text-white lh-15 text-right mr-10">
+          <div class="fw-500">Scroll Down</div>
+          <div class="text-15">to discover more</div>
+        </div>
+
+        <div class="-icon">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </a>
+
+    <div class="container">
+      <div class="mainSearch-wrap bg-white shadow-1">
+        <div class="mainSearch bg-white px-20 py-20 lg:px-20 lg:pt-5 lg:pb-20">
+          <div class="button-grid items-center">
+
+            <div class="searchMenu-loc pr-80 lg:py-20 lg:px-0 js-form-dd js-liverSearch">
+
+              <div data-x-dd-click="searchMenu-loc">
+                <h4 class="text-15 fw-500 ls-2 lh-16">Where to</h4>
+
+                <div class="text-15 text-light-1 ls-2 lh-16">
+                  <input autocomplete="off" type="search" placeholder="All Destination" class="js-search js-dd-focus">
+                </div>
+              </div>
+
+
+              <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
+                <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                  <div class="y-gap-5 js-results">
+
+                    <div>
+                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                        <div class="d-flex">
+                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                          <div class="ml-10">
+                            <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
+                            <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div>
+                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                        <div class="d-flex">
+                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                          <div class="ml-10">
+                            <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
+                            <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div>
+                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                        <div class="d-flex">
+                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                          <div class="ml-10">
+                            <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
+                            <div class="text-14 lh-12 text-light-1 mt-5">France</div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div>
+                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                        <div class="d-flex">
+                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                          <div class="ml-10">
+                            <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
+                            <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div>
+                      <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                        <div class="d-flex">
+                          <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                          <div class="ml-10">
+                            <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
+                            <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="px-35 lg:py-20 lg:px-0">
+              <h4 class="text-15 fw-500 ls-2 lh-16">All Cruise Line</h4>
+              <p class="text-15 ls-2 lh-16">Holland America Line</p>
+            </div>
+
+
+            <div class="searchMenu-guests px-35 lg:py-20 lg:px-0 js-form-dd js-form-counters">
+
+              <div data-x-dd-click="searchMenu-guests">
+                <h4 class="text-15 fw-500 ls-2 lh-16">Departure Month</h4>
+
+                <div class="text-15 text-light-1 ls-2 lh-16">
+                  <span class="js-count-adult">2</span> adults
+                  -
+                  <span class="js-count-child">1</span> childeren
+                  -
+                  <span class="js-count-room">1</span> room
+                </div>
+              </div>
+
+
+              <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
+                <div class="bg-white px-30 py-30 rounded-4">
+                  <div class="row y-gap-10 justify-between items-center">
+                    <div class="col-auto">
+                      <div class="text-15 fw-500">Adults</div>
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
+                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                          <i class="icon-minus text-12"></i>
+                        </button>
+
+                        <div class="flex-center size-20 ml-15 mr-15">
+                          <div class="text-15 js-count">2</div>
+                        </div>
+
+                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                          <i class="icon-plus text-12"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="border-top-light mt-24 mb-24"></div>
+
+                  <div class="row y-gap-10 justify-between items-center">
+                    <div class="col-auto">
+                      <div class="text-15 lh-12 fw-500">Children</div>
+                      <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
+                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                          <i class="icon-minus text-12"></i>
+                        </button>
+
+                        <div class="flex-center size-20 ml-15 mr-15">
+                          <div class="text-15 js-count">1</div>
+                        </div>
+
+                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                          <i class="icon-plus text-12"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="border-top-light mt-24 mb-24"></div>
+
+                  <div class="row y-gap-10 justify-between items-center">
+                    <div class="col-auto">
+                      <div class="text-15 fw-500">Rooms</div>
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
+                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                          <i class="icon-minus text-12"></i>
+                        </button>
+
+                        <div class="flex-center size-20 ml-15 mr-15">
+                          <div class="text-15 js-count">1</div>
+                        </div>
+
+                        <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                          <i class="icon-plus text-12"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="button-item">
+              <button class="mainSearch__submit button -blue-1 py-15 px-35 h-60 col-12 rounded-4 bg-yellow-1 text-dark-1">
+                <i class="icon-search text-20 mr-10"></i>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- <section data-anim-wrap="" class="masthead -type-7 animated">
       <div class="masthead-slider js-masthead-slider-7 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
         <div class="swiper-wrapper" id="swiper-wrapper-65030cdf9afdef62" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-1720px, 0px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 1720px;">
 
@@ -3113,7 +3423,7 @@ const holidays = mapResortsByHolidayType(hotels);
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- <section class="layout-pt-lg layout-pb-md">
       <div data-anim-wrap="" class="container animated">
