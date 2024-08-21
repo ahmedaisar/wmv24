@@ -157,8 +157,6 @@
 }
  
 const holidays = mapResortsByHolidayType(hotels);
-console.log(data)
-
  
 
 </script>
@@ -4640,7 +4638,7 @@ console.log(data)
 
         <div class="blog-grid-1 pt-40">
 
-          {#each data as post }
+          {#each data.posts.slice(0,3) as post }
           <div data-anim-child="slide-up delay-2" class="is-in-view">
 
             <a href="" class="blogCard -type-3 ">
