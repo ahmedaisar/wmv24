@@ -4643,7 +4643,7 @@ const holidays = mapResortsByHolidayType(hotels);
 
             <a href="" class="blogCard -type-3 ">
               <div class="blogCard__image rounded-4">
-                <img class="rounded-4 js-lazy loaded" src={post._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url} alt="image" data-ll-status="loaded">
+                <img class="rounded-4 js-lazy loaded" src={post._embedded && post._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url} alt="image" data-ll-status="loaded">
               </div>
 
               <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
