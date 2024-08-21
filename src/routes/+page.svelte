@@ -4631,7 +4631,7 @@ const holidays = mapResortsByHolidayType(hotels);
           <div class="col-auto">
             <div class="sectionTitle -md">
               <h2 class="sectionTitle__title">Get inspiration for your next trip</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames</p>
+              <p class=" sectionTitle__text mt-5 sm:mt-0">Latest News & Blog</p>
             </div>
           </div>
         </div>
@@ -4643,12 +4643,12 @@ const holidays = mapResortsByHolidayType(hotels);
 
             <a href="" class="blogCard -type-3 ">
               <div class="blogCard__image rounded-4">
-                <img class="rounded-4 js-lazy loaded" src="https://creativelayers.net/themes/gotrip-html/img/blog/2/1.png" alt="image" data-ll-status="loaded">
+                <img class="rounded-4 js-lazy loaded" src={post._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url} alt="image" data-ll-status="loaded">
               </div>
 
               <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
                 <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">{post.title.rendered}</h4>
-                <div class="text-15 lh-14 text-white mt-10">April 06, 2024</div>
+                <div class="text-15 lh-14 text-white mt-10">{ new Date(post.date).toLocaleDateString('en-US')}</div>
               </div>
             </a>
 
