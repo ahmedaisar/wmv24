@@ -21,8 +21,8 @@
       <div class="col-auto">
         <div class="d-flex items-center">
           <a href="index.html" class="header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
-            <img src="img/wmvlogo-no-text.svg" alt="Wheresmaldives.com">
-            <img src="img/wmvlogo-no-text.svg" alt="Wheresmaldives.com">
+            <img src="img/wmvlogo2.svg" alt="Wheresmaldives.com">
+            <img src="img/wmvlogo2.svg" alt="Wheresmaldives.com">
           </a>
         </div>
       </div>
