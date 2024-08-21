@@ -3,15 +3,14 @@
  
 	import Header from '$lib/components/home/header.svelte';
 	import Footer from '$lib/components/common/footer.svelte';
-	import data from '$lib/data/maldives.json'
+	import * as maldives from '$lib/data/maldives.json'
   import atolls from '$lib/data/atolls.json'
 	import bg from "$lib/assets/bg.jpg"
 	import {goto} from '$app/navigation';
 	import {onMount} from "svelte"
-	
-	// export let form;
+	export let data
 
-	let hotels = data?.data?.records
+	let hotels = maldives?.data?.records
 	let dropdownlist = hotels.filter(h => { return h})
 	let dropdown = [...new Set(dropdownlist)];
 	let resorts = hotels.filter((h) => {
@@ -158,16 +157,8 @@
 }
  
 const holidays = mapResortsByHolidayType(hotels);
-console.log(holidays)
+console.log(data)
 
-let blogPromise
-async function getBlogPromise(){
-        const req = await fetch(`https://www.traveltrademaldives.com/wp-json/wp/v2/posts?categories=2&_fields=link,title,_links,_embedded&_embed`)
-        const res = await req.json()
-        return res 
-        
-}
-blogPromise = getBlogPromise() 
  
 
 </script>
@@ -215,7 +206,7 @@ blogPromise = getBlogPromise()
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing resorts & hotels at exclusive deals
+                    Discover resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
@@ -235,7 +226,7 @@ blogPromise = getBlogPromise()
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing resorts & hotels at exclusive deals
+                    Discover resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
@@ -255,7 +246,7 @@ blogPromise = getBlogPromise()
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing resorts & hotels at exclusive deals
+                    Discover resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
@@ -277,11 +268,11 @@ blogPromise = getBlogPromise()
                   </div>
 
                   <div data-anim-child="slide-up delay-1" class="text-white is-in-view">
-                    Discover amzaing places at exclusive deals
+                    Discover resorts & hotels at exclusive deals
                   </div>
 
                   <h1 data-anim-child="slide-up delay-2" class="text-60 lg:text-40 md:text-30 text-white is-in-view">
-                    Unique Houses Are Waiting<br class="lg:d-none"> For You
+                   Maldives Awaits<br class="lg:d-none"> For You
                   </h1>
                 </div>
               </div>
@@ -3126,7 +3117,7 @@ blogPromise = getBlogPromise()
       </div>
     </section>
 
-    <section class="layout-pt-lg layout-pb-md">
+    <!-- <section class="layout-pt-lg layout-pb-md">
       <div data-anim-wrap="" class="container animated">
         <div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
           <div class="col-auto">
@@ -3231,8 +3222,60 @@ blogPromise = getBlogPromise()
 
         </div>
       </div>
+    </section> -->
+
+    <section class="layout-pt-md layout-pb-md">
+      <div data-anim-wrap="" class="container animated">
+        <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-between items-end is-in-view">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Choose Tour Types</h2>
+              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames ac ante ipsum</p>
+            </div>
+          </div>
+
+          <div class="col-auto">
+
+            <div class="d-flex x-gap-15 items-center ">
+              <div class="col-auto">
+                <button class="d-flex items-center text-24 arrow-left-hover js-tour-prev swiper-button-disabled" disabled="" tabindex="-1" aria-label="Previous slide" aria-controls="swiper-wrapper-d147ad4f9a765c2b" aria-disabled="true">
+                  <i class="icon icon-arrow-left"></i>
+                </button>
+              </div>
+
+              <div class="col-auto">
+                <div class="pagination -dots text-border js-tour-pag swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 4"></div></div>
+              </div>
+
+              <div class="col-auto">
+                <button class="d-flex items-center text-24 arrow-right-hover js-tour-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-d147ad4f9a765c2b" aria-disabled="false">
+                  <i class="icon icon-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden pt-40 sm:pt-20 js-section-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-watch-progress swiper-backface-hidden" data-gap="30" data-scrollbar="" data-slider-cols="xl-5 lg-4 md-3 sm-2 base-1" data-nav-prev="js-tour-prev" data-pagination="js-tour-pag" data-nav-next="js-tour-next">
+          <div class="swiper-wrapper" id="swiper-wrapper-d147ad4f9a765c2b" aria-live="polite" style="height: 251px;">
+            {#each atlist as atoll }              
+            <div data-anim-child="slide-up delay-2" class="swiper-slide swiper-slide-visible swiper-slide-active is-in-view" role="group" aria-label="1 / 8" style="width: 234px; margin-right: 30px;">
+
+              <a href="tour-single.html" class="tourTypeCard -type-1 d-block rounded-4 bg-blue-1-05 rounded-4">
+                <div class="tourTypeCard__content text-center pt-60 pb-24 px-30">
+                  <i class="icon-nature text-60 sm:text-40 text-blue-1"></i>
+                  <h4 class="text-dark-1 text-18 fw-500 mt-50 md:mt-30">{atoll.Atoll}</h4>
+                  <p class="text-light-1 lh-14 text-14 mt-5">{atoll.Hotels} hotels</p>
+                </div>
+              </a>
+            </div>
+            {/each}
+
+          </div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
     </section>
- 
     <section class="layout-pt-md layout-pb-lg">
       <div data-anim-wrap="" class="container animated">
         <div class="tabs -pills-2 js-tabs">
@@ -4597,6 +4640,7 @@ blogPromise = getBlogPromise()
 
         <div class="blog-grid-1 pt-40">
 
+          {#each data as post }
           <div data-anim-child="slide-up delay-2" class="is-in-view">
 
             <a href="" class="blogCard -type-3 ">
@@ -4605,42 +4649,13 @@ blogPromise = getBlogPromise()
               </div>
 
               <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
-                <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">10 European ski destinations you should visit this winter</h4>
-                <div class="text-15 lh-14 text-white mt-10">April 06, 2022</div>
+                <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">{post.title.rendered}</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2024</div>
               </div>
             </a>
 
           </div>
-
-          <div data-anim-child="slide-up delay-3" class="is-in-view">
-
-            <a href="" class="blogCard -type-3 ">
-              <div class="blogCard__image rounded-4">
-                <img class="rounded-4 js-lazy loaded" src="https://creativelayers.net/themes/gotrip-html/img/blog/2/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="blogCard__content px-20 pb-20">
-                <h4 class="text-18 fw-500 lh-16 text-white">Where can I go? 5 amazing countries that are open right now</h4>
-                <div class="text-15 lh-14 text-white mt-10">April 06, 2022</div>
-              </div>
-            </a>
-
-          </div>
-
-          <div data-anim-child="slide-up delay-4" class="is-in-view">
-
-            <a href="" class="blogCard -type-3 ">
-              <div class="blogCard__image rounded-4">
-                <img class="rounded-4 js-lazy loaded" src="https://creativelayers.net/themes/gotrip-html/img/blog/2/1.png" alt="image" data-ll-status="loaded">
-              </div>
-
-              <div class="blogCard__content px-20 pb-20">
-                <h4 class="text-18 fw-500 lh-16 text-white">Booking travel during Corona: good advice in an uncertain time</h4>
-                <div class="text-15 lh-14 text-white mt-10">April 06, 2022</div>
-              </div>
-            </a>
-
-          </div>
+          {/each}
 
         </div>
       </div>

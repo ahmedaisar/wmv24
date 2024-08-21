@@ -66,6 +66,7 @@ declare module '$env/static/private' {
 	export const NODE_ENV: string;
 	export const npm_command: string;
 	export const npm_config_cache: string;
+	export const npm_config_cafile: string;
 	export const npm_config_engine_strict: string;
 	export const npm_config_globalconfig: string;
 	export const npm_config_global_prefix: string;
@@ -137,7 +138,6 @@ declare module '$env/static/private' {
 	export const WINDIR: string;
 	export const ZES_ENABLE_SYSMAN: string;
 	export const _: string;
-	export const __COMPAT_LAYER: string;
 }
 
 /**
@@ -207,6 +207,7 @@ declare module '$env/dynamic/private' {
 		NODE_ENV: string;
 		npm_command: string;
 		npm_config_cache: string;
+		npm_config_cafile: string;
 		npm_config_engine_strict: string;
 		npm_config_globalconfig: string;
 		npm_config_global_prefix: string;
@@ -278,7 +279,6 @@ declare module '$env/dynamic/private' {
 		WINDIR: string;
 		ZES_ENABLE_SYSMAN: string;
 		_: string;
-		__COMPAT_LAYER: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
