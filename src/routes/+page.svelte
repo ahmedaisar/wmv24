@@ -4648,7 +4648,7 @@ const holidays = mapResortsByHolidayType(hotels);
 
               <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
                 <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">{post.title.rendered}</h4>
-                <div class="text-15 lh-14 text-white mt-10">{ new Date(post.date).toLocaleDateString('en-US')}</div>
+                <div class="text-15 lh-14 text-white mt-10">{post.date}</div>
               </div>
             </a>
 
