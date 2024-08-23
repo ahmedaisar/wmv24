@@ -6,6 +6,7 @@
 	"/blog/[id]/[slug]": [
 		"src/routes/blog/[id]/[slug]/+page.js"
 	],
+	"/hm": [],
 	"/hotels": [
 		"src/routes/hotels/+page.js"
 	],
