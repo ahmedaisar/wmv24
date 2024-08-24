@@ -1,14 +1,14 @@
 <script>
-    import Header from '$lib/components/hotels/header.svelte';
-	import Footer from '$lib/components/common/footer.svelte';
+    import Header from '$lib/components/home/header.svelte';
+	  import Footer from '$lib/components/common/footer.svelte';
     import Preloader from '$lib/components/common/preloader.svelte'
     import { paginate, LightPaginationNav } from 'svelte-paginate'
-    import * as maldives from '$lib/data/maldives.json'
+  
     export let data;
 
-	let hotels = maldives?.data?.records
+	  let hotels = data?.hotels
     let currentPage = 1
-    let pageSize = 18
+    let pageSize = 5
     $: hotellist = hotels && paginate({ items: hotels, pageSize, currentPage })
 
     const getStar = (star) => {
@@ -29,607 +29,4139 @@
 		}
 	}
 
-    // let hotelPromise
-    // async function getHotelPromise(){
-    //         const req = await fetch(`https://mbv-api-server.onrender.com/scan?hotelid=${params.hs_id}&checkin=${params.checkin}&checkout=${params.checkout}&adults=${params.adults}&child=${params.child}`)
-    //         const res = await req.json()
-            
-    //         let jsn = res.data.records[0]
-    //         return jsn 
-            
-    // }
-    // hotelPromise = getHotelPromise() 
 
 </script>
-<style>
-    .u-header__navbar-brand-text {
-        font-size: 1.3rem;
-        margin-top: 0.3rem;
-    }
-    
-    @media (max-width: 767.98px) {
-        .u-header__navbar-brand-text {
-            font-size: 1rem;
-        }
-        .hide-mobile { 
-            display: none !important;
-        }
-    }
-
-   
-</style>
+ 
 <svelte:head>
-  <title>Hotels | Maldivesbeachvacation.com</title>
-  <meta name="description" content="Compare over 743+ hotels in Maldives">
-
-  <!-- Open Graph (OG) Tags -->
-  <meta property="og:title" content="Hotels | Maldivesbeachvacation.com">
+<title>Weekly Most Booked Hotels & Resorts Maldives | Wheresmaldives.com</title>
+  <meta name="description" content="Compare over 743+ popular resorts and hotels in Maldives">
+  <meta property="og:title" content="Wheresmaldives.com | Compare over 743+ popular resorts and hotels in Maldives">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.maldivesbeachvaction.com/hotels">
-  <meta property="og:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
-  <meta property="og:description" content="Compare over 743+ hotels in Maldives">
+  <meta property="og:url" content="https://www.wheresmaldives.com/hotels">
+  <meta property="og:image" content="https://www.wheresmaldives.com/img/wmvlogo-no-text.png">
+  <meta property="og:description" content="Compare over 743+ popular resorts and hotels in Maldives">
 
-  <!-- Twitter Card Tags -->
+ 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@maldivesbeachvacation">
-  <meta name="twitter:title" content="Hotels | Maldivesbeachvacation.com">
-  <meta name="twitter:description" content="Compare over 743+ hotels in Maldives">
-  <meta name="twitter:image" content="https://www.maldivesbeachvaction.com/assets/img/bg.jpg">
+  <meta name="twitter:site" content="@wheresmaldives">
+  <meta name="twitter:title" content="Wheresmaldives.com | Compare over 743+ popular resorts and hotels in Maldives">
+  <meta name="twitter:description" content="Compare over 743+ popular resorts and hotels in Maldives">
+  <meta name="twitter:image" content="https://www.wheresmaldives.com/img/wmvlogo-no-text.png">
 
-  <!-- Schema.org Markup -->
+
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "Organization",
-      "name": "Maldives Beach Vacation",
-      "url": "https://www.maldivesbeachvaction.com/hotels",
-      "logo": "https://www.maldivesbeachvaction.com/assets/img/mbv-logo.png"
+      "name": "Wheres Maldives",
+      "url": "https://www.wheresmaldives.com/hotels",
+      "logo": "https://www.wheresmaldives.com/img/wmvlogo-no-text.png"
     }
   </script>
 
 </svelte:head>
 
+ 
+<section class="pt-80 pb-40 bg-light-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+           
 
-<Header />
+            <div class="mainSearch -col-3-big bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 mt-30">
+              <div class="button-grid items-center">
 
-<main id="content" role="main">
-    <div class="container pt-5 pt-xl-8">
-        <div class="row mb-5 mb-lg-8 mt-xl-1">
-            <div class="col-lg-4 col-xl-3 order-lg-1 width-md-50 hide-mobile">
-                <div class="navbar-expand-lg navbar-expand-lg-collapse-block">
-                    <button class="btn d-lg-none mb-5 p-0 collapsed" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="far fa-caret-square-down text-primary font-size-20 card-btn-arrow ml-0"></i>
-                        <span class="text-primary ml-2">Sidebar</span>
-                    </button>
-                    <!-- <div id="sidebar" class="collapse navbar-collapse">
-                        <div class="mb-6 w-100">                            
+                <div class="searchMenu-loc pl-20 lg:py-20 lg:px-0 js-form-dd js-liverSearch">
 
-                            <div class="sidenav border border-color-8 rounded-xs">
-                             
-                                <div id="RatingAccordion" class="accordion rounded shadow-none border-bottom">
-                                   <div class="card-collapse" id="shopRatingHeadingOne">
-                                        <h3 class="mb-0">
-                                            <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#shopRatingOne" aria-expanded="false" aria-controls="shopRatingOne">
-                                                <span class="row align-items-center">
-                                                    <span class="col-9">
-                                                        <span class="font-weight-bold font-size-17 text-dark mb-3">Star Rating</span>
-                                                    </span>
-                                                    <span class="col-3 text-right">
-                                                        <span class="card-btn-arrow">
-                                                            <span class="fas fa-chevron-down small"></span>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </button>
-                                        </h3>
-                                    </div>
-                                    <div id="shopRatingOne" class="collapse show" aria-labelledby="shopRatingHeadingOne" data-parent="#RatingAccordion">
-                                        <div class="card-body pt-0 mt-1 px-5">
-                                       
-                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brandAdidas">
-                                                    <label class="custom-control-label text-lh-inherit text-color-1" for="brandAdidas">
-                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-primary">
-                                                            <div class="green-lighter ml-1 letter-spacing-2">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
-                                                <div class="custom-control custom-checkbox">
-                                                   <input type="checkbox" class="custom-control-input" id="brandNewBalance">
-                                                   <label class="custom-control-label text-lh-inherit text-color-1" for="brandNewBalance">
-                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-primary">
-                                                            <div class="green-lighter ml-1 letter-spacing-2">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                   </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
-                                                <div class="custom-control custom-checkbox">
-                                                  <input type="checkbox" class="custom-control-input" id="brandNike">
-                                                  <label class="custom-control-label text-lh-inherit text-color-1" for="brandNike">
-                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-primary">
-                                                            <div class="green-lighter ml-1 letter-spacing-2">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                  </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group font-size-14 text-lh-md text-secondary mb-3">
-                                                <div class="custom-control custom-checkbox">
-                                                  <input type="checkbox" class="custom-control-input" id="brandFredPerry">
-                                                  <label class="custom-control-label text-lh-inherit text-color-1" for="brandFredPerry">
-                                                        <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-primary">
-                                                            <div class="green-lighter ml-1 letter-spacing-2">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                  </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="shopCartAccordion" class="accordion rounded shadow-none">
-                                    <div class="border-0">
-                                        <div class="card-collapse" id="shopCardHeadingOne">
-                                            <h3 class="mb-0">
-                                                <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#shopCardOne" aria-expanded="false" aria-controls="shopCardOne">
-                                                    <span class="row align-items-center">
-                                                        <span class="col-9">
-                                                            <span class="d-block font-size-lg-15 font-size-17 font-weight-bold text-dark">Price Range ($)</span>
-                                                        </span>
-                                                        <span class="col-3 text-right">
-                                                            <span class="card-btn-arrow">
-                                                                <span class="fas fa-chevron-down small"></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                </button>
-                                            </h3>
-                                        </div>
-                                        <div id="shopCardOne" class="collapse show" aria-labelledby="shopCardHeadingOne" data-parent="#shopCartAccordion">
-                                            <div class="card-body pt-0 px-5">
-                                                <div class="pb-3 mb-1 d-flex text-lh-1">
-                                                    <span>£</span>
-                                                    <span id="rangeSliderExample3MinResult" class=""></span>
-                                                    <span class="mx-0dot5"> — </span>
-                                                    <span>£</span>
-                                                    <span id="rangeSliderExample3MaxResult" class=""></span>
-                                                </div>
-                                                <input class="js-range-slider" type="text"
-                                                data-extra-classes="u-range-slider height-35"
-                                                data-type="double"
-                                                data-grid="false"
-                                                data-hide-from-to="true"
-                                                data-min="0"
-                                                data-max="3456"
-                                                data-from="200"
-                                                data-to="3456"
-                                                data-prefix="$"
-                                                data-result-min="#rangeSliderExample3MinResult"
-                                                data-result-max="#rangeSliderExample3MaxResult">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="shopCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
-                                    <div class="border-0">
-                                        <div class="card-collapse" id="shopCategoryHeadingOne">
-                                            <h3 class="mb-0">
-                                                <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#shopCategoryOne" aria-expanded="false" aria-controls="shopCategoryOne">
-                                                    <span class="row align-items-center">
-                                                        <span class="col-9">
-                                                            <span class="font-weight-bold font-size-17 text-dark mb-3">Meals</span>
-                                                        </span>
-                                                        <span class="col-3 text-right">
-                                                            <span class="card-btn-arrow">
-                                                                <span class="fas fa-chevron-down small"></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                </button>
-                                            </h3>
-                                        </div>
-                                        <div id="shopCategoryOne" class="collapse show" aria-labelledby="shopCategoryHeadingOne" data-parent="#shopCategoryAccordion">
-                                            <div class="card-body pt-0 mt-1 px-5 pb-4">
-                                          
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="1">
-                                                        <label class="custom-control-label" for="1">Breakfast Included</label>
-                                                    </div>
-                                                
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="2">
-                                                        <label class="custom-control-label" for="2">All-inclusive</label>
-                                                    </div>
-                                              
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="3">
-                                                        <label class="custom-control-label" for="3">HalfBoard</label>
-                                                    </div>
-                                                 
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="4">
-                                                        <label class="custom-control-label" for="4">FullBoard</label>
-                                                    </div>
-                                                  
-                                                </div>
-                                           
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div id="facilityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
-                                    <div class="border-0">
-                                        <div class="card-collapse" id="facilityCategoryHeadingOne">
-                                            <h3 class="mb-0">
-                                                <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#facilityCategoryOne" aria-expanded="false" aria-controls="facilityCategoryOne">
-                                                    <span class="row align-items-center">
-                                                        <span class="col-9">
-                                                            <span class="font-weight-bold font-size-17 text-dark mb-3">Facilities</span>
-                                                        </span>
-                                                        <span class="col-3 text-right">
-                                                            <span class="card-btn-arrow">
-                                                                <span class="fas fa-chevron-down small"></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                </button>
-                                            </h3>
-                                        </div>
-                                        <div id="facilityCategoryOne" class="collapse show" aria-labelledby="facilityCategoryHeadingOne" data-parent="#facilityCategoryAccordion">
-                                            <div class="card-body pt-0 mt-1 px-5 pb-4">
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="Adidas">
-                                                        <label class="custom-control-label" for="Adidas">Parking</label>
-                                                    </div>
-                                                    <span>749</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="NewBalance">
-                                                        <label class="custom-control-label" for="NewBalance">Restaurant</label>
-                                                    </div>
-                                                    <span>630</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="Nike">
-                                                        <label class="custom-control-label" for="Nike">Pet friendly</label>
-                                                    </div>
-                                                    <span>58</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="FredPerry">
-                                                        <label class="custom-control-label" for="FredPerry">Room service</label>
-                                                    </div>
-                                                    <span>29</span>
-                                                </div>
-                                           
+                  <div data-x-dd-click="searchMenu-loc">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
 
-                                          
-                                                <div class="collapse" id="collapseBrand1">
-                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                        <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandGucci">
-                                                        <label class="custom-control-label" for="brandGucci">Gucci</label>
-                                                        </div>
-                                                        <span>5</span>
-                                                    </div>
-                                                    <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-3">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="brandMango">
-                                                            <label class="custom-control-label" for="brandMango">Mango</label>
-                                                        </div>
-                                                        <span>1</span>
-                                                    </div>
-                                                </div>
-                                                
+                    <div class="text-15 text-light-1 ls-2 lh-16">
+                      <input autocomplete="off" type="search" placeholder="London" class="js-search js-dd-focus" />
+                    </div>
+                  </div>
 
-                                                
-                                                <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand1" role="button" aria-expanded="false" aria-controls="collapseBrand1">
-                                                  <span class="link-collapse__default font-size-14">Show all 13</span>
-                                                  <span class="link-collapse__active font-size-14">Show less</span>
-                                                </a>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div id="propertyCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
-                                    <div class="border-0">
-                                        <div class="card-collapse" id="propertyCategoryHeadingOne">
-                                            <h3 class="mb-0">
-                                                <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#propertyCategoryOne" aria-expanded="false" aria-controls="propertyCategoryOne">
-                                                    <span class="row align-items-center">
-                                                        <span class="col-9">
-                                                            <span class="font-weight-bold font-size-17 text-dark mb-3">Property Type</span>
-                                                        </span>
-                                                        <span class="col-3 text-right">
-                                                            <span class="card-btn-arrow">
-                                                                <span class="fas fa-chevron-down small"></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                </button>
-                                            </h3>
-                                        </div>
-                                        <div id="propertyCategoryOne" class="collapse show" aria-labelledby="propertyCategoryHeadingOne" data-parent="#propertyCategoryAccordion">
-                                            <div class="card-body pt-0 mt-1 px-5 pb-4">
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandhotel">
-                                                        <label class="custom-control-label" for="brandhotel">Hotels</label>
-                                                    </div>
-                                               
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandapartmet">
-                                                        <label class="custom-control-label" for="brandapartmet">Resorts</label>
-                                                    </div>
-                                                 
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandresorts">
-                                                        <label class="custom-control-label" for="brandresorts">Guest House</label>
-                                                    </div>
-                                                 
-                                                </div>                                                                                                                                                                                                                               
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div id="cityCategoryAccordion" class="accordion rounded-0 shadow-none border-top">
-                                    <div class="border-0">
-                                        <div class="card-collapse" id="cityCategoryHeadingOne">
-                                            <h3 class="mb-0">
-                                                <button type="button" class="btn btn-link btn-block card-btn py-2 px-5 text-lh-3 collapsed" data-toggle="collapse" data-target="#cityCategoryOne" aria-expanded="false" aria-controls="cityCategoryOne">
-                                                    <span class="row align-items-center">
-                                                        <span class="col-9">
-                                                            <span class="font-weight-bold font-size-17 text-dark mb-3">City</span>
-                                                        </span>
-                                                        <span class="col-3 text-right">
-                                                            <span class="card-btn-arrow">
-                                                                <span class="fas fa-chevron-down small"></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                </button>
-                                            </h3>
-                                        </div>
-                                        <div id="cityCategoryOne" class="collapse show" aria-labelledby="cityCategoryHeadingOne" data-parent="#cityCategoryAccordion">
-                                            <div class="card-body pt-0 mt-1 px-5 pb-4">
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandamsterdam">
-                                                        <label class="custom-control-label" for="brandamsterdam">Amsterdam</label>
-                                                    </div>
-                                                    <span>749</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandrotterdam">
-                                                        <label class="custom-control-label" for="brandrotterdam">Rotterdam</label>
-                                                    </div>
-                                                    <span>630</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandvalkenburg">
-                                                        <label class="custom-control-label" for="brandvalkenburg">Valkenburg</label>
-                                                    </div>
-                                                    <span>58</span>
-                                                </div>
-                                                <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="brandeindhoven">
-                                                        <label class="custom-control-label" for="brandeindhoven">Eindhoven</label>
-                                                    </div>
-                                                    <span>29</span>
-                                                </div>
-                                           
 
-                                          
-                                                <div class="collapse" id="collapseBrand3">
-                                                    <div class="form-group font-size-14 text-lh-md text-secondary mb-3 flex-center-between">
-                                                        <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="gucci">
-                                                        <label class="custom-control-label" for="gucci">Gucci</label>
-                                                        </div>
-                                                        <span>5</span>
-                                                    </div>
-                                                    <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-3">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="mango">
-                                                            <label class="custom-control-label" for="mango">Mango</label>
-                                                        </div>
-                                                        <span>1</span>
-                                                    </div>
-                                                </div>
-                                                
+                  <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
+                    <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                      <div class="y-gap-5 js-results">
 
-                                                
-                                                <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand3" role="button" aria-expanded="false" aria-controls="collapseBrand3">
-                                                  <span class="link-collapse__default font-size-14">Show all 25</span>
-                                                  <span class="link-collapse__active font-size-14">Show less</span>
-                                                </a>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                               
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">London</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">Greater London, United Kingdom</div>
+                              </div>
                             </div>
+                          </button>
                         </div>
-                    </div> -->
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">New York</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">New York State, United States</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">Paris</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">France</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">Madrid</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">Spain</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                            <div class="d-flex">
+                              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                              <div class="ml-10">
+                                <div class="text-15 lh-12 fw-500 js-search-option-target">Santorini</div>
+                                <div class="text-14 lh-12 text-light-1 mt-5">Greece</div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar js-calendar-el">
+
+                  <div data-x-dd-click="searchMenu-date">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
+
+                    <div class="capitalize text-15 text-light-1 ls-2 lh-16">
+                      <span class="js-first-date">Wed 2 Mar</span>
+                      -
+                      <span class="js-last-date">Fri 11 Apr</span>
+                    </div>
+                  </div>
+
+
+                  <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
+                    <div class="bg-white px-30 py-30 rounded-4">
+                      <div class="elCalendar js-calendar-el-calendar">
+        <div class="elCalendar__slider js-calendar-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight">
+          <div class="swiper-wrapper" id="swiper-wrapper-4fdde5fb6a42dd8d" aria-live="polite" style="height: 360px;">
+            
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    january 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="1" data-week="Sun" data-month="jan" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="2" data-week="Mon" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="3" data-week="Tue" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="4" data-week="Wed" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="5" data-week="Thu" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="6" data-week="Fri" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="7" data-week="Sat" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="8" data-week="Sun" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="9" data-week="Mon" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="10" data-week="Tue" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="11" data-week="Wed" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="12" data-week="Thu" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="13" data-week="Fri" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="14" data-week="Sat" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="15" data-week="Sun" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="16" data-week="Mon" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="17" data-week="Tue" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="18" data-week="Wed" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="19" data-week="Thu" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="20" data-week="Fri" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="21" data-week="Sat" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="22" data-week="Sun" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="23" data-week="Mon" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="24" data-week="Tue" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="25" data-week="Wed" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="26" data-week="Thu" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="27" data-week="Fri" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="28" data-week="Sat" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="29" data-week="Sun" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="30" data-week="Mon" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="31" data-week="Tue" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="32" data-week="Wed" data-month="jan" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    february 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="33" data-week="Sun" data-month="feb" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="34" data-week="Mon" data-month="feb" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="35" data-week="Tue" data-month="feb" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="36" data-week="Wed" data-month="feb" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="37" data-week="Thu" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="38" data-week="Fri" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="39" data-week="Sat" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="40" data-week="Sun" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="41" data-week="Mon" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="42" data-week="Tue" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="43" data-week="Wed" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="44" data-week="Thu" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="45" data-week="Fri" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="46" data-week="Sat" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="47" data-week="Sun" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="48" data-week="Mon" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="49" data-week="Tue" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="50" data-week="Wed" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="51" data-week="Thu" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="52" data-week="Fri" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="53" data-week="Sat" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="54" data-week="Sun" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="55" data-week="Mon" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="56" data-week="Tue" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="57" data-week="Wed" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="58" data-week="Thu" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="59" data-week="Fri" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="60" data-week="Sat" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="61" data-week="Sun" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="62" data-week="Mon" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="63" data-week="Tue" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="64" data-week="Wed" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="65" data-week="Thu" data-month="feb" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="3 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    march 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="66" data-week="Sun" data-month="mar" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="67" data-week="Mon" data-month="mar" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="68" data-week="Tue" data-month="mar" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="69" data-week="Wed" data-month="mar" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="70" data-week="Thu" data-month="mar" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="71" data-week="Fri" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="72" data-week="Sat" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="73" data-week="Sun" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="74" data-week="Mon" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="75" data-week="Tue" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="76" data-week="Wed" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="77" data-week="Thu" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="78" data-week="Fri" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="79" data-week="Sat" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="80" data-week="Sun" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="81" data-week="Mon" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="82" data-week="Tue" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="83" data-week="Wed" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="84" data-week="Thu" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="85" data-week="Fri" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="86" data-week="Sat" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="87" data-week="Sun" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="88" data-week="Mon" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="89" data-week="Tue" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="90" data-week="Wed" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="91" data-week="Thu" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="92" data-week="Fri" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="93" data-week="Sat" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="94" data-week="Sun" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="95" data-week="Mon" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="96" data-week="Tue" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="97" data-week="Wed" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="98" data-week="Thu" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="99" data-week="Fri" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="100" data-week="Sat" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="101" data-week="Sun" data-month="mar" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="4 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    april 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="102" data-week="Sun" data-month="apr" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="103" data-week="Mon" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="104" data-week="Tue" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="105" data-week="Wed" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="106" data-week="Thu" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="107" data-week="Fri" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="108" data-week="Sat" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="109" data-week="Sun" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="110" data-week="Mon" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="111" data-week="Tue" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="112" data-week="Wed" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="113" data-week="Thu" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="114" data-week="Fri" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="115" data-week="Sat" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="116" data-week="Sun" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="117" data-week="Mon" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="118" data-week="Tue" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="119" data-week="Wed" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="120" data-week="Thu" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="121" data-week="Fri" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="122" data-week="Sat" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="123" data-week="Sun" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="124" data-week="Mon" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="125" data-week="Tue" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="126" data-week="Wed" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="127" data-week="Thu" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="128" data-week="Fri" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="129" data-week="Sat" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="130" data-week="Sun" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="131" data-week="Mon" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="132" data-week="Tue" data-month="apr" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="5 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    may 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="133" data-week="Sun" data-month="may" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="134" data-week="Mon" data-month="may" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="135" data-week="Tue" data-month="may" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="136" data-week="Wed" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="137" data-week="Thu" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="138" data-week="Fri" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="139" data-week="Sat" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="140" data-week="Sun" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="141" data-week="Mon" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="142" data-week="Tue" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="143" data-week="Wed" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="144" data-week="Thu" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="145" data-week="Fri" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="146" data-week="Sat" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="147" data-week="Sun" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="148" data-week="Mon" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="149" data-week="Tue" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="150" data-week="Wed" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="151" data-week="Thu" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="152" data-week="Fri" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="153" data-week="Sat" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="154" data-week="Sun" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="155" data-week="Mon" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="156" data-week="Tue" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="157" data-week="Wed" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="158" data-week="Thu" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="159" data-week="Fri" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="160" data-week="Sat" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="161" data-week="Sun" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="162" data-week="Mon" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="163" data-week="Tue" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="164" data-week="Wed" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="165" data-week="Thu" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="166" data-week="Fri" data-month="may" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="6 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    june 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="167" data-week="Sun" data-month="jun" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="168" data-week="Mon" data-month="jun" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="169" data-week="Tue" data-month="jun" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="170" data-week="Wed" data-month="jun" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="171" data-week="Thu" data-month="jun" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="172" data-week="Fri" data-month="jun" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="173" data-week="Sat" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="174" data-week="Sun" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="175" data-week="Mon" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="176" data-week="Tue" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="177" data-week="Wed" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="178" data-week="Thu" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="179" data-week="Fri" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="180" data-week="Sat" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="181" data-week="Sun" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="182" data-week="Mon" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="183" data-week="Tue" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="184" data-week="Wed" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="185" data-week="Thu" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="186" data-week="Fri" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="187" data-week="Sat" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="188" data-week="Sun" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="189" data-week="Mon" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="190" data-week="Tue" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="191" data-week="Wed" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="192" data-week="Thu" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="193" data-week="Fri" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="194" data-week="Sat" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="195" data-week="Sun" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="196" data-week="Mon" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="197" data-week="Tue" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="198" data-week="Wed" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="199" data-week="Thu" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="200" data-week="Fri" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="201" data-week="Sat" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="202" data-week="Sun" data-month="jun" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="7 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    july 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="203" data-week="Sun" data-month="jul" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="204" data-week="Mon" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="205" data-week="Tue" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="206" data-week="Wed" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="207" data-week="Thu" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="208" data-week="Fri" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="209" data-week="Sat" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="210" data-week="Sun" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="211" data-week="Mon" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="212" data-week="Tue" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="213" data-week="Wed" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="214" data-week="Thu" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="215" data-week="Fri" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="216" data-week="Sat" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="217" data-week="Sun" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="218" data-week="Mon" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="219" data-week="Tue" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="220" data-week="Wed" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="221" data-week="Thu" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="222" data-week="Fri" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="223" data-week="Sat" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="224" data-week="Sun" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="225" data-week="Mon" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="226" data-week="Tue" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="227" data-week="Wed" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="228" data-week="Thu" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="229" data-week="Fri" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="230" data-week="Sat" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="231" data-week="Sun" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="232" data-week="Mon" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="233" data-week="Tue" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="234" data-week="Wed" data-month="jul" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="8 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    august 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="235" data-week="Sun" data-month="aug" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="236" data-week="Mon" data-month="aug" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="237" data-week="Tue" data-month="aug" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="238" data-week="Wed" data-month="aug" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="239" data-week="Thu" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="240" data-week="Fri" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="241" data-week="Sat" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="242" data-week="Sun" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="243" data-week="Mon" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="244" data-week="Tue" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="245" data-week="Wed" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="246" data-week="Thu" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="247" data-week="Fri" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="248" data-week="Sat" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="249" data-week="Sun" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="250" data-week="Mon" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="251" data-week="Tue" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="252" data-week="Wed" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="253" data-week="Thu" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="254" data-week="Fri" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="255" data-week="Sat" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="256" data-week="Sun" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="257" data-week="Mon" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="258" data-week="Tue" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="259" data-week="Wed" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="260" data-week="Thu" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="261" data-week="Fri" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="262" data-week="Sat" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="263" data-week="Sun" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="264" data-week="Mon" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="265" data-week="Tue" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="266" data-week="Wed" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="267" data-week="Thu" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="268" data-week="Fri" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="269" data-week="Sat" data-month="aug" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="9 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    september 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+        
+                      
+                        <div data-index="270" data-week="Sun" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="271" data-week="Mon" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="272" data-week="Tue" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="273" data-week="Wed" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="274" data-week="Thu" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="275" data-week="Fri" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="276" data-week="Sat" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="277" data-week="Sun" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="278" data-week="Mon" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="279" data-week="Tue" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="280" data-week="Wed" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="281" data-week="Thu" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="282" data-week="Fri" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="283" data-week="Sat" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="284" data-week="Sun" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="285" data-week="Mon" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="286" data-week="Tue" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="287" data-week="Wed" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="288" data-week="Thu" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="289" data-week="Fri" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="290" data-week="Sat" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="291" data-week="Sun" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="292" data-week="Mon" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="293" data-week="Tue" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="294" data-week="Wed" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="295" data-week="Thu" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="296" data-week="Fri" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="297" data-week="Sat" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="298" data-week="Sun" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="299" data-week="Mon" data-month="sep" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="10 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    october 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="300" data-week="Sun" data-month="oct" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="301" data-week="Mon" data-month="oct" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="302" data-week="Tue" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="303" data-week="Wed" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="304" data-week="Thu" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="305" data-week="Fri" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="306" data-week="Sat" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="307" data-week="Sun" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="308" data-week="Mon" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="309" data-week="Tue" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="310" data-week="Wed" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="311" data-week="Thu" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="312" data-week="Fri" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="313" data-week="Sat" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="314" data-week="Sun" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="315" data-week="Mon" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="316" data-week="Tue" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="317" data-week="Wed" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="318" data-week="Thu" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="319" data-week="Fri" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="320" data-week="Sat" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="321" data-week="Sun" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="322" data-week="Mon" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="323" data-week="Tue" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="324" data-week="Wed" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="325" data-week="Thu" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="326" data-week="Fri" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="327" data-week="Sat" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="328" data-week="Sun" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="329" data-week="Mon" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="330" data-week="Tue" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="331" data-week="Wed" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="332" data-week="Thu" data-month="oct" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="11 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    november 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+                        <div data-index="333" data-week="Sun" data-month="nov" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="334" data-week="Mon" data-month="nov" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="335" data-week="Tue" data-month="nov" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="336" data-week="Wed" data-month="nov" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="337" data-week="Thu" data-month="nov" class="elCalendar__sell -dark">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+        
+                      
+                        <div data-index="338" data-week="Fri" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="339" data-week="Sat" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="340" data-week="Sun" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="341" data-week="Mon" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="342" data-week="Tue" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="343" data-week="Wed" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="344" data-week="Thu" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="345" data-week="Fri" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="346" data-week="Sat" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="347" data-week="Sun" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="348" data-week="Mon" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="349" data-week="Tue" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="350" data-week="Wed" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="351" data-week="Thu" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="352" data-week="Fri" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="353" data-week="Sat" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="354" data-week="Sun" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="355" data-week="Mon" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="356" data-week="Tue" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="357" data-week="Wed" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="358" data-week="Thu" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="359" data-week="Fri" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="360" data-week="Sat" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="361" data-week="Sun" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="362" data-week="Mon" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="363" data-week="Tue" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="364" data-week="Wed" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="365" data-week="Thu" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="366" data-week="Fri" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="367" data-week="Sat" data-month="nov" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="swiper-slide" role="group" aria-label="12 / 12" style="width: 420px;">
+                  <div class="capitalize text-28 fw-500 text-center mb-10">
+                    december 2024
+                  </div>
+
+                  <div class="elCalendar__month">
+                    <div class="elCalendar__header">
+                      <div class="elCalendar__header__sell">Sun</div><div class="elCalendar__header__sell">Mon</div><div class="elCalendar__header__sell">Tue</div><div class="elCalendar__header__sell">Wed</div><div class="elCalendar__header__sell">Thu</div><div class="elCalendar__header__sell">Fri</div><div class="elCalendar__header__sell">Sat</div>
+                    </div>
+        
+                    <div class="elCalendar__body">
+                      
+        
+                      
+                        <div data-index="368" data-week="Sun" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            1
+                          </span>
+                        </div>
+                      
+                        <div data-index="369" data-week="Mon" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            2
+                          </span>
+                        </div>
+                      
+                        <div data-index="370" data-week="Tue" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            3
+                          </span>
+                        </div>
+                      
+                        <div data-index="371" data-week="Wed" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            4
+                          </span>
+                        </div>
+                      
+                        <div data-index="372" data-week="Thu" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            5
+                          </span>
+                        </div>
+                      
+                        <div data-index="373" data-week="Fri" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            6
+                          </span>
+                        </div>
+                      
+                        <div data-index="374" data-week="Sat" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            7
+                          </span>
+                        </div>
+                      
+                        <div data-index="375" data-week="Sun" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            8
+                          </span>
+                        </div>
+                      
+                        <div data-index="376" data-week="Mon" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            9
+                          </span>
+                        </div>
+                      
+                        <div data-index="377" data-week="Tue" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            10
+                          </span>
+                        </div>
+                      
+                        <div data-index="378" data-week="Wed" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            11
+                          </span>
+                        </div>
+                      
+                        <div data-index="379" data-week="Thu" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            12
+                          </span>
+                        </div>
+                      
+                        <div data-index="380" data-week="Fri" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            13
+                          </span>
+                        </div>
+                      
+                        <div data-index="381" data-week="Sat" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            14
+                          </span>
+                        </div>
+                      
+                        <div data-index="382" data-week="Sun" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            15
+                          </span>
+                        </div>
+                      
+                        <div data-index="383" data-week="Mon" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            16
+                          </span>
+                        </div>
+                      
+                        <div data-index="384" data-week="Tue" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            17
+                          </span>
+                        </div>
+                      
+                        <div data-index="385" data-week="Wed" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            18
+                          </span>
+                        </div>
+                      
+                        <div data-index="386" data-week="Thu" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            19
+                          </span>
+                        </div>
+                      
+                        <div data-index="387" data-week="Fri" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            20
+                          </span>
+                        </div>
+                      
+                        <div data-index="388" data-week="Sat" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            21
+                          </span>
+                        </div>
+                      
+                        <div data-index="389" data-week="Sun" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            22
+                          </span>
+                        </div>
+                      
+                        <div data-index="390" data-week="Mon" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            23
+                          </span>
+                        </div>
+                      
+                        <div data-index="391" data-week="Tue" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            24
+                          </span>
+                        </div>
+                      
+                        <div data-index="392" data-week="Wed" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            25
+                          </span>
+                        </div>
+                      
+                        <div data-index="393" data-week="Thu" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            26
+                          </span>
+                        </div>
+                      
+                        <div data-index="394" data-week="Fri" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            27
+                          </span>
+                        </div>
+                      
+                        <div data-index="395" data-week="Sat" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            28
+                          </span>
+                        </div>
+                      
+                        <div data-index="396" data-week="Sun" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            29
+                          </span>
+                        </div>
+                      
+                        <div data-index="397" data-week="Mon" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            30
+                          </span>
+                        </div>
+                      
+                        <div data-index="398" data-week="Tue" data-month="dec" class="elCalendar__sell">
+                          <span class="js-date">
+                            31
+                          </span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+          </div>
+
+          <button class="elCalendar__sliderNav -prev flex-center js-calendar-slider-prev swiper-button-disabled" disabled="" tabindex="-1" aria-label="Previous slide" aria-controls="swiper-wrapper-4fdde5fb6a42dd8d" aria-disabled="true">
+            <i class="icon icon-chevron-left text-14"></i>
+          </button>
+
+          <button class="elCalendar__sliderNav -next flex-center js-calendar-slider-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-4fdde5fb6a42dd8d" aria-disabled="false">
+            <i class="icon icon-chevron-right text-14"></i>
+          </button>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="searchMenu-guests px-30 lg:py-20 lg:px-0 js-form-dd js-form-counters">
+
+                  <div data-x-dd-click="searchMenu-guests">
+                    <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
+
+                    <div class="text-15 text-light-1 ls-2 lh-16">
+                      <span class="js-count-adult">2</span> adults
+                      -
+                      <span class="js-count-child">1</span> childeren
+                      -
+                      <span class="js-count-room">1</span> room
+                    </div>
+                  </div>
+
+
+                  <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
+                    <div class="bg-white px-30 py-30 rounded-4">
+                      <div class="row y-gap-10 justify-between items-center">
+                        <div class="col-auto">
+                          <div class="text-15 fw-500">Adults</div>
+                        </div>
+
+                        <div class="col-auto">
+                          <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
+                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                              <i class="icon-minus text-12"></i>
+                            </button>
+
+                            <div class="flex-center size-20 ml-15 mr-15">
+                              <div class="text-15 js-count">2</div>
+                            </div>
+
+                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                              <i class="icon-plus text-12"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="border-top-light mt-24 mb-24"></div>
+
+                      <div class="row y-gap-10 justify-between items-center">
+                        <div class="col-auto">
+                          <div class="text-15 lh-12 fw-500">Children</div>
+                          <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
+                        </div>
+
+                        <div class="col-auto">
+                          <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
+                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                              <i class="icon-minus text-12"></i>
+                            </button>
+
+                            <div class="flex-center size-20 ml-15 mr-15">
+                              <div class="text-15 js-count">1</div>
+                            </div>
+
+                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                              <i class="icon-plus text-12"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="border-top-light mt-24 mb-24"></div>
+
+                      <div class="row y-gap-10 justify-between items-center">
+                        <div class="col-auto">
+                          <div class="text-15 fw-500">Rooms</div>
+                        </div>
+
+                        <div class="col-auto">
+                          <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
+                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                              <i class="icon-minus text-12"></i>
+                            </button>
+
+                            <div class="flex-center size-20 ml-15 mr-15">
+                              <div class="text-15 js-count">1</div>
+                            </div>
+
+                            <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                              <i class="icon-plus text-12"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="button-item">
+                  <button class="mainSearch__submit button -dark-1 py-15 px-40 col-12 rounded-4 bg-blue-1 text-white">
+                    <i class="icon-search text-20 mr-10"></i>
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="layout-pt-md layout-pb-lg">
+<div class="container">
+<div class="row y-gap-30">
+    <div class="col-xl-3 col-lg-4 lg:d-none">
+    <aside class="sidebar y-gap-40">
+        
+
+        <div class="sidebar__item -no-border">
+        <h5 class="text-18 fw-500 mb-10">Search by resort name</h5>
+        <div class="single-field relative d-flex items-center py-10">
+            <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="email" placeholder="e.g. bandos maldives" />
+            <button class="absolute d-flex items-center h-full">
+            <i class="icon-search text-20 px-15 text-dark-1"></i>
+            </button>
+        </div>
+        </div>
+
+        <div class="sidebar__item">
+        <h5 class="text-18 fw-500 mb-10">Deals</h5>
+        <div class="sidebar-checkbox">
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">Free cancellation</div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xl-12 order-md-1 order-lg-2 pb-5 pb-lg-0">
-                <!-- Shop-control-bar Title -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="font-size-21 font-weight-bold mb-0 text-lh-1">Maldives: 743+ hotels & resorts found</h3>
-                    <!-- <ul class="nav tab-nav-shop flex-nowrap" id="pills-tab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link font-size-22 p-0" id="pills-three-example1-tab" data-toggle="pill" href="#pills-three-example1" role="tab" aria-controls="pills-three-example1" aria-selected="true">
-                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                    <i class="fa fa-list"></i>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link font-size-22 p-0 ml-2 active" id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="false">
-                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                    <i class="fa fa-th"></i>
-                                </div>
-                            </a>
-                        </li>
-                    </ul> -->
-                </div>
-                <!-- End shop-control-bar Title -->
+            </div>
 
-                <!-- Slick Tab carousel -->
-                <div class="u-slick__tab">
-                    <!-- Nav Links -->
-                    <div class="mb-5">
-                        <ul class="nav flex-nowrap border border-radius-3 tab-nav align-items-center py-2 px-0" role="tablist">
-                            <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1">
-                                <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">Recommended
-                                </a>
-                            </li>
-                            <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-left">
-                                <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                  <option value="one" selected>Price</option>
-                                  <option value="two">Two</option>
-                                  <option value="three">Three</option>
-                                  <option value="four">Four</option>
-                                </select>
-                            </li>
-                            <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-left">
-                                <select class="js-select selectpicker dropdown-select bootstrap-select__custom-nav w-auto" data-style="btn-sm py-1 px-4 px-wd-5 font-weight-normal font-size-15  text-gray-1 d-flex align-items-center">
-                                  <option value="one" selected>Stars</option>
-                                  <option value="two">Two</option>
-                                  <option value="three">Three</option>
-                                  <option value="four">Four</option>
-                                </select>
-                            </li>
-                            <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-left">
-                                <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">Guest Rating
-                                </a>
-                            </li>
-                            <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-left">
-                                <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">Distance
-                                </a>
-                            </li>
-                            <li class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1 border-left">
-                                <a href="#" class="nav-link font-weight-normal text-gray-1 text-lh-1dot6 py-1 px-4 px-wd-5 font-weight-normal font-size-15 ">Top Reviewed
-                                </a>
-                            </li>
-                        </ul>
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
                     </div>
-                    <!-- End Nav Links -->
-
-                    <!-- Tab Content -->
-                    
-                
-                    <div class="tab-content" id="pills-tabContent">
-                                                                     
-                        <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
-                            <div class="row">
-                                {#each hotellist as resort}
-                                <div class="col-md-6 col-lg-4 mb-3 mb-md-4 pb-1">
-                                    <div class="card transition-3d-hover shadow-hover-2 tab-card h-100">
-                                        <div class="position-relative">
-                                            <a href="/hotels/{resort.hs_id}/{resort.slug}" class="d-block gradient-overlay-half-bg-gradient-v5">
-                                                <img class="min-height-230 bg-img-hero card-img-top" src="{`//img1.hotelscan.com/640_440/1/${resort.images[0].image_id}.jpg`}" alt="{resort.name}">
-                                            </a>
-                                            <!-- <div class="position-absolute top-0 right-0 pt-3 pr-3">
-                                              <button type="button" class="btn btn-sm btn-icon text-white rounded-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Save for later">
-                                                <span class="flaticon-valentine-heart"></span>
-                                              </button>
-                                            </div> -->
-                                            <div class="position-absolute bottom-0 left-0 right-0">
-                                                <div class="px-4 pb-3">
-                                                    <a href="/hotels/{resort.hs_id}/{resort.slug}" class="d-block">
-                                                        <div class="d-flex align-items-center font-size-14 text-white">
-                                                            <i class="icon flaticon-pin-1 mr-2 font-size-20"></i> {resort.location.city}
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pl-3 pr-4 pt-2 pb-3">
-                                            <div class="ml-1 mb-2">
-                                                <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-primary letter-spacing-3">
-                                                    <div class="green-lighter">
-                                                        {@html getStar(resort.quality.stars)}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="/hotels/{resort.hs_id}/{resort.slug}" class="card-title font-size-17 font-weight-medium text-dark">{resort.name}</a>
-                                            <div class="mt-2 mb-3">
-                                                <span class="badge badge-pill badge-primary py-1 px-2 font-size-14 border-radius-3 font-weight-normal">{resort.quality.review_rating}/100</span>
-                                                <span class="font-size-14 text-gray-1 ml-2">({resort.quality.review_count} reviews)</span>
-                                            </div>
-                                            <!-- <div class="mb-0">
-                                                <span class="mr-1 font-size-14 text-gray-1">From</span>
-                                                <span class="font-weight-bold">£350.00</span>
-                                                <span class="font-size-14 text-gray-1"> / night</span>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                {/each}
-                                
-                            </div>
-                           <!-- <div class="text-center text-md-left font-size-14 mb-3 text-lh-1">Showing 1–15</div>  -->
-                           <LightPaginationNav
-                            totalItems="{hotels.length}"
-                            pageSize="{pageSize}"
-                            currentPage="{currentPage}"
-                            limit="{1}"
-                            showStepOptions="{true}"
-                            on:setPage="{(e) => currentPage = e.detail.page}"
-                         />  
-                        </div>
-                       
-                    </div>
-                
-                    <!-- End Tab Content -->
                 </div>
-                <!-- Slick Tab carousel -->
+                <div class="text-15 ml-10">Reserve now, pay at resort </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">Properties with special offers</div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="sidebar__item">
+        <h5 class="text-18 fw-500 mb-10">Popular Filters</h5>
+        <div class="sidebar-checkbox">
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">Breakfast Included</div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">Romantic</div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">Airport Transfer</div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">WiFi Included </div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+                <div class="d-flex items-center">
+                <div class="form-checkbox">
+                    <input type="checkbox" />
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+                <div class="text-15 ml-10">5 Star</div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">679</div>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="sidebar__item pb-30">
+        <h5 class="text-18 fw-500 mb-10">Nightly Price</h5>
+        <div class="row x-gap-10 y-gap-30">
+            <div class="col-12">
+            <div class="js-price-rangeSlider">
+                <div class="text-14 fw-500"></div>
+
+                <div class="d-flex justify-between mb-20">
+                <div class="text-15 text-dark-1">
+                    <span class="js-lower">$0</span>
+                    -
+                    <span class="js-upper">$500</span>
+                </div>
+                </div>
+
+                <div class="px-5">
+                <div class="js-slider noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.25, 1);"></div></div><div class="noUi-origin" style="transform: translate(-100%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="500.0" aria-valuenow="0.0" aria-valuetext="$0"><div class="noUi-touch-area"></div></div></div><div class="noUi-origin" style="transform: translate(-75%, 0px); z-index: 6;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="2000.0" aria-valuenow="500.0" aria-valuetext="$500"><div class="noUi-touch-area"></div></div></div></div></div>
+                </div>
+            </div>
             </div>
         </div>
-    </div>
-</main>
+        </div>
 
-<Footer />
+       
+
+        <div class="sidebar__item">
+        <h5 class="text-18 fw-500 mb-10">Star Rating</h5>
+        <div class="row x-gap-10 y-gap-10 pt-10">
+
+            <div class="col-auto">
+            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">1</a>
+            </div>
+
+            <div class="col-auto">
+            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">2</a>
+            </div>
+
+            <div class="col-auto">
+            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">3</a>
+            </div>
+
+            <div class="col-auto">
+            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">4</a>
+            </div>
+
+            <div class="col-auto">
+            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">5</a>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="sidebar__item">
+        <h5 class="text-18 fw-500 mb-10">Guest Rating</h5>
+        <div class="sidebar-checkbox">
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                <div class="radio">
+                    <input type="radio" name="name" />
+                    <div class="radio__mark">
+                    <div class="radio__icon"></div>
+                    </div>
+                </div>
+                <div class="ml-10">Any</div>
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                <div class="radio">
+                    <input type="radio" name="name"/>
+                    <div class="radio__mark">
+                    <div class="radio__icon"></div>
+                    </div>
+                </div>
+                <div class="ml-10">Wonderful 4.5+</div>
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                <div class="radio">
+                    <input type="radio" name="name"/>
+                    <div class="radio__mark">
+                    <div class="radio__icon"></div>
+                    </div>
+                </div>
+                <div class="ml-10">Very good 4+</div>
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                <div class="radio">
+                    <input type="radio" name="name"/>
+                    <div class="radio__mark">
+                    <div class="radio__icon"></div>
+                    </div>
+                </div>
+                <div class="ml-10">Good 3.5+ </div>
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="sidebar__item">
+        <h5 class="text-18 fw-500 mb-10">Holiday type</h5>
+        <div class="sidebar-checkbox">
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="d-flex items-center">
+                <div class="form-checkbox ">
+                    <input type="checkbox" name="name"/>
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+
+                <div class="text-15 ml-10">Budget</div>
+
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="d-flex items-center">
+                <div class="form-checkbox ">
+                    <input type="checkbox" name="name"/>
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+
+                <div class="text-15 ml-10">Mid-range </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="d-flex items-center">
+                <div class="form-checkbox ">
+                    <input type="checkbox" name="name"/>
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+
+                <div class="text-15 ml-10">Luxury</div>
+
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="d-flex items-center">
+                <div class="form-checkbox ">
+                    <input type="checkbox" name="name"/>
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+
+                <div class="text-15 ml-10">Family-friendly </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+            </div>
+            </div>
+
+            <div class="row y-gap-10 items-center justify-between">
+            <div class="col-auto">
+
+                <div class="d-flex items-center">
+                <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                    <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                </div>
+
+                <div class="text-15 ml-10">Business </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-auto">
+                <div class="text-15 text-light-1">679</div>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        
+    </aside>
+    </div>
+
+    <div class="col-xl-9 col-lg-8">
+    <div class="row y-gap-10 items-center justify-between">
+        <div class="col-auto">
+        <div class="text-18"><span class="fw-500">3,269 properties</span> in Europe</div>
+        </div>
+
+        <div class="col-auto">
+        <div class="row x-gap-20 y-gap-20">
+            <div class="col-auto">
+            <button class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
+                <i class="icon-up-down text-14 mr-10"></i>
+                Top picks for your search
+            </button>
+            </div>
+
+            <div class="col-auto d-none lg:d-block">
+            <button data-x-click="filterPopup" class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
+                <i class="icon-up-down text-14 mr-10"></i>
+                Filter
+            </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="filterPopup bg-white" data-x="filterPopup" data-x-toggle="-is-active">
+        <aside class="sidebar -mobile-filter">
+        <div data-x-click="filterPopup" class="-icon-close">
+            <i class="icon-close"></i>
+        </div>
+
+        <div class="sidebar__item">
+            <div class="flex-center ratio ratio-15:9 js-lazy loaded" data-ll-status="loaded" style="background-image: url(&quot;img/general/map.png&quot;);">
+            <button class="button py-15 px-24 -blue-1 bg-white text-dark-1 absolute" data-x-click="mapFilter">
+                <i class="icon-destination text-22 mr-10"></i>
+                Show on map
+            </button>
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Search by property name</h5>
+            <div class="single-field relative d-flex items-center py-10">
+            <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="email" placeholder="e.g. Best Western">
+            <button class="absolute d-flex items-center h-full">
+                <i class="icon-search text-20 px-15 text-dark-1"></i>
+            </button>
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Deals</h5>
+            <div class="sidebar-checkbox">
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">Free cancellation</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">Reserve now, pay at stay </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">Properties with special offers</div>
+                </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Popular Filters</h5>
+            <div class="sidebar-checkbox">
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">Breakfast Included</div>
+                </div>
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">Romantic</div>
+                </div>
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">Airport Transfer</div>
+                </div>
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">WiFi Included </div>
+                </div>
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+                <div class="d-flex items-center">
+                    <div class="form-checkbox">
+                    <input type="checkbox">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+                    <div class="text-15 ml-10">5 Star</div>
+                </div>
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">679</div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar__item pb-30">
+            <h5 class="text-18 fw-500 mb-10">Nightly Price</h5>
+            <div class="row x-gap-10 y-gap-30">
+            <div class="col-12">
+                <div class="js-price-rangeSlider">
+                <div class="text-14 fw-500"></div>
+
+                <div class="d-flex justify-between mb-20">
+                    <div class="text-15 text-dark-1">
+                    <span class="js-lower">$0</span>
+                    -
+                    <span class="js-upper">$500</span>
+                    </div>
+                </div>
+
+                <div class="px-5">
+                    <div class="js-slider noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.25, 1);"></div></div><div class="noUi-origin" style="transform: translate(-100%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="500.0" aria-valuenow="0.0" aria-valuetext="$0"><div class="noUi-touch-area"></div></div></div><div class="noUi-origin" style="transform: translate(-75%, 0px); z-index: 6;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="2000.0" aria-valuenow="500.0" aria-valuetext="$500"><div class="noUi-touch-area"></div></div></div></div></div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Amenities</h5>
+            <div class="sidebar-checkbox">
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Breakfast Included</div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">WiFi Included </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Pool</div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Restaurant </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Air conditioning </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">679</div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Star Rating</h5>
+            <div class="row y-gap-10 x-gap-10 pt-10">
+
+            <div class="col-auto">
+                <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">1</a>
+            </div>
+
+            <div class="col-auto">
+                <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">2</a>
+            </div>
+
+            <div class="col-auto">
+                <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">3</a>
+            </div>
+
+            <div class="col-auto">
+                <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">4</a>
+            </div>
+
+            <div class="col-auto">
+                <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-5 px-20 rounded-100">5</a>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Guest Rating</h5>
+            <div class="sidebar-checkbox">
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                    <input type="radio" name="name">
+                    <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                    </div>
+                    </div>
+                    <div class="ml-10">Any</div>
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                    <input type="radio" name="name">
+                    <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                    </div>
+                    </div>
+                    <div class="ml-10">Wonderful 4.5+</div>
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                    <input type="radio" name="name">
+                    <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                    </div>
+                    </div>
+                    <div class="ml-10">Very good 4+</div>
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                    <input type="radio" name="name">
+                    <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                    </div>
+                    </div>
+                    <div class="ml-10">Good 3.5+ </div>
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Style</h5>
+            <div class="sidebar-checkbox">
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Budget</div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Mid-range </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Luxury</div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Family-friendly </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Business </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">679</div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="sidebar__item">
+            <h5 class="text-18 fw-500 mb-10">Neighborhood</h5>
+            <div class="sidebar-checkbox">
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Central London</div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">92</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Guests' favourite area </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">45</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Westminster Borough</div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">21</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Kensington and Chelsea </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">78</div>
+                </div>
+            </div>
+
+            <div class="row items-center justify-between">
+                <div class="col-auto">
+
+                <div class="d-flex items-center">
+                    <div class="form-checkbox ">
+                    <input type="checkbox" name="name">
+                    <div class="form-checkbox__mark">
+                        <div class="form-checkbox__icon icon-check"></div>
+                    </div>
+                    </div>
+
+                    <div class="text-15 ml-10">Oxford Street </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-auto">
+                <div class="text-15 text-light-1">679</div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+        </aside>
+    </div>
+
+    <div class="mt-30"></div>
+
+    <div class="row y-gap-30">
+        {#each hotellist as hotel}
+        <div class="col-12">
+
+        <div class="border-top-light pt-30">
+            <div class="row x-gap-20 y-gap-20">
+            <div class="col-md-auto">
+
+                <div class="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-4">
+                 
+                <div class="cardImage__content">
+
+
+                    <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                    <div class="swiper-wrapper" id="swiper-wrapper-eadcdb9871a94b52" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-250px, 0px, 0px);">
+                      {#each hotel.images as img}
+                              <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
+                                <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto" />
+                              </div>
+                              {/each}   
+ 
+                        
+                    </div>
+
+                    <div class="cardImage-slider__pagination js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div></div>
+
+                    <div class="cardImage-slider__nav -prev">
+                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-eadcdb9871a94b52">
+                        <i class="icon-chevron-left text-10"></i>
+                        </button>
+                    </div>
+
+                    <div class="cardImage-slider__nav -next">
+                        <button class="button -blue-1 bg-white size-30 rounded-full shadow-2 js-next" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-eadcdb9871a94b52">
+                        <i class="icon-chevron-right text-10"></i>
+                        </button>
+                    </div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+                </div>
+
+                <div class="cardImage__wishlist">
+                    <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                    <i class="icon-heart text-12"></i>
+                    </button>
+                </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-md">
+                <h3 class="text-18 lh-16 fw-500">
+                {hotel.name}<br class="lg:d-none"> {hotel.location.address}
+
+                <div class="d-inline-block ml-10">
+                    <i class="icon-star text-10 text-yellow-2"></i>
+                    <i class="icon-star text-10 text-yellow-2"></i>
+                    <i class="icon-star text-10 text-yellow-2"></i>
+                    <i class="icon-star text-10 text-yellow-2"></i>
+                    <i class="icon-star text-10 text-yellow-2"></i>
+                </div>
+                </h3>
+
+                <div class="row x-gap-10 y-gap-10 items-center pt-10">
+                <div class="col-auto">
+                    <p class="text-14">{hotel.location.address}</p>
+                </div>
+
+                <div class="col-auto">
+                    <button data-x-click="mapFilter" class="d-block text-14 text-blue-1 underline">Show on map</button>
+                </div>
+
+                <div class="col-auto">
+                    <div class="size-3 rounded-full bg-light-1"></div>
+                </div>
+
+                <div class="col-auto">
+                    <p class="text-14">2 km to city center</p>
+                </div>
+                </div>
+
+                <div class="text-14 lh-15 mt-20">
+                <div class="fw-500">King Room</div>
+                <div class="text-light-1">1 extra-large double bed</div>
+                </div>
+
+                <div class="text-14 text-green-2 lh-15 mt-10">
+                <div class="fw-500">Free cancellation</div>
+                <div class="">You can cancel later, so lock in this great price today.</div>
+                </div>
+
+                <div class="row x-gap-10 y-gap-10 pt-20">
+
+                <div class="col-auto">
+                    <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">Breakfast</div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">WiFi</div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">Spa</div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="border-light rounded-100 py-5 px-20 text-14 lh-14">Bar</div>
+                </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-auto text-right md:text-left">
+                <div class="row x-gap-10 y-gap-10 justify-end items-center md:justify-start">
+                <div class="col-auto">
+                    <div class="text-14 lh-14 fw-500">Exceptional</div>
+                    <div class="text-14 lh-14 text-light-1">{hotel.quality && hotel.quality.review_count} reviews</div>
+                </div>
+                <div class="col-auto">
+                    <div class="flex-center text-white fw-600 text-14 size-40 rounded-4 bg-blue-1">{hotel.quality && hotel.quality.review_rating}</div>
+                </div>
+                </div>
+
+                <div class="">
+         
+
+                <a href="#" class="button -md -dark-1 bg-blue-1 text-white mt-24">
+                    See Availability <div class="icon-arrow-top-right ml-15"></div>
+                </a>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </div>
+        {/each}
+
+    </div>
+    <div class="pt-20">
+    <LightPaginationNav 
+      totalItems={hotels.length}
+      pageSize={pageSize}
+      currentPage={currentPage}
+      limit={2}
+      showStepOptions={true}
+      on:setPage={(e) => currentPage = e.detail.page}
+    />
+  </div>
+    </div>
+</div>
+</div>
+</section>
+
+ 
+

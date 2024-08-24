@@ -189,6 +189,7 @@ const holidays = mapResortsByHolidayType(hotels);
   </script>
 
 </svelte:head>
+
 <style>
   @media (max-width: 991px) {
     .masthead.-type-7 .mainSearch {
@@ -202,9 +203,7 @@ const holidays = mapResortsByHolidayType(hotels);
     }
 }
 </style>
-<Header />
-<main>
- 
+
 
     <section data-anim-wrap="" class="masthead -type-7 animated">
       <div class="masthead-slider js-masthead-slider-7 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
@@ -3190,7 +3189,7 @@ const holidays = mapResortsByHolidayType(hotels);
           <div class="col-auto">
             <div class="sectionTitle -md">
               <h2 class="sectionTitle__title">Popular Hotels</h2>
-              <p class=" sectionTitle__text mt-5 sm:mt-0">Interdum et malesuada fames ac ante ipsum</p>
+              <p class=" sectionTitle__text mt-5 sm:mt-0">Discover our collections</p>
             </div>
           </div>
         </div>
@@ -3234,7 +3233,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(4,8) as img}
+                              {#each hotel.images as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -3312,7 +3311,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(4,8) as img}
+                              {#each hotel.images as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -3391,7 +3390,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(4,8) as img}
+                              {#each hotel.images as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -3470,7 +3469,7 @@ const holidays = mapResortsByHolidayType(hotels);
                           <div class="cardImage-slider rounded-4 overflow-hidden js-cardImage-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-346e9414f7333092" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-300px, 0px, 0px);">
                                                          
-                              {#each hotel.images.slice(4,8) as img}
+                              {#each hotel.images as img}
                               <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 300px;">
                                 <img class="col-12" src="https://img1.hotelscan.com/640_440/1/{img.image_id}.jpg" alt="image" style="width: 100% important; height:auto">
                               </div>
@@ -4586,187 +4585,6 @@ const holidays = mapResortsByHolidayType(hotels);
       </div>
     </section>
 
-    <!-- <section class="layout-pt-md layout-pb-md bg-dark-3">
-      <div class="container">
-        <div class="row y-gap-60">
-          <div class="col-xl-5 col-lg-6">
-            <h2 class="text-30 text-white">What our customers are<br> saying us?</h2>
-            <p class="text-white mt-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo.</p>
-
-            <div class="row y-gap-30 text-white pt-60 lg:pt-40">
-              <div class="col-sm-5 col-6">
-                <div class="text-30 lh-15 fw-600">13m+</div>
-                <div class="lh-15">Happy People</div>
-              </div>
-
-              <div class="col-sm-5 col-6">
-                <div class="text-30 lh-15 fw-600">4.88</div>
-                <div class="lh-15">Overall rating</div>
-
-                <div class="d-flex x-gap-5 items-center pt-10">
-
-                  <div class="icon-star text-white text-10"></div>
-
-                  <div class="icon-star text-white text-10"></div>
-
-                  <div class="icon-star text-white text-10"></div>
-
-                  <div class="icon-star text-white text-10"></div>
-
-                  <div class="icon-star text-white text-10"></div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-4 offset-xl-2 col-lg-5 offset-lg-1 col-md-10">
-
-
-            <div class="testimonials-slider-2 js-testimonials-slider-2 swiper-cards swiper-3d swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress">
-              <div class="swiper-wrapper" id="swiper-wrapper-4d1355d5a1af231a" aria-live="polite" style="cursor: grab; transition-duration: 0ms;">
-
-                <div class="swiper-slide" role="group" aria-label="1 / 3" style="width: 410px; z-index: 1; transform: translate3d(calc(-13% + 0px), 0px, -200px) rotateZ(-4deg) scale(1); transition-duration: 0ms;">
-                  <div class="testimonials -type-1 bg-white rounded-4 pt-40 pb-30 px-40 shadow-2">
-                    <div class="">
-                      <h4 class="text-16 fw-500 text-blue-1 mb-20">Hotel Equatorial Melaka</h4>
-                      <p class="testimonials__text lh-18 fw-500 text-dark-1">"Our family was traveling via bullet train between cities in Japan with our luggage - the location for this hotel made that so easy. Agoda price was fantastic."</p>
-
-                      <div class="pt-20 mt-28 border-top-light">
-                        <div class="row x-gap-20 y-gap-20 items-center">
-                          <div class="col-auto">
-                            <img src="img/avatars/1.png" alt="image">
-                          </div>
-
-                          <div class="col-auto">
-                            <div class="text-15 fw-500 lh-14">Courtney Henry</div>
-                            <div class="text-14 lh-14 text-light-1 mt-5">Web Designer</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <div class="swiper-slide-shadow" style="opacity: 1; transition-duration: 0ms;"></div></div>
-
-                <div class="swiper-slide swiper-slide-prev" role="group" aria-label="2 / 3" style="width: 410px; z-index: 2; transform: translate3d(calc(-7.25% - 410px), 0px, -100px) rotateZ(-2deg) scale(1); transition-duration: 0ms;">
-                  <div class="testimonials -type-1 bg-white rounded-4 pt-40 pb-30 px-40 shadow-2">
-                    <div class="">
-                      <h4 class="text-16 fw-500 text-blue-1 mb-20">Hotel Equatorial Melaka</h4>
-                      <p class="testimonials__text lh-18 fw-500 text-dark-1">"Our family was traveling via bullet train between cities in Japan with our luggage - the location for this hotel made that so easy. Agoda price was fantastic."</p>
-
-                      <div class="pt-20 mt-28 border-top-light">
-                        <div class="row x-gap-20 y-gap-20 items-center">
-                          <div class="col-auto">
-                            <img src="img/avatars/1.png" alt="image">
-                          </div>
-
-                          <div class="col-auto">
-                            <div class="text-15 fw-500 lh-14">Courtney Henry</div>
-                            <div class="text-14 lh-14 text-light-1 mt-5">Web Designer</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <div class="swiper-slide-shadow" style="opacity: 1; transition-duration: 0ms;"></div></div>
-
-                <div class="swiper-slide swiper-slide-visible swiper-slide-active" role="group" aria-label="3 / 3" style="width: 410px; z-index: 3; transform: translate3d(-820px, 0px, 0px) rotateZ(0deg) scale(1); transition-duration: 0ms;">
-                  <div class="testimonials -type-1 bg-white rounded-4 pt-40 pb-30 px-40 shadow-2">
-                    <div class="">
-                      <h4 class="text-16 fw-500 text-blue-1 mb-20">Hotel Equatorial Melaka</h4>
-                      <p class="testimonials__text lh-18 fw-500 text-dark-1">"Our family was traveling via bullet train between cities in Japan with our luggage - the location for this hotel made that so easy. Agoda price was fantastic."</p>
-
-                      <div class="pt-20 mt-28 border-top-light">
-                        <div class="row x-gap-20 y-gap-20 items-center">
-                          <div class="col-auto">
-                            <img src="img/avatars/1.png" alt="image">
-                          </div>
-
-                          <div class="col-auto">
-                            <div class="text-15 fw-500 lh-14">Courtney Henry</div>
-                            <div class="text-14 lh-14 text-light-1 mt-5">Web Designer</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <div class="swiper-slide-shadow" style="opacity: 0; transition-duration: 0ms;"></div></div>
-
-              </div>
-
-
-              <div class="d-flex x-gap-15 items-center justify-center pt-30">
-                <div class="col-auto">
-                  <button class="d-flex items-center text-24 arrow-left-hover text-white js-prev" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-4d1355d5a1af231a" aria-disabled="false">
-                    <i class="icon icon-arrow-left"></i>
-                  </button>
-                </div>
-
-                <div class="col-auto">
-                  <div class="pagination -dots text-white-50 js-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 1"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 3" aria-current="true"></div></div>
-                </div>
-
-                <div class="col-auto">
-                  <button class="d-flex items-center text-24 arrow-right-hover text-white js-next swiper-button-disabled" tabindex="-1" aria-label="Next slide" aria-controls="swiper-wrapper-4d1355d5a1af231a" aria-disabled="true" disabled="">
-                    <i class="icon icon-arrow-right"></i>
-                  </button>
-                </div>
-              </div>
-
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-          </div>
-        </div>
-
-        <div class="row justify-center text-center pt-60">
-          <div class="col-auto">
-            <div class="text-15 lh-1 text-white">Trusted by the world’s best</div>
-          </div>
-        </div>
-
-        <div class="px-40 md:px-0">
-          <div class="row y-gap-30 justify-between items-center pt-60 lg:pt-40">
-
-            <div class="col-md-auto col-sm-6">
-              <div class="d-flex justify-center">
-                <img src="img/clients/1.svg" alt="image">
-              </div>
-            </div>
-
-            <div class="col-md-auto col-sm-6">
-              <div class="d-flex justify-center">
-                <img src="img/clients/2.svg" alt="image">
-              </div>
-            </div>
-
-            <div class="col-md-auto col-sm-6">
-              <div class="d-flex justify-center">
-                <img src="img/clients/3.svg" alt="image">
-              </div>
-            </div>
-
-            <div class="col-md-auto col-sm-6">
-              <div class="d-flex justify-center">
-                <img src="img/clients/4.svg" alt="image">
-              </div>
-            </div>
-
-            <div class="col-md-auto col-sm-6">
-              <div class="d-flex justify-center">
-                <img src="img/clients/5.svg" alt="image">
-              </div>
-            </div>
-
-            <div class="col-md-auto col-sm-6">
-              <div class="d-flex justify-center">
-                <img src="img/clients/6.svg" alt="image">
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section> -->
- 
 
     <section data-anim-wrap="" class="section-bg bg-dark-3 layout-pt-md layout-pb-md animated">
       <div data-anim-child="fade delay-1" class="section-bg__item -mx-20 bg-dark-3 is-in-view"></div>
@@ -4791,11 +4609,3 @@ const holidays = mapResortsByHolidayType(hotels);
         </div>
       </div>
     </section>
-
-
-
-<Footer />
-
-  </main>
-
-

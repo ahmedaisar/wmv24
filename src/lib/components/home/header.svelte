@@ -23,7 +23,7 @@
 
         <div class="col-auto">
           <div class="d-flex items-center">
-            <a href="/" class="header-logo mr-50" data-x="header-logo" data-x-toggle="is-logo-dark">
+            <a data-sveltekit-reload href="/" class="header-logo mr-50" data-x="header-logo" data-x-toggle="is-logo-dark">
               <img src="img/wmvlogo2.svg" alt="Wheresmaldives.com">
               <img src="img/wmvlogo2.svg" alt="Wheresmaldives.com">
             </a>
@@ -39,24 +39,24 @@
                   <ul class="menu__nav text-dark-1 -is-active">
 
                     <li>
-                      <a href="/">
+                      <a href="/" data-sveltekit-reload>
                         Home
                       </a>
                     </li>
                     
                     <li>
-                      <a href="/maldives-hotels-2024-2025">
+                      <a href="/hotels" data-sveltekit-reload>
                         Hotels
                       </a>
                     </li>
 
                     <li>
-                      <a href="/maldives-holiday-packages-2024-2025">
+                      <a href="/holidays" data-sveltekit-reload>
                         Packages & Deals
                       </a>
                     </li>
 
-                    <li class="menu-item-has-children">
+                    <li class="menu-item-has-children" >
                       <a data-barba="" href="">
                         <span class="mr-10">Maldives</span>
                         <i class="icon icon-chevron-sm-down"></i>
@@ -552,13 +552,13 @@
                       </ul>
                     </li> 
                     <li>
-                      <a href="/maldives-blog">
+                      <a href="/blog" data-sveltekit-reload>
                         Blog
                       </a>
                     </li>
 
                     <li>
-                      <a href="/about-wmv">
+                      <a href="/about">
                         About
                       </a>
                     </li>
@@ -571,10 +571,7 @@
                       </a>
                     </li>
 
-                   
 
-
-               
                   </ul>
                 </div>
 

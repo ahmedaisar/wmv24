@@ -1,504 +1,629 @@
 <script>
-    import logo from "$lib/assets/mbvlogo.svg?url&raw"
+    //import { browser } from '$app/environment';
+    //import logo from "$lib/assets/mbvlogo24.svg?url&raw"
     import { onMount } from 'svelte';
-
-    onMount(async () => {
-
-            function initMap() {
-                    window.$.HSCore.components.HSGMap.init('.js-g-map');
-                }
-
-            window.$.HSCore.components.HSMalihuScrollBar.init(jQuery('.js-scrollbar'));
-
-            // initialization of autonomous popups
-            window.$.HSCore.components.HSModalWindow.init('[data-modal-target]', '.js-modal-window', {
-                autonomous: true
-            });
-  
-
-            window.$.HSCore.components.HSHeader.init(jQuery('#header'));
-
-            // initialization of unfold component
-            window.$.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
-
-            // initialization of show animations
-            window.$.HSCore.components.HSShowAnimation.init('.js-animation-link');
-
-            // initialization of datepicker
-            window.$.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');       
-
-            window.$.HSCore.components.HSRangeSlider.init('.js-range-slider');
-
-            // initialization of select
-            window.$.HSCore.components.HSSelectPicker.init('.js-select');
-
-            // initialization of quantity counter
-            window.$.HSCore.components.HSQantityCounter.init('.js-quantity');
-
-            // initialization of slick carousel
-            window.$.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-            // initialization of go to
-            window.$.HSCore.components.HSGoTo.init('.js-go-to');
-            // initialization of sticky blocks
-			window.$.HSCore.components.HSStickyBlock.init('.js-sticky-block');
-
-            // initialization of HSScrollNav component
-            window.$.HSCore.components.HSScrollNav.init(jQuery('.js-scroll-nav'), {
-                duration: 700
-            });
-
-             
-        })
  
+    //import js from 'jquery';
+    // @ts-nocheck
+    
+    onMount( async () => {	     
+        
+         
+
+    });
  
 
 </script>
-<style>
-    .u-header__navbar-brand-text {
-        font-size: 1.3rem;
-        margin-top: 0.3rem;
-    }
-    @media (max-width: 767.98px) {
-        .u-header__navbar-brand-text {
-            font-size: 1rem !important;
-        }
-        .u-header__navbar-brand, .u-header__navbar-brand > img {
-            height: 100px !important;
-        }
-
-        #logoAndNav > nav > a > img {
-            height: 100px !important;
-        }
-
-    } 
-</style>
-
-<svelte:head>
-    <link rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.css">
-    <link rel="stylesheet" href="/assets/vendor/jquery-ui/themes/base/jquery-ui.min.css">
-    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
-    <link rel="stylesheet" href="/assets/vendor/ion-rangeslider/css/ion.rangeSlider.css">
-    <link rel="stylesheet" href="/assets/vendor/custombox/dist/custombox.min.css">
-    
-</svelte:head>
-
-<header id="header" class="u-header u-header--dark-nav-links-xl u-header--show-hide-xl u-header--static-xl" data-header-fix-moment="500" data-header-fix-effect="slide">
-    <div class="u-header__section u-header__shadow-on-show-hide py-4 py-xl-0">
-        <!-- Topbar -->
-        <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-8">
-            <div class="d-flex align-items-center">
-                <ul class="list-inline u-header__topbar-nav-divider mb-0">
-                    <li class="list-inline-item mr-0"><a href="tel:+9607915687" class="u-header__navbar-link">+960 960 7915687</a></li>
-                    <li class="list-inline-item mr-0"><a href="mailto:sales@maldivesbeachvacation.com" class="u-header__navbar-link">sales@maldivesbeachvacation.com</a></li>
-                </ul>
-                <div class="ml-auto d-flex align-items-center">
-                    <ul class="list-inline mb-0 mr-2 pr-1">
-                        <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.facebook.com/" target="_blank">
-                                <span class="fab fa-facebook-f btn-icon__inner"></span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://twitter.com/" target="_blank">
-                                <span class="fab fa-twitter btn-icon__inner"></span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.instagram.com/" target="_blank">
-                                <span class="fab fa-instagram btn-icon__inner"></span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-pill btn-soft-dark btn-bg-transparent transition-3d-hover" href="https://www.linkedin.com/" target="_blank">
-                                <span class="fab fa-linkedin-in btn-icon__inner"></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- <div class="position-relative px-3 u-header__login-form dropdown-connector-xl u-header__topbar-divider--dark">
-                        <a id="signUpDropdownInvoker" href="javascript:;" class="d-flex align-items-center text-dark" aria-controls="signUpDropdown" aria-haspopup="true" aria-expanded="true" data-unfold-event="click" data-unfold-target="#signUpDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                            <i class="flaticon-user mr-2 ml-1 font-size-18"></i>
-                            <span class="d-inline-block font-size-14 mr-1">Sign in or Register</span>
-                        </a>
-                        <div id="signUpDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right py-0 mt-0 u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="signUpDropdownInvoker" style="min-width: 500px; animation-duration: 300ms;">
-                            <div class="card rounded-xs">
-                                <form class="js-validate" novalidate="novalidate" method="post">
-                                  
-                                    <div id="login" style="opacity: 1;" data-target-group="idForm" class="animated fadeIn">
-                                    
-                                        <div class="card-header text-center">
-                                            <h3 class="h5 mb-0 font-weight-semi-bold">Login</h3>
-                                        </div>
-                                    
-                                        <div class="card-body pt-6 pb-4">
-                                           
-                                            <div class="form-group pb-1">
-                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                    <label class="sr-only" for="signinSrEmail">Email</label>
-                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                        <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Email Or Username" aria-label="Email Or Username" aria-describedby="signinEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="signinEmail">
-                                                                <span class="far fa-envelope font-size-20"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                          
-                                            <div class="form-group pb-1">
-                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                    <label class="sr-only" for="signinSrPassword">Password</label>
-                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                        <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="signinPassword">
-                                                                <span class="flaticon-password font-size-20"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="mb-3 pb-1">
-                                                <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Login</button>
-                                            </div>
-                                            <div class="d-flex justify-content-between mb-1">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1" class="custom-control-input">
-                                                    <label class="custom-control-label" for="customCheckboxInline1">Remember me</label>
-                                                </div>
-                                                <a class="js-animation-link text-primary font-size-14" href="javascript:;" data-target="#forgotPassword" data-link-group="idForm" data-animation-in="fadeIn"><u>Forgot Password?</u></a>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer p-0">
-                                            <div class="card-footer__top border-bottom border-color-8 py-3">
-                                                <div class="text-center mt-2 mb-4 pb-1">
-                                                    <span class="d-block text-gray-1 fontsize-14">or continue with</span>
-                                                </div>
-                                                <div class="d-flex mb-3">
-                                                    <a class="btn btn-block btn-sm btn-facebook transition-3d-hover" href="#">
-                                                        <span class="fab fa-facebook-f mr-2"></span>
-                                                        Facebook
-                                                    </a>
-                                                    <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0" href="#">
-                                                        <span class="fab fa-twitter mr-2"></span>
-                                                        Twitter
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-footer__bottom p-4 text-center font-size-14">
-                                                <span class="text-gray-1">Do not have an account?</span>
-                                                <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#signup" data-link-group="idForm" data-animation-in="fadeIn">Sign Up</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                 
-                                    <div id="signup" style="opacity: 0; display: none;" data-target-group="idForm">
-                                       
-                                        <div class="card-header text-center">
-                                            <h3 class="h5 mb-0 font-weight-semi-bold">Register</h3>
-                                        </div>
-                                       
-                                        <div class="card-body pt-5 pb-4">
-                                            <ul class="nav nav-default nav-pills nav-white nav-justified nav-rounded-pill font-weight-medium px-6 pb-5" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="pills-one-code-sample-tab" data-toggle="pill" href="#pills-one-code-sample" role="tab" aria-controls="pills-one-code-sample" aria-selected="true">Normal User</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="pills-two-code-sample-tab" data-toggle="pill" href="#pills-two-code-sample" role="tab" aria-controls="pills-two-code-sample" aria-selected="false">Partner User</a>
-                                                </li>
-                                            </ul>
-
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade active show" id="pills-one-code-sample" role="tabpanel" aria-labelledby="pills-one-code-sample-tab">
-                                                 
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="uname">User Name</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="text" class="form-control" name="uname" id="uname" placeholder="User Name" aria-label="User Name" aria-describedby="username" required="" data-msg="Please enter a valid user name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="username">
-                                                                        <span class="flaticon-user font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                 
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="name">Full Name</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" aria-label="Full Name" aria-describedby="normalname" required="" data-msg="Please enter a valid name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="normalname">
-                                                                        <span class="flaticon-browser-1 font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="signupSrEmail">Email</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="email" class="form-control" name="email" id="signupSrEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="signupEmail">
-                                                                        <span class="far fa-envelope font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="signupSrPassword">Password</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="password" class="form-control" name="password" id="signupSrPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="signupPassword">
-                                                                        <span class="flaticon-password font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
-                                                    <div class="mb-3 pb-1">
-                                                        <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Register</button>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between mb-1">
-                                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                                            <input type="checkbox" id="customCheckboxInline2" name="customCheckboxInline2" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customCheckboxInline2">I have read and accept the <a href="#">Terms and Privacy Policy</a></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="pills-two-code-sample" role="tabpanel" aria-labelledby="pills-two-code-sample-tab">
-                                                 
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="puname">User Name</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="text" class="form-control" name="puname" id="puname" placeholder="User Name" aria-label="User Name" aria-describedby="partnerusername" required="" data-msg="Please enter a valid user name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="partnerusername">
-                                                                        <span class="flaticon-user font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="pname">Full Name</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="text" class="form-control" name="pname" id="pname" placeholder="Full Name" aria-label="Full Name" aria-describedby="partnername" required="" data-msg="Please enter a valid name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="partnername">
-                                                                        <span class="flaticon-browser-1 font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                  
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="signupPartnerSrEmail">Email</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="email" class="form-control" name="pemail" id="signupPartnerSrEmail" placeholder="Email" aria-label="Email" aria-describedby="signupPartnerEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="signupPartnerEmail">
-                                                                        <span class="far fa-envelope font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="signupPartnerSrPassword">Password</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="password" class="form-control" name="Partnerpassword" id="signupPartnerSrPassword" placeholder="Password" aria-label="PartnerPassword" aria-describedby="signupPartnerPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="signupPartnerPassword">
-                                                                        <span class="flaticon-password font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
-                                                    <div class="form-group pb-1">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="signupPartnerSrConfirmPassword">Confirm Password</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="password" class="form-control" name="confirmpartnerpassword" id="signupPartnerSrConfirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupPartnerConfirmPassword" required="" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="signupPartnerConfirmPassword">
-                                                                        <span class="fas fa-key font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
-
-                                                    <div class="mb-3 pb-1">
-                                                        <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Register</button>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between mb-1">
-                                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                                            <input type="checkbox" id="customCheckboxInline3" name="customCheckboxInline3" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customCheckboxInline3">I have read and accept the <a href="#">Terms and Privacy Policy</a></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer p-0">
-                                            <div class="card-footer__top border-bottom border-color-8 py-3">
-                                                <div class="text-center mt-2 mb-4 pb-1">
-                                                    <span class="d-block text-gray-1 fontsize-14">or continue with</span>
-                                                </div>
-                                                <div class="d-flex mb-3">
-                                                    <a class="btn btn-block btn-sm btn-facebook transition-3d-hover" href="#">
-                                                        <span class="fab fa-facebook-f mr-2"></span>
-                                                        Facebook
-                                                    </a>
-                                                    <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0" href="#">
-                                                        <span class="fab fa-twitter mr-2"></span>
-                                                        Twitter
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-footer__bottom p-4 text-center font-size-14">
-                                                <span class="text-gray-1">Already have an account?</span>
-                                                <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log In</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  
-                                    <div id="forgotPassword" style="opacity: 0; display: none;" data-target-group="idForm">
-                                     
-                                        <div class="card-header bg-light text-center py-3 px-5">
-                                            <h3 class="h6 mb-0 font-weight-semi-bold">Recover password</h3>
-                                        </div>
-                                     
-                                        <div class="card-body px-10 py-5">
-                                     
-                                            <div class="form-group">
-                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                    <label class="sr-only" for="recoverSrEmail">Your email</label>
-                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                        <input type="email" class="form-control" name="email" id="recoverSrEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="recoverEmail">
-                                                                <span class="far fa-envelope font-size-20"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                 
-                                            <div class="mb-2">
-                                                <button type="submit" class="btn btn-sm btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Recover Password</button>
-                                            </div>
-                                            <div class="text-center font-size-14">
-                                                <span class="text-gray-1">Remember your password?</span>
-                                                <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log In</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  
-                                </form>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="position-relative pl-3 language-switcher dropdown-connector-xl u-header__topbar-divider--dark">
-                        <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center ml-1" href="javascript:;" role="button" aria-controls="languageDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="hover" data-unfold-target="#languageDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                            <span class="d-inline-block">EUR</span>
-                        </a>
-                        <div id="languageDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right mt-0 u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="languageDropdownInvoker" style="animation-duration: 300ms;">
-                            <a class="dropdown-item" href="#">USD</a>
-                            <a class="dropdown-item active" href="#">EUR</a>
-                            <a class="dropdown-item" href="#">TUR</a>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-        <!-- End Topbar -->
-        <div id="logoAndNav" class="container-fluid py-xl-2 border-bottom-xl">
-            <!-- Nav -->
-            <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized hs-menu-horizontal">
-                <!-- Logo -->
-                <a class="navbar-brand u-header__navbar-brand-default u-header__navbar-brand-center u-header__navbar-brand-text-dark-xl" href="/" aria-label="MaldivesBeachVacation">
-                    <img src="/assets/img/mbv-logo-new.png" height="160px">
-                    <span class="u-header__navbar-brand-text"> </span>
-                </a>
-                <!-- End Logo -->
-
-                <!-- Responsive Toggle Button -->
-                <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--primary order-2 ml-3" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
-                    <span id="hamburgerTrigger" class="u-hamburger__box">
-                        <span class="u-hamburger__inner"></span>
-                    </span>
-                </button>
-                <!-- End Responsive Toggle Button -->
-
-                <!-- Navigation -->
-                <div id="navBar" class="navbar-collapse u-header__navbar-collapse collapse order-2 order-xl-0 pt-4 p-xl-0 position-relative">
-                    <ul class="navbar-nav u-header__navbar-nav">
-                        <!-- Home -->
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="homeMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="homeSubMenu">Home</a>
-                         
-                        </li>
-                        <!-- End Home -->
-
-                        <!-- Hotel -->
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/hotels" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Hotels</a>
-                          
-                        </li>
-                        <!-- End Hotel -->
-
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="/blog" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Blog</a>
-                          
-                        </li>
-
-                        <li class="nav-item u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
-                            <a id="hotelMenu" class="nav-link u-header__nav-link u-header__nav-link-border" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="hotelSubMenu">Contact</a>
-                          
-                        </li>
  
-                        
-                    </ul>
+
+
+<header data-add-bg="" class="header bg-dark-3 js-header" data-x="header" data-x-toggle="is-menu-opened">
+    <div data-anim="fade" class="header__container header__container-1500 mx-auto px-30 sm:px-20 is-in-view">
+      <div class="row justify-between items-center">
+
+        <div class="col-auto">
+          <div class="d-flex items-center">
+            <a href="/" class="header-logo mr-50" data-x="header-logo" data-x-toggle="is-logo-dark">
+              <img src="img/wmvlogo2.svg" alt="Wheresmaldives.com">
+              <img src="img/wmvlogo2.svg" alt="Wheresmaldives.com">
+            </a>
+
+
+            <div class="header-menu " data-x="mobile-menu" data-x-toggle="is-menu-active">
+              <div class="mobile-overlay"></div>
+
+              <div class="header-menu__content">
+                <div class="mobile-bg js-mobile-bg"></div>
+
+                <div class="menu js-navList">
+                  <ul class="menu__nav text-dark-1 -is-active">
+
+                    <li>
+                      <a href="/">
+                        Home
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="/maldives-hotels-2024-2025">
+                        Hotels
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="/maldives-holiday-packages-2024-2025">
+                        Packages & Deals
+                      </a>
+                    </li>
+
+                    <li class="menu-item-has-children">
+                      <a data-barba="" href="">
+                        <span class="mr-10">Maldives</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+
+                      <ul class="subnav">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Maldives</a>
+                        </li>
+
+                        <li><a href="index.html">Getting here</a></li>
+                        <li><a href="index.html">Before Arrival</a></li>
+                        <li><a href="index.html">Travel Guide 2024</a></li>
+
+                       
+
+                      </ul>
+
+                    </li>
+
+                   <li class="menu-item-has-children -has-mega-menu">
+                      <a data-barba="">
+                        <span class="mr-10">Holidays</span>
+                        <i class="icon icon-chevron-sm-down"></i>
+                      </a>
+
+                      <div class="mega">
+                        <div class="tabs -underline-2 js-tabs">
+                          <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 pb-30 js-tabs-controls">
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Luxury Escapes</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-2">All Inclusive</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-3">Honeymooners</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-4">Wellness</button>
+                            </div>
+
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-5">Kids n Family</button>
+                            </div>
+
+                      
+                            <div class="col-auto">
+                              <button class="tabs__button text-light-1 fw-500 js-tabs-button " data-tab-target=".-tab-item-6">Adults Only</button>
+                            </div>
+
+                          </div>
+
+                          <div class="tabs__content js-tabs-content">
+                            <div class="tabs__pane -tab-item-1">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Hotel List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="hotel-list-1.html">Hotel List v1</a></div>
+
+                                      <div><a href="hotel-list-2.html">Hotel List v2</a></div>
+
+                                      <div><a href="hotel-half-map.html">Hotel List v3</a></div>
+
+                                      <div><a href="hotel-grid-1.html">Hotel List v4</a></div>
+
+                                      <div><a href="hotel-grid-2.html">Hotel List v5</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Hotel Single</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="hotel-single-1.html">Hotel Single v1</a></div>
+
+                                      <div><a href="hotel-single-2.html">Hotel Single v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Hotel Booking</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="booking-pages.html">Booking Page</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4 js-lazy loaded" data-ll-status="loaded">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-2">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Tour List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="tour-list-1.html">Tour List v1</a></div>
+
+                                      <div><a href="tour-grid-1.html">Tour List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Tour Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="tour-map.html">Tour Map</a></div>
+
+                                      <div><a href="tour-single.html">Tour Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-3 is-tab-el-active">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Activity List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="activity-list-1.html">Activity List v1</a></div>
+
+                                      <div><a href="activity-grid-1.html">Activity List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Activity Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="activity-map.html">Activity Map</a></div>
+
+                                      <div><a href="activity-single.html">Activity Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-4">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Rental List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="rental-list-1.html">Rental List v1</a></div>
+
+                                      <div><a href="rental-grid-1.html">Rental List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Rental Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="rental-map.html">Rental Map</a></div>
+
+                                      <div><a href="rental-single.html">Rental Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-5">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Car List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="car-list-1.html">Car List v1</a></div>
+
+                                      <div><a href="car-grid-1.html">Car List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Car Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="car-map.html">Car Map</a></div>
+
+                                      <div><a href="car-single.html">Car Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-6">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Cruise List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="cruise-list-1.html">Cruise List v1</a></div>
+
+                                      <div><a href="cruise-grid-1.html">Cruise List v2</a></div>
+
+                                    </div>
+                                  </div>
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Cruise Pages</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="cruise-map.html">Cruise Map</a></div>
+
+                                      <div><a href="cruise-single.html">Cruise Single</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tabs__pane -tab-item-7">
+                              <div class="mega__content">
+                                <div class="mega__grid">
+
+                                  <div class="mega__item">
+                                    <div class="text-15 fw-500">Flight List</div>
+                                    <div class="y-gap-5 text-15 pt-5">
+
+                                      <div><a href="flights-list.html">Flight list v1</a></div>
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <div class="mega__image d-flex relative">
+                                  <img src="img/backgrounds/7.png" alt="image" class="rounded-4">
+
+                                  <div class="absolute w-full h-full px-30 py-24">
+                                    <div class="text-22 fw-500 lh-15 text-white">Things to do on <br> your trip</div>
+                                    <button class="button h-50 px-30 -blue-1 text-dark-1 bg-white mt-20">Experinces</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ul class="subnav mega-mobile">
+                        <li class="subnav__backBtn js-nav-list-back">
+                          <a href="#"><i class="icon icon-chevron-sm-down"></i> Category</a>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Hotel</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Hotel</a>
+                            </li>
+
+
+                            <li><a href="hotel-list-1.html">Hotel List v1</a></li>
+
+                            <li><a href="hotel-list-2.html">Hotel List v2</a></li>
+
+                            <li><a href="hotel-single-1.html">Hotel Single v1</a></li>
+
+                            <li><a href="hotel-single-2.html">Hotel Single v2</a></li>
+
+                            <li><a href="booking-pages.html">Booking Page</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Tour</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Tour</a>
+                            </li>
+
+                            <li><a href="tour-list-1.html">Tour List v1</a></li>
+
+                            <li><a href="tour-grid-1.html">Tour List v2</a></li>
+
+                            <li><a href="tour-map.html">Tour Map</a></li>
+
+                            <li><a href="tour-single.html">Tour Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Activity</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Activity</a>
+                            </li>
+
+                            <li><a href="activity-list-1.html">Activity List v1</a></li>
+
+                            <li><a href="activity-grid-1.html">Activity List v2</a></li>
+
+                            <li><a href="activity-map.html">Activity Map</a></li>
+
+                            <li><a href="activity-single.html">Activity Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Rental</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Rental</a>
+                            </li>
+
+                            <li><a href="rental-list-1.html">Rental List v1</a></li>
+
+                            <li><a href="rental-grid-1.html">Rental List v2</a></li>
+
+                            <li><a href="rental-map.html">Rental Map</a></li>
+
+                            <li><a href="rental-single.html">Rental Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Car</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Car</a>
+                            </li>
+
+                            <li><a href="car-list-1.html">Car List v1</a></li>
+
+                            <li><a href="car-grid-1.html">Car List v2</a></li>
+
+                            <li><a href="car-map.html">Car Map</a></li>
+
+                            <li><a href="car-single.html">Car Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Cruise</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Cruise</a>
+                            </li>
+
+                            <li><a href="cruise-list-1.html">Cruise List v1</a></li>
+
+                            <li><a href="cruise-grid-1.html">Cruise List v2</a></li>
+
+                            <li><a href="cruise-map.html">Cruise Map</a></li>
+
+                            <li><a href="cruise-single.html">Cruise Single</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li class="menu-item-has-children">
+                          <a data-barba="">
+                            <span class="mr-10">Flights</span>
+                            <i class="icon icon-chevron-sm-down"></i>
+                          </a>
+
+                          <ul class="subnav">
+                            <li class="subnav__backBtn js-nav-list-back">
+                              <a href="#"><i class="icon icon-chevron-sm-down"></i> Flights</a>
+                            </li>
+
+                            <li><a href="flights-list.html">Flights List v1</a></li>
+
+                          </ul>
+                        </li>
+                      </ul>
+                    </li> 
+                    <li>
+                      <a href="/maldives-blog">
+                        Blog
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="/about-wmv">
+                        About
+                      </a>
+                    </li>
+                
+
+                    
+                    <li>
+                      <a href="/contact">
+                        Contact
+                      </a>
+                    </li>
+
+                   
+
+
+               
+                  </ul>
                 </div>
-                <!-- End Navigation -->
 
-              
+                <div class="mobile-footer px-20 py-20 border-top-light js-mobile-footer">
+                </div>
+              </div>
+            </div>
 
-                <!-- Button -->
-                <!-- <div class="pl-4 ml-1 u-header__last-item-btn u-header__last-item-btn-xl">
-                    <a class="btn btn-wide rounded-xs btn-primary transition-3d-hover" href="../others/become-expert.html">Become Local Expert</a>
-                </div> -->
-                <!-- End Button -->
-            </nav>
-            
-            <!-- End Nav -->
+          </div>
         </div>
+
+
+        <div class="col-auto">
+          <div class="d-flex items-center">
+
+            <div class="row x-gap-20 items-center xxl:d-none">
+              <div class="col-auto">
+                <button class="d-flex items-center text-14 text-dark-1" data-x-click="currency">
+                  <span class="js-currencyMenu-mainTitle">USD</span>
+                  <i class="icon-chevron-sm-down text-7 ml-10"></i>
+                </button>
+              </div>
+
+              <div class="col-auto">
+                <div class="w-1 h-20 bg-black-20"></div>
+              </div>
+
+              <div class="col-auto">
+                <button class="d-flex items-center text-14 text-dark-1" data-x-click="lang">
+                  <img src="img/general/lang.png" alt="image" class="rounded-full mr-10">
+                  <span class="js-language-mainTitle">United States</span>
+                  <i class="icon-chevron-sm-down text-7 ml-15"></i>
+                </button>
+              </div>
+            </div>
+
+
+            <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
+              <a href="tel:+960 7513690" class="button px-30 fw-400 text-14 -blue-1 bg-dark-4 h-50 text-white">CALL +960 7513690</a>
+              
+            </div>
+
+            <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
+              <div><a href="#" class="d-flex items-center icon-user text-inherit text-22"></a></div>
+              <div><button class="d-flex items-center icon-menu text-inherit text-20" data-x-click="html, header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-</header>
+  </header>
