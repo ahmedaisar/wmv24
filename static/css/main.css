@@ -9044,6 +9044,9 @@ div[data-slider] > input[type=range]::-ms-tooltip {
   .layout-pb-md {
     padding-bottom: 30px;
   }
+  .header-mobile {
+    padding-top: 120px !important;
+  }
 }
 
 @media (max-width: 575px) {

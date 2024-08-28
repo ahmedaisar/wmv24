@@ -10,22 +10,23 @@
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	export let data;
+ 
 
-	// const hotels = writable(data.hotels);
+	const hotels = writable(data.hotels);
 
-	console.log(data)
-	// let searchTerm = '';
-	// let filteredHotels = [];
+	 
+	let searchTerm = '';
+	let filteredHotels = [];
 
-	// $: {
-	// 	if (searchTerm) {
-	// 		filteredHotels = hotels.filter((hotel) =>
-	// 			hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
-	// 		);
-	// 	} else {
-	// 		filteredHotels = hotels;
-	// 	}
-	// }
+	$: {
+		if (searchTerm) {
+			filteredHotels = hotels.filter((hotel) =>
+				hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
+			);
+		} else {
+			filteredHotels = hotels;
+		}
+	}
 
 	// let dropdownlist = hotels.filter((h) => {
 	// 	return h;
@@ -78,103 +79,103 @@
 		}
 	};
 
-	// function countHotelsByAtoll(hotels) {
-	// 	const hotelCount = hotels.reduce((acc, hotel) => {
-	// 		const atoll = hotel.Atoll;
-	// 		acc[atoll] = (acc[atoll] || 0) + 1;
-	// 		return acc;
-	// 	}, {});
+	function countHotelsByAtoll(hotels) {
+		const hotelCount = hotels.reduce((acc, hotel) => {
+			const atoll = hotel.Atoll;
+			acc[atoll] = (acc[atoll] || 0) + 1;
+			return acc;
+		}, {});
 
-	// 	// Convert the result into an array of objects with the desired format
-	// 	return Object.entries(hotelCount).map(([atoll, count]) => {
-	// 		return {
-	// 			Atoll: atoll,
-	// 			Hotels: count
-	// 		};
-	// 	});
-	// 	function countHotelsByAtoll(hotels) {
-	// 		const hotelCount = hotels.reduce((acc, hotel) => {
-	// 			const atoll = hotel.Atoll;
-	// 			acc[atoll] = (acc[atoll] || 0) + 1;
-	// 			return acc;
-	// 		}, {});
+		// Convert the result into an array of objects with the desired format
+		return Object.entries(hotelCount).map(([atoll, count]) => {
+			return {
+				Atoll: atoll,
+				Hotels: count
+			};
+		});
+		function countHotelsByAtoll(hotels) {
+			const hotelCount = hotels.reduce((acc, hotel) => {
+				const atoll = hotel.Atoll;
+				acc[atoll] = (acc[atoll] || 0) + 1;
+				return acc;
+			}, {});
 
-	// 		// Convert the result into an array of objects
-	// 		return Object.entries(hotelCount)
-	// 			.map(([atoll, count]) => ({
-	// 				Atoll: atoll,
-	// 				Hotels: count
-	// 			}))
-	// 			.sort((a, b) => b['Hotels'] - a['Hotels']); // Sort by Total hotels (descending)
-	// 	}
-	// }
+			// Convert the result into an array of objects
+			return Object.entries(hotelCount)
+				.map(([atoll, count]) => ({
+					Atoll: atoll,
+					Hotels: count
+				}))
+				.sort((a, b) => b['Hotels'] - a['Hotels']); // Sort by Total hotels (descending)
+		}
+	}
 
-	// const atlist = countHotelsByAtoll(atolls);
+	const atlist = countHotelsByAtoll(atolls);
 
-	// function mapResortsByHolidayType(resorts) {
-	// 	const holidayTypes = {
-	// 		'All Inclusive': [],
-	// 		Honeymoon: [],
-	// 		Luxury: [],
-	// 		Wellness: [],
-	// 		'Family & kids': [],
-	// 		'Adults Only': [],
-	// 		'Senior Friendly': [],
-	// 		'Halal travel': []
-	// 	};
+	function mapResortsByHolidayType(resorts) {
+		const holidayTypes = {
+			'All Inclusive': [],
+			Honeymoon: [],
+			Luxury: [],
+			Wellness: [],
+			'Family & kids': [],
+			'Adults Only': [],
+			'Senior Friendly': [],
+			'Halal travel': []
+		};
 
-	// 	resorts.forEach((resort) => {
-	// 		// All Inclusive
-	// 		if (resort.name.toLowerCase().includes('all inclusive')) {
-	// 			holidayTypes['All Inclusive'].push(resort);
-	// 		}
+		$hotels.forEach((resort) => {
+			// All Inclusive
+			if (resort.name.toLowerCase().includes('all inclusive')) {
+				holidayTypes['All Inclusive'].push(resort);
+			}
 
-	// 		// Honeymoon
-	// 		if (resort.themes && resort.themes.includes('romantic')) {
-	// 			holidayTypes['Honeymoon'].push(resort);
-	// 		}
+			// Honeymoon
+			if (resort.themes && resort.themes.includes('romantic')) {
+				holidayTypes['Honeymoon'].push(resort);
+			}
 
-	// 		// Luxury
-	// 		if (resort.quality && resort.quality.stars === 5) {
-	// 			holidayTypes['Luxury'].push(resort);
-	// 		}
+			// Luxury
+			if (resort.quality && resort.quality.stars === 5) {
+				holidayTypes['Luxury'].push(resort);
+			}
 
-	// 		// Wellness
-	// 		if (
-	// 			resort.themes &&
-	// 			(resort.themes.includes('spa_relax') ||
-	// 				resort.short_description.toLowerCase().includes('wellness'))
-	// 		) {
-	// 			holidayTypes['Wellness'].push(resort);
-	// 		}
+			// Wellness
+			if (
+				resort.themes &&
+				(resort.themes.includes('spa_relax') ||
+					resort.short_description.toLowerCase().includes('wellness'))
+			) {
+				holidayTypes['Wellness'].push(resort);
+			}
 
-	// 		// Family & kids
-	// 		if (resort.themes && resort.themes.includes('family')) {
-	// 			holidayTypes['Family & kids'].push(resort);
-	// 		}
+			// Family & kids
+			if (resort.themes && resort.themes.includes('family')) {
+				holidayTypes['Family & kids'].push(resort);
+			}
 
-	// 		// Adults Only
-	// 		if (resort.name && resort.name.includes('lobigili')) {
-	// 			holidayTypes['Adults Only'].push(resort);
-	// 		}
+			// Adults Only
+			if (resort.name && resort.name.includes('lobigili')) {
+				holidayTypes['Adults Only'].push(resort);
+			}
 
-	// 		// Senior Friendly
-	// 		// No clear indicator in the data, so we'll leave this empty
+			// Senior Friendly
+			// No clear indicator in the data, so we'll leave this empty
 
-	// 		// Halal travel
-	// 		// No clear indicator in the data, so we'll leave this empty
-	// 	});
+			// Halal travel
+			// No clear indicator in the data, so we'll leave this empty
+		});
 
-	// 	return holidayTypes;
-	// }
+		return holidayTypes;
+	}
 
-	// const holidays = mapResortsByHolidayType(hotels);
+	const holidays = mapResortsByHolidayType(hotels);
 
-	// const searchHotels = async (checkin, checkout, adults, child, hotel) => {
-	// 	goto(
-	// 		`/hotels?checkin=${checkin}&checkout=${checkout}&adults=${adults}&child=${child}&hotel=${hotel}`
-	// 	);
-	// };
+	const searchHotels = async (checkin, checkout, adults, child, hotel) => {
+		goto(
+			`/hotels?checkin=${checkin}&checkout=${checkout}&adults=${adults}&child=${child}&hotel=${hotel}`
+		);
+	};
 
 	function liveSearch() {
 		const targets = document.querySelectorAll('.js-liverSearch');
@@ -212,7 +213,7 @@
 		const showList = (searchTerm, resultsEl) => {
 			resultsEl.innerHTML = '';
 
-			hotels
+			$hotels
 				.filter((item) => item.name.toLowerCase().includes(searchTerm))
 				.forEach((e) => {
 					const div = document.createElement('div');
@@ -222,8 +223,8 @@
             <div class="d-flex">
               <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
               <div class="ml-10">
-                <div class="text-15 lh-12 fw-500 js-search-option-target">${e.name}</div>
-                <div class="text-14 lh-12 text-light-1 mt-5">${e.location.address}</div>
+                <div class="text-15 lh-12 fw-500 js-search-option-target" data-hotelid="${e.hs_id}">${e.name}</div>
+                <div class="text-14 lh-12 text-light-1 mt-5">${e.location.address +', '+ e.location.city}</div>
               </div>
             </div>
           </button>
@@ -232,7 +233,13 @@
 					resultsEl.appendChild(div);
 				});
 		};
+		
 	}
+
+	onMount(() => {
+		liveSearch()
+  });
+	 
 </script>
 
 <svelte:head>
@@ -4422,7 +4429,7 @@
 	</div>
 </section>
 
-<!-- <section class="layout-pt-md layout-pb-md">
+ <section class="layout-pt-md layout-pb-md header-mobile">
 	<div data-anim-wrap="" class="container animated">
 		<div
 			data-anim-child="slide-up delay-1"
@@ -4521,9 +4528,9 @@
 			<span class="swiper-notification" aria-live="assertive" aria-atomic="true" />
 		</div>
 	</div>
-</section> -->
+</section> 
 
-<!-- <section class="layout-pt-md layout-pb-lg">
+ <section class="layout-pt-md layout-pb-lg">
 	<div data-anim-wrap="" class="container animated">
 		<div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
 			<div class="col-auto">
@@ -6068,9 +6075,9 @@
 			</div>
 		</div>
 	</div>
-</section> -->
+</section> 
 
-<!-- <section class="layout-pt-md layout-pb-md">
+ <section class="layout-pt-md layout-pb-md">
 	<div data-anim-wrap="" class="container animated">
 		<div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
 			<div class="col-auto">
@@ -6105,7 +6112,7 @@
 			{/each}
 		</div>
 	</div>
-</section> -->
+</section>  
 
 <section class="section-bg pt-40 pb-40">
 	<div class="section-bg__item -left-100 -right-100 border-bottom-light" />
