@@ -178,71 +178,71 @@ function priceSwitch() {
 
 }
 
-function liveSearch() {
-  const targets = document.querySelectorAll('.js-liverSearch')
-  if (!targets) return
+// function liveSearch() {
+//   const targets = document.querySelectorAll('.js-liverSearch')
+//   if (!targets) return
 
-  const data = [
-    { city: "London", country: "Greater London, United Kingdom" },
-    { city: "New York", country: "New York State, United States" },
-    { city: "Paris", country: "France" },
-    { city: "Madrid", country: "Spain" },
-    { city: "Santorini", country: "Greece" }
-  ]
+//   const data = [
+//     { city: "London", country: "Greater London, United Kingdom" },
+//     { city: "New York", country: "New York State, United States" },
+//     { city: "Paris", country: "France" },
+//     { city: "Madrid", country: "Spain" },
+//     { city: "Santorini", country: "Greece" }
+//   ]
 
-  targets.forEach(el => {
-    const search = el.querySelector('.js-search')
-    const results = el.querySelector('.js-results')
-    let searchTerm = ''
+//   targets.forEach(el => {
+//     const search = el.querySelector('.js-search')
+//     const results = el.querySelector('.js-results')
+//     let searchTerm = ''
 
-    results.querySelectorAll('.js-search-option').forEach(option => {
-      const title = option.querySelector('.js-search-option-target').innerHTML
+//     results.querySelectorAll('.js-search-option').forEach(option => {
+//       const title = option.querySelector('.js-search-option-target').innerHTML
 
-      option.addEventListener('click', () => {
-        search.value = title
-        el.querySelector('.js-popup-window').classList.remove('-is-active')
-      })
-    })
+//       option.addEventListener('click', () => {
+//         search.value = title
+//         el.querySelector('.js-popup-window').classList.remove('-is-active')
+//       })
+//     })
 
-    search.addEventListener('input', (event) => {
-      searchTerm = event.target.value.toLowerCase()
-      showList(searchTerm, results)
+//     search.addEventListener('input', (event) => {
+//       searchTerm = event.target.value.toLowerCase()
+//       showList(searchTerm, results)
 
-      results.querySelectorAll('.js-search-option').forEach(option => {
-        const title = option.querySelector('.js-search-option-target').innerHTML
+//       results.querySelectorAll('.js-search-option').forEach(option => {
+//         const title = option.querySelector('.js-search-option-target').innerHTML
 
-        option.addEventListener('click', () => {
-          search.value = title
-          el.querySelector('.js-popup-window').classList.remove('-is-active')
-        })
-      })
-    })
-  })
+//         option.addEventListener('click', () => {
+//           search.value = title
+//           el.querySelector('.js-popup-window').classList.remove('-is-active')
+//         })
+//       })
+//     })
+//   })
 
-  const showList = (searchTerm, resultsEl) => {
-    resultsEl.innerHTML = '';
+//   const showList = (searchTerm, resultsEl) => {
+//     resultsEl.innerHTML = '';
 
-    data
-      .filter((item) => item.city.toLowerCase().includes(searchTerm))
-      .forEach((e) => {
-        const div = document.createElement('div')
+//     data
+//       .filter((item) => item.city.toLowerCase().includes(searchTerm))
+//       .forEach((e) => {
+//         const div = document.createElement('div')
 
-        div.innerHTML = `
-          <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
-            <div class="d-flex">
-              <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
-              <div class="ml-10">
-                <div class="text-15 lh-12 fw-500 js-search-option-target">${e.city}</div>
-                <div class="text-14 lh-12 text-light-1 mt-5">${e.country}</div>
-              </div>
-            </div>
-          </button>
-        `
+//         div.innerHTML = `
+//           <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+//             <div class="d-flex">
+//               <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+//               <div class="ml-10">
+//                 <div class="text-15 lh-12 fw-500 js-search-option-target">${e.city}</div>
+//                 <div class="text-14 lh-12 text-light-1 mt-5">${e.country}</div>
+//               </div>
+//             </div>
+//           </button>
+//         `
 
-        resultsEl.appendChild(div)
-      })
-  }
-}
+//         resultsEl.appendChild(div)
+//       })
+//   }
+// }
 
 function countChange() {
   const targets = document.querySelectorAll('.js-form-counters')
