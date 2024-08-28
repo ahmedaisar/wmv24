@@ -17,11 +17,11 @@
 
 	$: {
 		if (searchTerm) {
-			filteredHotels = $hotels.filter((hotel) =>
+			filteredHotels = hotels.filter((hotel) =>
 				hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
 			);
 		} else {
-			filteredHotels = $hotels;
+			filteredHotels = hotels;
 		}
 	}
 
