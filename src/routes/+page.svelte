@@ -12,32 +12,34 @@
 	export let data;
 
 	const hotels = writable(data.hotels);
-	let searchTerm = '';
-	let filteredHotels = [];
 
-	$: {
-		if (searchTerm) {
-			filteredHotels = hotels.filter((hotel) =>
-				hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
-			);
-		} else {
-			filteredHotels = hotels;
-		}
-	}
+	console.log(hotels)
+	// let searchTerm = '';
+	// let filteredHotels = [];
 
-	let dropdownlist = hotels.filter((h) => {
-		return h;
-	});
-	let dropdown = [...new Set(dropdownlist)];
-	let resorts = hotels.filter((h) => {
-		return h.toa_label === 'resort';
-	});
-	let lux = hotels.filter((h) => {
-		return h.quality.stars == '5';
-	});
-	let guesthouse = hotels.filter((h) => {
-		return h.toa == 'guest_house';
-	});
+	// $: {
+	// 	if (searchTerm) {
+	// 		filteredHotels = hotels.filter((hotel) =>
+	// 			hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
+	// 		);
+	// 	} else {
+	// 		filteredHotels = hotels;
+	// 	}
+	// }
+
+	// let dropdownlist = hotels.filter((h) => {
+	// 	return h;
+	// });
+	// let dropdown = [...new Set(dropdownlist)];
+	// let resorts = hotels.filter((h) => {
+	// 	return h.toa_label === 'resort';
+	// });
+	// let lux = hotels.filter((h) => {
+	// 	return h.quality.stars == '5';
+	// });
+	// let guesthouse = hotels.filter((h) => {
+	// 	return h.toa == 'guest_house';
+	// });
 
 	const getStar = (star) => {
 		switch (star) {
@@ -168,11 +170,11 @@
 
 	const holidays = mapResortsByHolidayType(hotels);
 
-	const searchHotels = async (checkin, checkout, adults, child, hotel) => {
-		goto(
-			`/hotels?checkin=${checkin}&checkout=${checkout}&adults=${adults}&child=${child}&hotel=${hotel}`
-		);
-	};
+	// const searchHotels = async (checkin, checkout, adults, child, hotel) => {
+	// 	goto(
+	// 		`/hotels?checkin=${checkin}&checkout=${checkout}&adults=${adults}&child=${child}&hotel=${hotel}`
+	// 	);
+	// };
 
 	function liveSearch() {
 		const targets = document.querySelectorAll('.js-liverSearch');
@@ -4521,7 +4523,7 @@
 	</div>
 </section>
 
-<section class="layout-pt-md layout-pb-lg">
+<!-- <section class="layout-pt-md layout-pb-lg">
 	<div data-anim-wrap="" class="container animated">
 		<div data-anim-child="slide-up delay-1" class="row justify-center text-center is-in-view">
 			<div class="col-auto">
@@ -4682,11 +4684,11 @@
 											</div>
 										</div>
 
-										<!-- <div class="mt-5">
+										 <div class="mt-5">
                         <div class="fw-500">
                           Starting from <span class="text-blue-1">US$72</span>
                         </div>
-                      </div> -->
+                      </div> 
 									</div>
 								</a>
 							</div>
@@ -4811,12 +4813,11 @@
 												{hotel.quality && hotel.quality.review_count} reviews
 											</div>
 										</div>
-
-										<!-- <div class="mt-5">
+<div class="mt-5">
                         <div class="fw-500">
                           Starting from <span class="text-blue-1">US$72</span>
                         </div>
-                      </div> -->
+                      </div> 
 									</div>
 								</a>
 							</div>
@@ -4942,11 +4943,11 @@
 											</div>
 										</div>
 
-										<!-- <div class="mt-5">
+									 <div class="mt-5">
                         <div class="fw-500">
                           Starting from <span class="text-blue-1">US$72</span>
                         </div>
-                      </div> -->
+                      </div> 
 									</div>
 								</a>
 							</div>
@@ -5072,11 +5073,11 @@
 											</div>
 										</div>
 
-										<!-- <div class="mt-5">
+										 <div class="mt-5">
                         <div class="fw-500">
                           Starting from <span class="text-blue-1">US$72</span>
                         </div>
-                      </div> -->
+                      </div> 
 									</div>
 								</a>
 							</div>
@@ -5084,7 +5085,7 @@
 					</div>
 				</div>
 
-				<!-- <div class="tabs__pane -tab-item-5">
+				<div class="tabs__pane -tab-item-5">
               <div class="row y-gap-30">
 
                 <div data-anim-child="slide-left delay-4" class="col-xl-3 col-lg-3 col-sm-6 is-in-view">
@@ -6063,11 +6064,11 @@
                 </div>
 
               </div>
-            </div> -->
+            </div> 
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <section class="layout-pt-md layout-pb-md">
 	<div data-anim-wrap="" class="container animated">
