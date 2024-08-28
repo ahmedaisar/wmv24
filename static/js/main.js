@@ -58,7 +58,7 @@ function initComponents() {
   timeRangeSliderInit()
   priceRangeSliderInit()
   countChange()
-  liveSearch()
+  // liveSearch()
   initMap()
   initMapPlaces()
   initMapSingle()
