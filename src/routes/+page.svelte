@@ -5,7 +5,7 @@
 	import Footer from '$lib/components/common/footer.svelte';
 	import * as maldives from '$lib/data/maldives.json';
 	import atolls from '$lib/data/atolls.json';
-	import bg from '$lib/assets/bg.jpg';
+
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
