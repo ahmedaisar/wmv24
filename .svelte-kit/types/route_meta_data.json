@@ -1,13 +1,23 @@
 {
 	"/": [
-		"src/routes/+page.js"
+		"src/routes/+layout.js",
+		"src/routes/+layout.js"
 	],
-	"/blog": [],
+	"/blog": [
+		"src/routes/+layout.js"
+	],
 	"/blog/[id]/[slug]": [
-		"src/routes/blog/[id]/[slug]/+page.js"
+		"src/routes/blog/[id]/[slug]/+page.js",
+		"src/routes/+layout.js"
 	],
-	"/hm": [],
+	"/hm": [
+		"src/routes/+layout.js"
+	],
 	"/hotels": [
-		"src/routes/hotels/+page.js"
+		"src/routes/hotels/+page.js",
+		"src/routes/+layout.js"
+	],
+	"/hotels/[hs_id]/[slug]": [
+		"src/routes/+layout.js"
 	]
 }

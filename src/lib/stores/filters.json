@@ -1,0 +1,217 @@
+{filters: {
+rating: [
+1,
+2,
+3,
+4,
+5
+],
+stars: [
+1,
+2,
+3,
+4,
+5
+],
+toas: [
+"bed_and_breakfast",
+"hostel",
+"apartment",
+"aparthotel",
+"guest_house",
+"bungalow",
+"chalet",
+"other",
+"hotel",
+"villa",
+"resort",
+"boat"
+],
+extra_filters: [
+"patio",
+"shuttle_service",
+"casino",
+"terrace",
+"minigolf",
+"room_service",
+"cribs_small_beds",
+"babysitter",
+"bowling",
+"fitness_center",
+"disability_friendly_rooms",
+"poolside_bar",
+"tv_lobby",
+"wifi_lobby",
+"badminton",
+"bike_rent",
+"in_room_safe",
+"beach_bar",
+"wheelchair_accessible",
+"meeting_room",
+"wired_internet",
+"solarium",
+"jacuzzi",
+"turkish_bath",
+"luggage_storage",
+"cafe",
+"boat_rent",
+"tennis",
+"outdoor_pool",
+"archery",
+"sailing",
+"laundry_facilities",
+"tv",
+"restaurant",
+"garden",
+"volley_beach_volley",
+"hair_salon",
+"heating",
+"lounge",
+"wifi_room",
+"disability_facilities",
+"surf",
+"massage",
+"fan",
+"concierge",
+"billiard",
+"ski",
+"internet",
+"children_playground",
+"sauna",
+"covid_safe",
+"yoga",
+"horsemanship",
+"air_conditioning",
+"squash",
+"snack_bar",
+"internet_room",
+"pets_allowed",
+"safety_deposit_box",
+"indoor_pool",
+"bar",
+"snack_vending_machine",
+"yard",
+"24h_reception",
+"sub",
+"disco",
+"tea_coffe_maker_room",
+"parking",
+"wifi",
+"trekking",
+"spa",
+"reception",
+"tv_room",
+"business_services",
+"golf",
+"washing_machine",
+"ping_pong",
+"lift",
+"tea_coffee_maker",
+"laundry_service",
+"conference_facilities"
+],
+price: {
+lower: 35,
+current_lower: 35,
+upper: 498,
+current_upper: 498,
+avg: 507.94,
+values: [
+{
+x0: 35,
+x: 60,
+y: 26
+},
+{
+x0: 61,
+x: 86,
+y: 83
+},
+{
+x0: 87,
+x: 112,
+y: 100
+},
+{
+x0: 113,
+x: 138,
+y: 39
+},
+{
+x0: 139,
+x: 164,
+y: 21
+},
+{
+x0: 165,
+x: 190,
+y: 19
+},
+{
+x0: 191,
+x: 216,
+y: 18
+},
+{
+x0: 217,
+x: 242,
+y: 17
+},
+{
+x0: 243,
+x: 268,
+y: 7
+},
+{
+x0: 269,
+x: 294,
+y: 6
+},
+{
+x0: 295,
+x: 320,
+y: 4
+},
+{
+x0: 321,
+x: 346,
+y: 6
+},
+{
+x0: 347,
+x: 372,
+y: 5
+},
+{
+x0: 373,
+x: 398,
+y: 3
+},
+{
+x0: 399,
+x: 424,
+y: 6
+},
+{
+x0: 425,
+x: 450,
+y: 5
+},
+{
+x0: 451,
+x: 476,
+y: 3
+},
+{
+x0: 477,
+x: 498,
+y: 8
+}
+]
+},
+distance: {
+lower: 1,
+upper: 20
+}
+}
+}

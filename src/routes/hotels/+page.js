@@ -4,19 +4,20 @@ export const load = async ({ params }) => {
 	const { checkin, checkout, adults, child } = params;
 	let data;
 
-	if (params) {
+	if (checkin) {
 		const hotels = await fetch(
 			`https://letsgo-seven.vercel.app/api/hotels?checkin${checkin}&checkout=${checkout}&adults=${adults}&child=${child}`
 		);
 		data = await hotels.json();
 	}
-	const localdata = maldives?.data?.records;
+	const localdata = maldives?.data;
 
-	data = localdata.filter((h) => {
+	data = localdata.records.filter((h) => {
 		return h.toa_label === 'resort' && h.quality.stars == 5;
 	});
 
 	return {
-		hotels: data
+		hotels: data,
+		filters: localdata.filters
 	};
 };
